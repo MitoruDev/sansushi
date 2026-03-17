@@ -10,6 +10,14 @@ export const sanityClient = createClient({
   useCdn: true,
 });
 
+/** Client ohne CDN für Abwesenheiten – Änderungen (z. B. Löschen) sind sofort sichtbar. */
+const sanityClientNoCdn = createClient({
+  projectId,
+  dataset,
+  apiVersion: "2024-01-01",
+  useCdn: false,
+});
+
 export type Abwesenheit = {
   _id: string;
   title?: string | null;
@@ -34,7 +42,7 @@ function getTodayDateKey(): string {
 export async function getActiveAbsences(): Promise<Abwesenheit[]> {
   try {
     const today = getTodayDateKey();
-    return await sanityClient.fetch<Abwesenheit[]>(activeAbsencesQuery, {
+    return await sanityClientNoCdn.fetch<Abwesenheit[]>(activeAbsencesQuery, {
       today,
     });
   } catch {

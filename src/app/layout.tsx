@@ -59,6 +59,9 @@ export const viewport: Viewport = {
   themeColor: "#0c0c0c",
 };
 
+/** Abwesenheiten aus Sanity werden so alle 60 Sekunden neu geladen (Banner/Öffnungsstatus). */
+export const revalidate = 60;
+
 export default async function RootLayout({
   children,
 }: Readonly<{
