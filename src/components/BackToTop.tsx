@@ -5,7 +5,7 @@ import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLenis } from "@/components/LenisProvider";
 
-const SCROLL_THRESHOLD = 400;
+export const SCROLL_THRESHOLD = 400;
 
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
