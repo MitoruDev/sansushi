@@ -18,14 +18,11 @@ export const SITE = {
   openingHours: {
     weekdays: "Montag–Samstag 12:00–22:00 Uhr (durchgehend)",
     sunday: "Sonntag Ruhetag",
-    closedNotice: "Betriebsferien: 27.10.–27.11.2025",
   },
-  /** Maschinenlesbare Öffnungszeiten für Live-Status (Mo–Sa 12:00–22:00, Sonntag geschlossen). */
+  /** Maschinenlesbare Öffnungszeiten für Live-Status (Mo–Sa 12:00–22:00, Sonntag geschlossen). Abwesenheiten kommen aus Sanity (CMS). */
   openingHoursStructured: {
     weekdays: { open: "12:00", close: "22:00" },
     sundayClosed: true,
-    /** Betriebsferien: in diesem Zeitraum immer „Geschlossen“. */
-    specialClosure: { start: "2025-10-27", end: "2025-11-27" },
   },
   coordinates: {
     lat: 51.3594,

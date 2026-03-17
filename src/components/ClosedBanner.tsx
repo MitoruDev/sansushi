@@ -1,9 +1,24 @@
 import { CalendarX } from "lucide-react";
+import type { Abwesenheit } from "@/lib/sanity";
+import { formatDateDE } from "@/lib/format";
 
-const CLOSED_END_DATE = new Date("2025-11-27T23:59:59");
+type ClosedBannerProps = {
+  absences: Abwesenheit[];
+};
 
-export function ClosedBanner() {
-  if (new Date() > CLOSED_END_DATE) return null;
+export function ClosedBanner({ absences }: ClosedBannerProps) {
+  if (!absences.length) return null;
+
+  const text =
+    absences.length === 1 && absences[0].customText
+      ? absences[0].customText
+      : absences
+          .map(
+            (a) =>
+              a.customText ||
+              `Geschlossen vom ${formatDateDE(a.startDate)} bis ${formatDateDE(a.endDate)}.`
+          )
+          .join(" ");
 
   return (
     <div
@@ -11,11 +26,7 @@ export function ClosedBanner() {
       role="alert"
     >
       <CalendarX className="h-5 w-5 shrink-0" aria-hidden />
-      <span>
-        Betriebsferien: Unser Restaurant bleibt vom{" "}
-        <strong className="font-bold">27.10.–27.11.2025</strong>{" "}
-        geschlossen.
-      </span>
+      <span>{text}</span>
     </div>
   );
 }

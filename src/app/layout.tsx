@@ -1,15 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ClosedBanner } from "@/components/ClosedBanner";
-import { RestaurantJsonLd } from "@/components/JsonLd";
-import { BackToTop } from "@/components/BackToTop";
-import { LenisProvider } from "@/components/LenisProvider";
-import { SkipLink } from "@/components/SkipLink";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { StickyCallButton } from "@/components/StickyCallButton";
-import { CookieBanner } from "@/components/CookieBanner";
+import { SiteOrStudioLayout } from "@/components/SiteOrStudioLayout";
+import { getActiveAbsences } from "@/lib/sanity";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -67,30 +59,21 @@ export const viewport: Viewport = {
   themeColor: "#0c0c0c",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const activeAbsences = await getActiveAbsences();
+
   return (
     <html lang="de">
       <body
         className={`${plusJakarta.variable} ${cormorant.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
-        <SkipLink />
-        <LenisProvider>
-          <RestaurantJsonLd />
-          <ClosedBanner />
-          <Header />
-          <main id="main-content" className="flex-1" tabIndex={-1}>
-            <Breadcrumbs />
-            {children}
-          </main>
-          <Footer />
-          <StickyCallButton />
-          <BackToTop />
-          <CookieBanner />
-        </LenisProvider>
+        <SiteOrStudioLayout activeAbsences={activeAbsences}>
+          {children}
+        </SiteOrStudioLayout>
       </body>
     </html>
   );

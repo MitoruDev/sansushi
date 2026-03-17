@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion, LayoutGroup } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import type { Abwesenheit } from "@/lib/sanity";
 import { LiveOpenStatus } from "@/components/LiveOpenStatus";
 
 const navLinks = [
@@ -14,7 +15,11 @@ const navLinks = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-export function Header() {
+type HeaderProps = {
+  activeAbsences?: Abwesenheit[];
+};
+
+export function Header({ activeAbsences = [] }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
@@ -93,7 +98,7 @@ export function Header() {
               );
             })}
           </LayoutGroup>
-          <LiveOpenStatus variant="compact" />
+          <LiveOpenStatus variant="compact" activeAbsences={activeAbsences} />
           <a
             href={`tel:${SITE.phone.main}`}
             className="focus-ring ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-primary/25 transition-all hover:bg-primary-hover hover:shadow-primary/30 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -121,7 +126,7 @@ export function Header() {
           aria-label="Mobile Navigation"
         >
           <div className="mb-3 flex items-center justify-center border-b border-border pb-3">
-            <LiveOpenStatus variant="compact" />
+            <LiveOpenStatus variant="compact" activeAbsences={activeAbsences} />
           </div>
           <ul className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => {

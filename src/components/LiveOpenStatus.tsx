@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { SITE } from "@/lib/constants";
+import type { Abwesenheit } from "@/lib/sanity";
 
 import "react-pulse-dot/dist/index.css";
 
@@ -58,21 +59,25 @@ function getNowInBerlin(): { minutesSinceMidnight: number; dayOfWeek: number; da
   return { minutesSinceMidnight, dayOfWeek, dateKey };
 }
 
-function isInSpecialClosure(dateKey: string): boolean {
-  const { specialClosure } = SITE.openingHoursStructured;
-  if (!specialClosure) return false;
-  return dateKey >= specialClosure.start && dateKey <= specialClosure.end;
+function isInAbsencePeriod(dateKey: string, absences: Abwesenheit[]): Abwesenheit | null {
+  for (const a of absences) {
+    if (dateKey >= a.startDate && dateKey <= a.endDate) return a;
+  }
+  return null;
 }
 
-function computeOpenState(): OpenState {
-  const { weekdays, sundayClosed, specialClosure } = SITE.openingHoursStructured;
+function computeOpenState(activeAbsences: Abwesenheit[]): OpenState {
+  const { weekdays, sundayClosed } = SITE.openingHoursStructured;
   const { minutesSinceMidnight, dayOfWeek, dateKey } = getNowInBerlin();
 
-  if (specialClosure && isInSpecialClosure(dateKey)) {
+  const currentAbsence = isInAbsencePeriod(dateKey, activeAbsences);
+  if (currentAbsence) {
+    const hint =
+      currentAbsence.customText?.slice(0, 80) ?? "Öffnet wieder nach der Abwesenheit.";
     return {
       isOpen: false,
       message: "Geschlossen",
-      nextChange: "Öffnet wieder nach den Betriebsferien",
+      nextChange: hint.length > 80 ? `${hint}…` : hint,
     };
   }
 
@@ -112,17 +117,24 @@ function computeOpenState(): OpenState {
 
 type LiveOpenStatusProps = {
   variant?: "compact" | "card" | "cardOnPrimary";
+  /** Abwesenheiten aus Sanity (heute aktiv). Wenn leer, keine Sonder-Schließung. */
+  activeAbsences?: Abwesenheit[];
 };
 
-export function LiveOpenStatus({ variant = "compact" }: LiveOpenStatusProps) {
-  const [state, setState] = useState<OpenState>(() => computeOpenState());
+export function LiveOpenStatus({
+  variant = "compact",
+  activeAbsences = [],
+}: LiveOpenStatusProps) {
+  const [state, setState] = useState<OpenState>(() =>
+    computeOpenState(activeAbsences)
+  );
 
   useEffect(() => {
-    const tick = () => setState(computeOpenState());
+    const tick = () => setState(computeOpenState(activeAbsences));
     tick();
     const id = setInterval(tick, 60_000);
     return () => clearInterval(id);
-  }, []);
+  }, [activeAbsences]);
 
   const isCard = variant === "card" || variant === "cardOnPrimary";
   const onPrimary = variant === "cardOnPrimary";
