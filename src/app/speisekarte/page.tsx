@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   Fish,
   CircleDot,
@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import type { MenuCategory, MenuItem } from "@/data/menu";
 import { menuCategories } from "@/data/menu";
-import { FadeInView } from "@/components/motion/FadeInView";
 
 const categoryIcons: Record<string, LucideIcon> = {
   "nigiri-sashimi": Fish,
@@ -55,39 +54,101 @@ export default function SpeisekartePage() {
     ? menuCategories.find((c) => c.id === activeCategory)
     : null;
 
+  const reduceMotion = useReducedMotion();
+  const spring = reduceMotion
+    ? { duration: 0.2 }
+    : { type: "spring" as const, stiffness: 380, damping: 28 };
+  const heroStagger: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.08,
+        delayChildren: reduceMotion ? 0 : 0.12,
+      },
+    },
+  };
+  const heroItem: Variants = {
+    hidden: { opacity: 0, y: 22, filter: reduceMotion ? "none" : "blur(8px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: spring },
+  };
+
   return (
-    <article className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <article className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(220,38,38,0.08),transparent_55%)]"
+        aria-hidden
+      />
+
       {/* Hero mit Bild + Text */}
       <section className="relative -mx-4 mb-10 aspect-[21/9] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl">
-        <Image
-          src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=1200&q=80"
-          alt="Speisekarte San Sushi – Sushi, Sashimi und asiatische Gerichte"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
+        <motion.div
+          className="absolute inset-0"
+          initial={reduceMotion ? false : { scale: 1.06 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=1200&q=80"
+            alt="Speisekarte San Sushi – Sushi, Sashimi und asiatische Gerichte"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent" />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_70%_40%_at_50%_100%,rgba(220,38,38,0.15),transparent_60%)]"
+          aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <FadeInView className="absolute bottom-0 left-0 right-0 p-4 sm:p-6" duration={0.5} y={20}>
-          <h1 className="font-display text-2xl font-semibold text-white sm:text-3xl">
-            Speisekarte
-          </h1>
-          <p className="mt-1 max-w-xl text-sm text-white/90 sm:text-base">
-            Frisch zubereitet, mit Sorgfalt – für Sie.
-          </p>
-          <a
-            href="/speisekarte.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring mt-3 inline-flex items-center gap-2 rounded-lg bg-white/20 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        {!reduceMotion && (
+          <div
+            className="pointer-events-none absolute bottom-0 left-1/4 h-40 w-64 -translate-x-1/2 rounded-full bg-primary/20 blur-3xl"
+            aria-hidden
+          />
+        )}
+
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 flex flex-col p-4 sm:p-6"
+          initial="hidden"
+          animate="visible"
+          variants={heroStagger}
+        >
+          <motion.div
+            className="mb-3 h-px w-full max-w-xs bg-gradient-to-r from-transparent via-white/50 to-transparent shadow-[0_0_12px_rgba(255,255,255,0.2)]"
+            variants={heroItem}
+            aria-hidden
+          />
+          <motion.h1
+            className="font-display text-2xl font-semibold text-white drop-shadow-lg sm:text-3xl"
+            variants={heroItem}
           >
-            <FileDown className="h-4 w-4" /> PDF herunterladen
-          </a>
-        </FadeInView>
+            Speisekarte
+          </motion.h1>
+          <motion.p
+            className="mt-1 max-w-xl text-sm text-white/90 sm:text-base"
+            variants={heroItem}
+          >
+            Frisch zubereitet, mit Sorgfalt – für Sie.
+          </motion.p>
+          <motion.div className="mt-3" variants={heroItem}>
+            <motion.a
+              href="/speisekarte.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring inline-flex items-center gap-2 rounded-lg bg-white/20 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_20px_-4px_rgba(255,255,255,0.15)] transition-colors hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              whileHover={reduceMotion ? {} : { scale: 1.03, y: -2 }}
+              whileTap={reduceMotion ? {} : { scale: 0.98 }}
+              transition={spring}
+            >
+              <FileDown className="h-4 w-4" aria-hidden /> PDF herunterladen
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Kategorie-Filter + Aktuell-Anzeige */}
-      <div className="sticky top-[72px] z-10 -mx-4 mb-8 bg-background/95 backdrop-blur sm:top-20 sm:mx-0">
+      <div className="sticky top-[72px] z-10 -mx-4 mb-8 border-b border-border/80 bg-background/95 shadow-[0_1px_0_rgba(255,255,255,0.03)] backdrop-blur sm:top-20 sm:mx-0">
         {activeCategoryData && (
           <div className="flex items-center gap-2 border-b border-primary/30 bg-primary/10 px-4 py-3 sm:px-0">
             {(() => {
@@ -153,6 +214,7 @@ export default function SpeisekartePage() {
               activeCategory === null || activeCategory === category.id
             }
             isActiveCategory={activeCategory === category.id}
+            reduceMotion={reduceMotion ?? false}
           />
         ))}
       </div>
@@ -223,48 +285,76 @@ function DishList({ items }: { items: MenuItem[] }) {
   );
 }
 
+const categorySectionVariants: Variants = {
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { type: "spring", stiffness: 320, damping: 28 },
+  },
+};
+
 function CategorySection({
   category,
   icon: Icon,
   image,
   isExpanded,
   isActiveCategory,
+  reduceMotion,
 }: {
   category: MenuCategory;
   icon?: LucideIcon;
   image?: string;
   isExpanded: boolean;
   isActiveCategory: boolean;
+  reduceMotion: boolean | null;
 }) {
   if (!isExpanded) return null;
 
   return (
-    <FadeInView y={24} duration={0.45}>
-    <section
+    <motion.section
       id={category.id}
+      initial={reduceMotion ? false : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-40px" }}
+      variants={categorySectionVariants}
       className={`scroll-mt-36 rounded-2xl transition-all ${
         isActiveCategory
-          ? "ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+          ? "ring-2 ring-primary/50 ring-offset-2 ring-offset-background shadow-[0_0_0_1px_rgba(220,38,38,0.1)]"
           : ""
       }`}
       aria-labelledby={`category-${category.id}`}
     >
-      {/* Kategorie-Bild */}
       {image && (
-        <div className="relative mb-0 aspect-[3/1] overflow-hidden rounded-t-2xl">
-          <Image
-            src={image}
-            alt={`Gerichte der Kategorie ${category.name}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 800px"
+        <div className="group relative mb-0 aspect-[3/1] overflow-hidden rounded-t-2xl">
+          <motion.div
+            className="absolute inset-0"
+            whileHover={reduceMotion ? {} : { scale: 1.04 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={image}
+              alt={`Gerichte der Kategorie ${category.name}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div
+            className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+            aria-hidden
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
             {Icon && (
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white">
+              <motion.span
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-[0_0_24px_-4px_rgba(220,38,38,0.5)]"
+                whileHover={reduceMotion ? {} : { scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 22 }}
+              >
                 <Icon className="h-6 w-6" aria-hidden />
-              </span>
+              </motion.span>
             )}
             <h2
               id={`category-${category.id}`}
@@ -276,24 +366,26 @@ function CategorySection({
         </div>
       )}
 
-      {/* Gerichte-Liste */}
       <div className="rounded-b-2xl border border-t-0 border-border bg-card p-4 sm:p-6">
         {!image && (
-          <h2
-            id={`category-${category.id}`}
-            className="mb-4 flex items-center gap-3 border-b border-primary/30 pb-3 font-display text-xl font-semibold text-foreground"
-          >
-            {Icon && (
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white">
-                <Icon className="h-5 w-5" aria-hidden />
-              </span>
-            )}
-            {category.name}
-          </h2>
+          <div className="mb-4 flex items-center gap-3 border-b border-primary/25 pb-3">
+            <div className="h-px flex-1 max-w-12 bg-gradient-to-r from-primary/50 to-transparent" aria-hidden />
+            <h2
+              id={`category-${category.id}`}
+              className="flex items-center gap-3 font-display text-xl font-semibold text-foreground"
+            >
+              {Icon && (
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary-on-dark ring-1 ring-primary/20">
+                  <Icon className="h-5 w-5" aria-hidden />
+                </span>
+              )}
+              {category.name}
+            </h2>
+            <div className="h-px flex-1 max-w-12 bg-gradient-to-l from-primary/50 to-transparent" aria-hidden />
+          </div>
         )}
         <DishList items={category.items} />
       </div>
-    </section>
-    </FadeInView>
+    </motion.section>
   );
 }

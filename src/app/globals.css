@@ -206,6 +206,22 @@ button:disabled,
   margin-bottom: 0.5rem;
 }
 .prose-custom h2:first-of-type { margin-top: 0; }
+
+/* Rechtstexte: klarere Abschnitte */
+.prose-legal h2 {
+  position: relative;
+  padding-left: 0.85rem;
+  margin-top: 2.25rem;
+  border-left: 3px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  border-radius: 2px 0 0 2px;
+}
+.prose-legal h2:first-of-type {
+  margin-top: 0;
+}
+.prose-legal em {
+  color: var(--muted);
+  font-size: 0.95em;
+}
 .prose-custom ul, .prose-custom ol {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;

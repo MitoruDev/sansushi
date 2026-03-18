@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MapPin, Clock, Phone, FileText } from "lucide-react";
-import { SITE } from "@/lib/constants";
+import { SITE, DEV_CREDIT } from "@/lib/constants";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { StaggerInView, StaggerItem } from "@/components/motion/StaggerInView";
 
@@ -67,9 +67,17 @@ export function Footer() {
           </div>
           </StaggerItem>
         </StaggerInView>
-        <FadeInView delay={0.1} className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-white/15 pt-6 text-sm text-white/80">
-          <span>© {new Date().getFullYear()} {SITE.name}</span>
-          <span className="flex justify-center text-primary-on-dark" aria-hidden>
+        <FadeInView
+          delay={0.1}
+          className="mt-10 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/80 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4"
+        >
+          <span className="text-center md:text-left">
+            © {new Date().getFullYear()} {SITE.name}
+          </span>
+          <span
+            className="hidden justify-center text-primary-on-dark md:flex"
+            aria-hidden
+          >
             <svg
               viewBox="0 0 122.88 64.41"
               className="h-6 w-auto"
@@ -83,7 +91,7 @@ export function Footer() {
               />
             </svg>
           </span>
-          <span className="flex items-center justify-end gap-6">
+          <span className="flex flex-wrap items-center justify-center gap-6 md:justify-end">
             <Link href="/impressum" className="focus-ring flex items-center gap-1.5 hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded">
               <FileText className="h-3.5 w-3.5 text-primary-on-dark/90" aria-hidden />
               Impressum
@@ -94,6 +102,23 @@ export function Footer() {
             </Link>
           </span>
         </FadeInView>
+
+        {DEV_CREDIT.show && DEV_CREDIT.url && (
+          <p className="mt-8 border-t border-white/10 pt-5 text-center text-[10px] leading-relaxed tracking-wide text-white/40 sm:text-left">
+            <a
+              href={DEV_CREDIT.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring rounded text-white/55 underline-offset-2 transition-colors hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer"
+            >
+              {DEV_CREDIT.linkText}
+            </a>
+            <span className="mx-2 text-white/25" aria-hidden>
+              ·
+            </span>
+            <span className="text-white/35">{DEV_CREDIT.name}</span>
+          </p>
+        )}
       </div>
     </footer>
   );

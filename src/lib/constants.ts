@@ -33,3 +33,15 @@ export const SITE = {
   /** Google (Maps) – dort finden Gäste auch Bewertungen. */
   googleReviewsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
 } as const;
+
+/**
+ * Dezenter Entwickler-Hinweis im Footer (für Anfragen anderer Restaurants).
+ * `show: false` → Zeile wird nicht gerendert.
+ */
+export const DEV_CREDIT = {
+  show: true,
+  name: "Caner Elmas",
+  /** Portfolio / Kontakt für Gastronomie-Anfragen */
+  url: "https://mitoru.de",
+  linkText: "Website für Ihr Lokal?",
+} as const;
