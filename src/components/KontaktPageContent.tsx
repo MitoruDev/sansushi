@@ -209,8 +209,14 @@ export function KontaktPageContent() {
             </motion.a>
           </motion.div>
 
-          <motion.div variants={cardReveal}>
-            <OpeningHours />
+          <motion.div
+            variants={cardReveal}
+            whileHover={
+              lite ? {} : { y: -4, transition: { type: "spring", stiffness: 400, damping: 22 } }
+            }
+            className="rounded-2xl border border-primary/15 bg-card p-6 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.03)] transition-shadow hover:border-primary/25 hover:shadow-[0_12px_40px_-12px_rgba(220,38,38,0.1)]"
+          >
+            <OpeningHours embedded />
           </motion.div>
         </motion.div>
 
