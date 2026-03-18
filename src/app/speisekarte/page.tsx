@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import type { MenuCategory, MenuItem } from "@/data/menu";
 import { menuCategories } from "@/data/menu";
+import { useLenis } from "@/components/LenisProvider";
 
 const categoryIcons: Record<string, LucideIcon> = {
   "nigiri-sashimi": Fish,
@@ -50,6 +51,57 @@ const categoryImages: Record<string, string> = {
 
 export default function SpeisekartePage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const lenis = useLenis();
+  /** Anker im normalen Fluss (nicht sticky): sticky-Filter wirkt sonst „schon sichtbar“ → scrollIntoView scrollt nicht hoch. */
+  const filterScrollAnchorRef = useRef<HTMLDivElement>(null);
+  /** Nach State-Update: Scroll erst im Layout-Effekt, wenn DOM (ein/ausgeblendete Kategorien) aktualisiert ist. */
+  const scrollFiltersAfterCommit = useRef(false);
+
+  /**
+   * Lenis steuert das Scrollen auf der Site — window.scrollTo greift oft nicht zuverlässig.
+   * Nach Kollabieren der Liste: resize(), sonst ist limit/animatedScroll noch „alte“ lange Seite.
+   */
+  const scrollPageToFilterAnchor = (immediate: boolean) => {
+    const el = filterScrollAnchorRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const inst = reduced || immediate;
+    const headerPad = window.matchMedia("(min-width: 640px)").matches ? 96 : 76;
+
+    lenis?.resize();
+    if (lenis) {
+      lenis.scrollTo(el, {
+        offset: -headerPad,
+        immediate: inst,
+        force: true,
+      });
+    } else {
+      const top = el.getBoundingClientRect().top + window.scrollY - headerPad;
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: inst ? "auto" : "smooth",
+      });
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (!scrollFiltersAfterCommit.current) return;
+    scrollFiltersAfterCommit.current = false;
+    const filterOn = activeCategory !== null;
+    // Filter zu: Seite wird kurz → sofort scrollen; ggf. zweiter Frame nach Lenis-Limit
+    scrollPageToFilterAnchor(filterOn);
+    if (filterOn) {
+      requestAnimationFrame(() => {
+        lenis?.resize();
+        requestAnimationFrame(() => scrollPageToFilterAnchor(true));
+      });
+    }
+  }, [activeCategory, lenis]);
+
+  /** Direkter Scroll (z. B. „Alle“ ist schon aktiv – activeCategory ändert sich nicht). */
+  const scrollToFilterSectionNow = () => {
+    requestAnimationFrame(() => scrollPageToFilterAnchor(false));
+  };
 
   const activeCategoryData = activeCategory
     ? menuCategories.find((c) => c.id === activeCategory)
@@ -85,7 +137,10 @@ export default function SpeisekartePage() {
       />
 
       {/* Hero mit Bild + Text */}
-      <section className="relative -mx-4 mb-10 aspect-[21/9] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl">
+      <section
+        className="relative -mx-4 mb-10 aspect-[21/9] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl"
+        aria-label="Speisekarte – Kopfbereich"
+      >
         <motion.div
           className="absolute inset-0"
           initial={lite ? false : { scale: 1.06 }}
@@ -152,6 +207,13 @@ export default function SpeisekartePage() {
         </motion.div>
       </section>
 
+      {/* Scroll-Ziel: fester Punkt im Dokument (sticky-Leiste allein würde unten nicht nach oben scrollen) */}
+      <div
+        ref={filterScrollAnchorRef}
+        className="h-0 w-full shrink-0 scroll-mt-[76px] sm:scroll-mt-24"
+        aria-hidden
+      />
+
       {/* Kategorie-Filter + Aktuell-Anzeige */}
       <div className="sticky top-[72px] z-10 -mx-4 mb-8 border-b border-border/80 bg-background/95 shadow-[0_1px_0_rgba(255,255,255,0.03)] backdrop-blur sm:top-20 sm:mx-0">
         {activeCategoryData && (
@@ -175,7 +237,14 @@ export default function SpeisekartePage() {
         >
           <button
             type="button"
-            onClick={() => setActiveCategory(null)}
+            onClick={() => {
+              if (activeCategory === null) {
+                scrollToFilterSectionNow();
+                return;
+              }
+              scrollFiltersAfterCommit.current = true;
+              setActiveCategory(null);
+            }}
             className={`focus-ring whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
               activeCategory === null
                 ? "bg-primary text-white shadow-md shadow-primary/20"
@@ -191,9 +260,10 @@ export default function SpeisekartePage() {
               <button
                 key={cat.id}
                 type="button"
-                onClick={() =>
-                  setActiveCategory(isActive ? null : cat.id)
-                }
+                onClick={() => {
+                  scrollFiltersAfterCommit.current = true;
+                  setActiveCategory(isActive ? null : cat.id);
+                }}
                 className={`focus-ring flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                   isActive
                     ? "bg-primary text-white shadow-md shadow-primary/20"
