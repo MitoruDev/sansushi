@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const shots = [
   {
@@ -23,7 +24,7 @@ const shots = [
 ] as const;
 
 export function HomeGalleryBand() {
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
 
   return (
     <section className="relative overflow-hidden py-10 md:py-12">
@@ -31,7 +32,7 @@ export function HomeGalleryBand() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"
         aria-hidden
       />
-      {!reduceMotion && (
+      {!lite && (
         <motion.div
           className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[min(100%,48rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.04] blur-3xl"
           animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.05, 1] }}
@@ -48,32 +49,38 @@ export function HomeGalleryBand() {
               <motion.div
                 key={src}
                 initial={
-                  reduceMotion
-                    ? false
+                  lite
+                    ? { opacity: 0, y: 14 }
                     : {
                         opacity: 0,
-                        y: 32,
-                        scale: 0.92,
-                        skewY: skew * 0.4,
-                        filter: "blur(10px)",
+                        y: 28,
+                        scale: 0.96,
+                        skewY: skew * 0.35,
                       }
                 }
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  skewY: 0,
-                  filter: "blur(0px)",
-                }}
+                whileInView={
+                  lite
+                    ? { opacity: 1, y: 0 }
+                    : {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        skewY: 0,
+                      }
+                }
                 viewport={{ once: true, margin: "-36px" }}
-                transition={{
-                  type: "spring",
-                  stiffness: 320,
-                  damping: 26,
-                  delay: reduceMotion ? 0 : 0.04 + i * 0.08,
-                }}
+                transition={
+                  lite
+                    ? { duration: 0.35, delay: i * 0.05, ease: "easeOut" }
+                    : {
+                        type: "spring",
+                        stiffness: 320,
+                        damping: 26,
+                        delay: 0.04 + i * 0.08,
+                      }
+                }
                 whileHover={
-                  reduceMotion
+                  lite
                     ? {}
                     : {
                         y: -10,
@@ -89,7 +96,7 @@ export function HomeGalleryBand() {
                 <motion.div
                   className="absolute inset-0"
                   whileHover={
-                    reduceMotion ? {} : { scale: 1.09 }
+                    lite ? {} : { scale: 1.09 }
                   }
                   transition={{
                     duration: 0.55,

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { MapPin, Phone, ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { OpeningHours } from "@/components/OpeningHours";
@@ -10,14 +11,14 @@ const spring = { type: "spring" as const, stiffness: 360, damping: 28 };
 const springBounce = { type: "spring" as const, stiffness: 320, damping: 24 };
 
 export function KontaktPageContent() {
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
 
   const heroSequence: Variants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.1,
-        delayChildren: reduceMotion ? 0 : 0.15,
+        staggerChildren: lite ? 0 : 0.1,
+        delayChildren: lite ? 0 : 0.15,
       },
     },
   };
@@ -26,12 +27,12 @@ export function KontaktPageContent() {
     hidden: {
       opacity: 0,
       y: 24,
-      filter: reduceMotion ? "none" : "blur(8px)",
+      filter: lite ? "none" : "blur(8px)",
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: lite ? "none" : "blur(0px)",
       transition: spring,
     },
   };
@@ -40,12 +41,12 @@ export function KontaktPageContent() {
     hidden: {
       opacity: 0,
       y: 28,
-      filter: reduceMotion ? "none" : "blur(6px)",
+      filter: lite ? "none" : "blur(6px)",
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: lite ? "none" : "blur(0px)",
       transition: springBounce,
     },
   };
@@ -70,7 +71,7 @@ export function KontaktPageContent() {
       {/* Hero image */}
       <motion.div
         className="relative mb-10 aspect-[21/4] overflow-hidden rounded-xl border border-border sm:aspect-[21/5]"
-        initial={reduceMotion ? false : { scale: 1.04 }}
+        initial={lite ? false : { scale: 1.04 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -125,8 +126,8 @@ export function KontaktPageContent() {
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: reduceMotion ? 0 : 0.09,
-                delayChildren: reduceMotion ? 0 : 0.05,
+                staggerChildren: lite ? 0 : 0.09,
+                delayChildren: lite ? 0 : 0.05,
               },
             },
           }}
@@ -134,14 +135,14 @@ export function KontaktPageContent() {
           <motion.div
             variants={cardReveal}
             whileHover={
-              reduceMotion ? {} : { y: -4, transition: { type: "spring", stiffness: 400, damping: 22 } }
+              lite ? {} : { y: -4, transition: { type: "spring", stiffness: 400, damping: 22 } }
             }
             className="rounded-2xl border border-primary/15 bg-card p-6 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.03)] transition-shadow hover:border-primary/25 hover:shadow-[0_12px_40px_-12px_rgba(220,38,38,0.1)]"
           >
             <div className="flex items-center gap-3">
               <motion.div
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary-on-dark ring-1 ring-primary/20"
-                whileHover={reduceMotion ? {} : { scale: 1.06 }}
+                whileHover={lite ? {} : { scale: 1.06 }}
                 transition={spring}
               >
                 <MapPin className="h-6 w-6" aria-hidden />
@@ -165,14 +166,14 @@ export function KontaktPageContent() {
           <motion.div
             variants={cardReveal}
             whileHover={
-              reduceMotion ? {} : { y: -4, transition: { type: "spring", stiffness: 400, damping: 22 } }
+              lite ? {} : { y: -4, transition: { type: "spring", stiffness: 400, damping: 22 } }
             }
             className="rounded-2xl border border-primary/15 bg-card p-6 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.03)] transition-shadow hover:border-primary/25 hover:shadow-[0_12px_40px_-12px_rgba(220,38,38,0.1)]"
           >
             <div className="flex items-center gap-3">
               <motion.div
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary-on-dark ring-1 ring-primary/20"
-                whileHover={reduceMotion ? {} : { scale: 1.06 }}
+                whileHover={lite ? {} : { scale: 1.06 }}
                 transition={spring}
               >
                 <Phone className="h-6 w-6" aria-hidden />
@@ -200,8 +201,8 @@ export function KontaktPageContent() {
             <motion.a
               href={`tel:${SITE.phone.main}`}
               className="focus-ring mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 font-medium text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              whileHover={reduceMotion ? {} : { scale: 1.03, y: -2 }}
-              whileTap={reduceMotion ? {} : { scale: 0.98 }}
+              whileHover={lite ? {} : { scale: 1.03, y: -2 }}
+              whileTap={lite ? {} : { scale: 0.98 }}
               transition={spring}
             >
               <Phone className="h-4 w-4" /> Jetzt anrufen

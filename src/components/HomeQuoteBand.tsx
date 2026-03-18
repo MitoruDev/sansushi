@@ -1,17 +1,18 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const QUOTE_L1 = "„Bei uns wird jede Rolle mit Ruhe und Respekt vor dem Handwerk";
 const QUOTE_L2 = "zubereitet.“";
 
 export function HomeQuoteBand() {
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
 
-  const spring = reduceMotion
+  const spring = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 420, damping: 30 };
-  const springBounce = reduceMotion
+  const springBounce = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 340, damping: 22 };
 
@@ -19,8 +20,8 @@ export function HomeQuoteBand() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.09,
-        delayChildren: reduceMotion ? 0 : 0.06,
+        staggerChildren: lite ? 0 : 0.09,
+        delayChildren: lite ? 0 : 0.06,
       },
     },
   };
@@ -29,12 +30,12 @@ export function HomeQuoteBand() {
     hidden: {
       opacity: 0,
       y: 18,
-      filter: reduceMotion ? "none" : "blur(10px)",
+      filter: lite ? "none" : "blur(10px)",
     },
     show: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: lite ? "none" : "blur(0px)",
       transition: spring,
     },
   };
@@ -44,13 +45,13 @@ export function HomeQuoteBand() {
       opacity: 0,
       scale: 0.72,
       rotate: -12,
-      filter: reduceMotion ? "none" : "blur(6px)",
+      filter: lite ? "none" : "blur(6px)",
     },
     show: {
       opacity: 1,
       scale: 1,
       rotate: 0,
-      filter: "blur(0px)",
+      filter: lite ? "none" : "blur(0px)",
       transition: springBounce,
     },
   };
@@ -70,7 +71,7 @@ export function HomeQuoteBand() {
     show: {
       scaleX: 1,
       opacity: 1,
-      transition: reduceMotion
+      transition: lite
         ? { duration: 0.18 }
         : { duration: 0.48, ease: [0.16, 1, 0.3, 1] },
     },
@@ -87,7 +88,7 @@ export function HomeQuoteBand() {
       />
       <div className="pointer-events-none absolute inset-0 bg-warm-glow" aria-hidden />
 
-      {!reduceMotion && (
+      {!lite && (
         <>
           <motion.div
             className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl"
@@ -112,7 +113,7 @@ export function HomeQuoteBand() {
           />
         </>
       )}
-      {reduceMotion && (
+      {lite && (
         <>
           <div
             className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl"
@@ -138,14 +139,14 @@ export function HomeQuoteBand() {
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
         <motion.div
           className="relative mx-auto w-full max-w-2xl"
-          initial={reduceMotion ? false : { opacity: 0, scaleX: 0.3 }}
+          initial={lite ? false : { opacity: 0, scaleX: 0.3 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true, margin: "-20px" }}
           transition={{
-            type: reduceMotion ? "tween" : "spring",
+            type: lite ? "tween" : "spring",
             stiffness: 320,
             damping: 28,
-            duration: reduceMotion ? 0.15 : undefined,
+            duration: lite ? 0.15 : undefined,
           }}
           style={{ originX: 0.5 }}
           aria-hidden
@@ -155,7 +156,7 @@ export function HomeQuoteBand() {
               className="absolute inset-x-4 top-1/2 h-5 -translate-y-1/2 rounded-full bg-primary/20 blur-2xl"
               initial={false}
               animate={
-                reduceMotion
+                lite
                   ? {}
                   : {
                       opacity: [0.5, 0.85, 0.5],
@@ -201,7 +202,7 @@ export function HomeQuoteBand() {
             <motion.span
               className="inline-block font-display text-4xl text-primary-on-dark drop-shadow-[0_0_28px_rgba(220,38,38,0.35),0_0_60px_rgba(220,38,38,0.12)] md:text-5xl"
               animate={
-                reduceMotion ? {} : { scale: [1, 1.06, 1], opacity: [1, 0.92, 1] }
+                lite ? {} : { scale: [1, 1.06, 1], opacity: [1, 0.92, 1] }
               }
               transition={{
                 duration: 2.6,
@@ -226,8 +227,8 @@ export function HomeQuoteBand() {
             hidden: {},
             show: {
               transition: {
-                staggerChildren: reduceMotion ? 0 : 0.1,
-                delayChildren: reduceMotion ? 0 : 0.2,
+                staggerChildren: lite ? 0 : 0.1,
+                delayChildren: lite ? 0 : 0.2,
               },
             },
           }}

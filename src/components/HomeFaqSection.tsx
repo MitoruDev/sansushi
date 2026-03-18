@@ -2,12 +2,8 @@
 
 import { useState } from "react";
 import { Star } from "lucide-react";
-import {
-  motion,
-  AnimatePresence,
-  useReducedMotion,
-  type Variants,
-} from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { SITE } from "@/lib/constants";
 
 const faqItems = [
@@ -33,22 +29,22 @@ const h2Words = ["Fragen", "&", "Antworten"];
 
 export function HomeFaqSection() {
   const [openId, setOpenId] = useState<number | null>(null);
-  const reduceMotion = useReducedMotion();
-  const spring = reduceMotion
+  const lite = useLiteMotion();
+  const spring = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 420, damping: 28 };
-  const springSoft = reduceMotion
+  const springSoft = lite
     ? { duration: 0.35 }
     : { type: "spring" as const, stiffness: 280, damping: 26 };
-  const springBounce = reduceMotion
+  const springBounce = lite
     ? { duration: 0.25 }
     : { type: "spring" as const, stiffness: 380, damping: 18 };
 
   /** FAQ-Kopf: schneller / knackiger */
-  const headerSpring = reduceMotion
+  const headerSpring = lite
     ? { duration: 0.14 }
     : { type: "spring" as const, stiffness: 580, damping: 30 };
-  const headerSpringBounce = reduceMotion
+  const headerSpringBounce = lite
     ? { duration: 0.16 }
     : { type: "spring" as const, stiffness: 540, damping: 24 };
 
@@ -56,8 +52,8 @@ export function HomeFaqSection() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.04,
-        delayChildren: reduceMotion ? 0 : 0.02,
+        staggerChildren: lite ? 0 : 0.04,
+        delayChildren: lite ? 0 : 0.02,
       },
     },
   };
@@ -67,7 +63,7 @@ export function HomeFaqSection() {
     show: {
       scaleX: 1,
       opacity: 1,
-      transition: reduceMotion
+      transition: lite
         ? { duration: 0.15 }
         : { delay: 0.04, duration: 0.28, ease: [0.16, 1, 0.3, 1] },
     },
@@ -107,15 +103,24 @@ export function HomeFaqSection() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.12,
-        delayChildren: reduceMotion ? 0 : 0.05,
+        staggerChildren: lite ? 0 : 0.12,
+        delayChildren: lite ? 0 : 0.05,
       },
     },
   };
 
   const footerLine: Variants = {
-    hidden: { opacity: 0, y: 14, filter: "blur(6px)" },
-    show: { opacity: 1, y: 0, filter: "blur(0px)", transition: springSoft },
+    hidden: {
+      opacity: 0,
+      y: lite ? 6 : 14,
+      filter: lite ? "none" : "blur(6px)",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: lite ? "none" : "blur(0px)",
+      transition: springSoft,
+    },
   };
 
   return (
@@ -128,7 +133,7 @@ export function HomeFaqSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_-20%,rgba(220,38,38,0.12),transparent_55%),radial-gradient(ellipse_70%_50%_at_100%_50%,rgba(220,38,38,0.06),transparent_50%),radial-gradient(ellipse_60%_40%_at_0%_80%,rgba(245,158,11,0.04),transparent_45%)]"
         aria-hidden
       />
-      {!reduceMotion && (
+      {!lite && (
         <>
           <motion.div
             className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-primary/[0.07] blur-3xl"
@@ -216,8 +221,8 @@ export function HomeFaqSection() {
               hidden: {},
               show: {
                 transition: {
-                  staggerChildren: reduceMotion ? 0 : 0.035,
-                  delayChildren: reduceMotion ? 0 : 0.02,
+                  staggerChildren: lite ? 0 : 0.035,
+                  delayChildren: lite ? 0 : 0.02,
                 },
               },
             }}
@@ -241,7 +246,7 @@ export function HomeFaqSection() {
             className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full border-2 border-primary/50 bg-primary/10 px-6 py-3 text-sm font-semibold text-primary-on-dark shadow-[0_0_24px_-4px_rgba(220,38,38,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
             variants={ctaReveal}
             whileHover={
-              reduceMotion
+              lite
                 ? {}
                 : {
                     scale: 1.04,
@@ -249,12 +254,12 @@ export function HomeFaqSection() {
                     boxShadow: "0 0 36px -4px rgba(220,38,38,0.5)",
                   }
             }
-            whileTap={reduceMotion ? {} : { scale: 0.97 }}
+            whileTap={lite ? {} : { scale: 0.97 }}
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
           >
             <motion.span
               className="inline-flex"
-              whileHover={reduceMotion ? {} : { rotate: [0, -12, 12, 0] }}
+              whileHover={lite ? {} : { rotate: [0, -12, 12, 0] }}
               transition={{ duration: 0.45 }}
             >
               <Star
@@ -274,7 +279,7 @@ export function HomeFaqSection() {
               <motion.li
                 key={item.q}
                 initial={
-                  reduceMotion
+                  lite
                     ? false
                     : { opacity: 0, x: -36, skewX: -3, filter: "blur(4px)" }
                 }
@@ -287,18 +292,18 @@ export function HomeFaqSection() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{
                   ...springSoft,
-                  delay: reduceMotion ? 0 : 0.06 + i * 0.09,
+                  delay: lite ? 0 : 0.06 + i * 0.09,
                 }}
               >
                 <motion.div
-                  layout={!reduceMotion}
+                  layout={!lite}
                   className={`overflow-hidden rounded-2xl border ${
                     isOpen
                       ? "border-primary/40 bg-card shadow-[0_8px_32px_-8px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.04),0_0_0_1px_rgba(220,38,38,0.08)]"
                       : "border-border/80 bg-card/60 hover:border-primary/25 hover:bg-card"
                   }`}
                   whileHover={
-                    reduceMotion
+                    lite
                       ? {}
                       : {
                           y: -4,
@@ -310,7 +315,7 @@ export function HomeFaqSection() {
                         }
                   }
                   animate={
-                    isOpen && !reduceMotion
+                    isOpen && !lite
                       ? {
                           boxShadow: [
                             "0 8px 32px -8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -321,7 +326,7 @@ export function HomeFaqSection() {
                       : {}
                   }
                   transition={
-                    isOpen && !reduceMotion
+                    isOpen && !lite
                       ? { duration: 2.2, repeat: Infinity, ease: "easeInOut" }
                       : undefined
                   }
@@ -338,7 +343,7 @@ export function HomeFaqSection() {
                       className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 font-display text-sm font-semibold tabular-nums text-primary-on-dark ring-1 ring-primary/25"
                       aria-hidden
                       animate={
-                        isOpen && !reduceMotion
+                        isOpen && !lite
                           ? {
                               scale: [1, 1.12, 1.05],
                               boxShadow: [
@@ -350,7 +355,7 @@ export function HomeFaqSection() {
                           : { scale: 1 }
                       }
                       transition={
-                        isOpen && !reduceMotion
+                        isOpen && !lite
                           ? { duration: 0.65, ease: [0.22, 1, 0.36, 1] }
                           : spring
                       }
@@ -396,38 +401,38 @@ export function HomeFaqSection() {
                         role="region"
                         aria-labelledby={`faq-btn-${i}`}
                         initial={
-                          reduceMotion
+                          lite
                             ? { height: "auto", opacity: 1 }
                             : { height: 0, opacity: 0.6 }
                         }
                         animate={{ height: "auto", opacity: 1 }}
                         exit={
-                          reduceMotion
+                          lite
                             ? { height: 0, opacity: 0 }
                             : { height: 0, opacity: 0.5 }
                         }
                         transition={{
                           height: spring,
-                          opacity: { duration: reduceMotion ? 0.15 : 0.22 },
+                          opacity: { duration: lite ? 0.15 : 0.22 },
                         }}
                         className="overflow-hidden"
                       >
                         <motion.div
                           className="border-t border-border/60 bg-black/20 px-4 py-4 pl-[4.25rem] pr-14 text-sm leading-relaxed text-muted md:px-5 md:pl-[4.5rem] md:pr-16"
                           initial={
-                            reduceMotion
+                            lite
                               ? false
                               : { opacity: 0, y: 14, skewY: 1 }
                           }
                           animate={{ opacity: 1, y: 0, skewY: 0 }}
                           exit={
-                            reduceMotion
+                            lite
                               ? {}
                               : { opacity: 0, y: 8, transition: { duration: 0.12 } }
                           }
                           transition={{
                             ...spring,
-                            delay: reduceMotion ? 0 : 0.04,
+                            delay: lite ? 0 : 0.04,
                           }}
                         >
                           <p>{item.a}</p>

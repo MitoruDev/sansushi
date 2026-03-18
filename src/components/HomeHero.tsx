@@ -3,13 +3,8 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type Variants,
-} from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { ChevronDown, Phone, UtensilsCrossed } from "lucide-react";
 import { SITE } from "@/lib/constants";
 
@@ -22,7 +17,7 @@ const [heroWord1, heroWord2] = SITE.name.includes(" ")
 
 export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -32,18 +27,18 @@ export function HomeHero() {
   const imageY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? ["0%", "0%"] : ["0%", "18%"],
+    lite ? ["0%", "0%"] : ["0%", "18%"],
   );
   const imageScale = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [1, 1] : [1, 1.08],
+    lite ? [1, 1] : [1, 1.08],
   );
 
-  const springSnappy = reduceMotion
+  const springSnappy = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 380, damping: 28 };
-  const springBounce = reduceMotion
+  const springBounce = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 320, damping: 22 };
 
@@ -51,8 +46,8 @@ export function HomeHero() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.085,
-        delayChildren: reduceMotion ? 0 : 0.2,
+        staggerChildren: lite ? 0 : 0.085,
+        delayChildren: lite ? 0 : 0.2,
       },
     },
   };
@@ -62,7 +57,7 @@ export function HomeHero() {
     visible: {
       scaleX: 1,
       opacity: 1,
-      transition: reduceMotion
+      transition: lite
         ? { duration: 0.2 }
         : { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
     },
@@ -72,7 +67,7 @@ export function HomeHero() {
     hidden: {
       opacity: 0,
       y: 28,
-      filter: reduceMotion ? "none" : "blur(12px)",
+      filter: lite ? "none" : "blur(12px)",
     },
     visible: {
       opacity: 1,
@@ -86,7 +81,7 @@ export function HomeHero() {
     hidden: {
       opacity: 0,
       y: 36,
-      rotateX: reduceMotion ? 0 : -28,
+      rotateX: lite ? 0 : -28,
     },
     visible: {
       opacity: 1,
@@ -110,8 +105,8 @@ export function HomeHero() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.1,
-        delayChildren: reduceMotion ? 0 : 0.05,
+        staggerChildren: lite ? 0 : 0.1,
+        delayChildren: lite ? 0 : 0.05,
       },
     },
   };
@@ -135,10 +130,10 @@ export function HomeHero() {
         >
           <motion.div
             className="relative h-full w-full"
-            initial={reduceMotion ? false : { scale: 1.14 }}
+            initial={lite ? false : { scale: 1.14 }}
             animate={{ scale: 1 }}
             transition={{
-              duration: reduceMotion ? 0 : 2,
+              duration: lite ? 0.4 : 2,
               ease: [0.16, 1, 0.3, 1],
             }}
           >
@@ -166,7 +161,7 @@ export function HomeHero() {
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)]"
           aria-hidden
         />
-        {!reduceMotion && (
+        {!lite && (
           <>
             <motion.div
               className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-primary/15 blur-[100px]"
@@ -207,7 +202,7 @@ export function HomeHero() {
         animate="visible"
         variants={root}
         style={
-          reduceMotion ? undefined : { perspective: "1000px" }
+          lite ? undefined : { perspective: "1000px" }
         }
       >
         <motion.div
@@ -233,8 +228,8 @@ export function HomeHero() {
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: reduceMotion ? 0 : 0.07,
-                delayChildren: reduceMotion ? 0 : 0.02,
+                staggerChildren: lite ? 0 : 0.07,
+                delayChildren: lite ? 0 : 0.02,
               },
             },
           }}
@@ -268,7 +263,7 @@ export function HomeHero() {
           <motion.span
             className="inline-block font-display text-3xl text-white/55 sm:text-4xl"
             animate={
-              reduceMotion
+              lite
                 ? {}
                 : {
                     textShadow: [
@@ -295,11 +290,11 @@ export function HomeHero() {
           <motion.div variants={ctaItem}>
             <motion.div
               whileHover={
-                reduceMotion
+                lite
                   ? {}
                   : { scale: 1.05, y: -4 }
               }
-              whileTap={reduceMotion ? {} : { scale: 0.98 }}
+              whileTap={lite ? {} : { scale: 0.98 }}
               transition={{ type: "spring", stiffness: 480, damping: 22 }}
             >
               <Link
@@ -314,11 +309,11 @@ export function HomeHero() {
           <motion.div variants={ctaItem}>
             <motion.div
               whileHover={
-                reduceMotion
+                lite
                   ? {}
                   : { scale: 1.04, y: -3 }
               }
-              whileTap={reduceMotion ? {} : { scale: 0.98 }}
+              whileTap={lite ? {} : { scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 24 }}
             >
               <a
@@ -333,7 +328,7 @@ export function HomeHero() {
         </motion.div>
       </motion.div>
 
-      {!reduceMotion && (
+      {!lite && (
         <motion.div
           className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-white/40"
           initial={{ opacity: 0, y: 8 }}

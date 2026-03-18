@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 type LegalPageLayoutProps = {
   title: string;
@@ -16,8 +17,8 @@ export function LegalPageLayout({
   jpAccent = "法",
   children,
 }: LegalPageLayoutProps) {
-  const reduceMotion = useReducedMotion();
-  const spring = reduceMotion
+  const lite = useLiteMotion();
+  const spring = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 380, damping: 30 };
 
@@ -25,8 +26,8 @@ export function LegalPageLayout({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.08,
-        delayChildren: reduceMotion ? 0 : 0.06,
+        staggerChildren: lite ? 0 : 0.08,
+        delayChildren: lite ? 0 : 0.06,
       },
     },
   };
@@ -35,12 +36,12 @@ export function LegalPageLayout({
     hidden: {
       opacity: 0,
       y: 16,
-      filter: reduceMotion ? "none" : "blur(8px)",
+      filter: lite ? "none" : "blur(8px)",
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: lite ? "none" : "blur(0px)",
       transition: spring,
     },
   };
@@ -50,7 +51,7 @@ export function LegalPageLayout({
     visible: {
       opacity: 1,
       y: 0,
-      transition: reduceMotion
+      transition: lite
         ? { duration: 0.25 }
         : { ...spring, delay: 0.12 },
     },

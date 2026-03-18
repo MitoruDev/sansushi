@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 import {
   Fish,
   CircleDot,
@@ -54,22 +55,26 @@ export default function SpeisekartePage() {
     ? menuCategories.find((c) => c.id === activeCategory)
     : null;
 
-  const reduceMotion = useReducedMotion();
-  const spring = reduceMotion
+  const lite = useLiteMotion();
+  const spring = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 380, damping: 28 };
   const heroStagger: Variants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: reduceMotion ? 0 : 0.08,
-        delayChildren: reduceMotion ? 0 : 0.12,
+        staggerChildren: lite ? 0 : 0.08,
+        delayChildren: lite ? 0 : 0.12,
       },
     },
   };
   const heroItem: Variants = {
-    hidden: { opacity: 0, y: 22, filter: reduceMotion ? "none" : "blur(8px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: spring },
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: spring,
+    },
   };
 
   return (
@@ -83,7 +88,7 @@ export default function SpeisekartePage() {
       <section className="relative -mx-4 mb-10 aspect-[21/9] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl">
         <motion.div
           className="absolute inset-0"
-          initial={reduceMotion ? false : { scale: 1.06 }}
+          initial={lite ? false : { scale: 1.06 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -101,7 +106,7 @@ export default function SpeisekartePage() {
           className="absolute inset-0 bg-[radial-gradient(ellipse_70%_40%_at_50%_100%,rgba(220,38,38,0.15),transparent_60%)]"
           aria-hidden
         />
-        {!reduceMotion && (
+        {!lite && (
           <div
             className="pointer-events-none absolute bottom-0 left-1/4 h-40 w-64 -translate-x-1/2 rounded-full bg-primary/20 blur-3xl"
             aria-hidden
@@ -137,8 +142,8 @@ export default function SpeisekartePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="focus-ring inline-flex items-center gap-2 rounded-lg bg-white/20 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_20px_-4px_rgba(255,255,255,0.15)] transition-colors hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              whileHover={reduceMotion ? {} : { scale: 1.03, y: -2 }}
-              whileTap={reduceMotion ? {} : { scale: 0.98 }}
+              whileHover={lite ? {} : { scale: 1.03, y: -2 }}
+              whileTap={lite ? {} : { scale: 0.98 }}
               transition={spring}
             >
               <FileDown className="h-4 w-4" aria-hidden /> PDF herunterladen
@@ -214,7 +219,7 @@ export default function SpeisekartePage() {
               activeCategory === null || activeCategory === category.id
             }
             isActiveCategory={activeCategory === category.id}
-            reduceMotion={reduceMotion ?? false}
+            lite={lite}
           />
         ))}
       </div>
@@ -236,11 +241,11 @@ const listItem = {
 };
 
 function DishList({ items }: { items: MenuItem[] }) {
-  const reduceMotion = useReducedMotion();
-  const container = reduceMotion
+  const lite = useLiteMotion();
+  const container = lite
     ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0, delayChildren: 0 } } }
     : listContainer;
-  const item = reduceMotion
+  const item = lite
     ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
     : listItem;
 
@@ -285,40 +290,49 @@ function DishList({ items }: { items: MenuItem[] }) {
   );
 }
 
-const categorySectionVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { type: "spring", stiffness: 320, damping: 28 },
-  },
-};
-
 function CategorySection({
   category,
   icon: Icon,
   image,
   isExpanded,
   isActiveCategory,
-  reduceMotion,
+  lite,
 }: {
   category: MenuCategory;
   icon?: LucideIcon;
   image?: string;
   isExpanded: boolean;
   isActiveCategory: boolean;
-  reduceMotion: boolean | null;
+  lite: boolean;
 }) {
   if (!isExpanded) return null;
+
+  const sectionVariants: Variants = lite
+    ? {
+        hidden: { opacity: 0, y: 14 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.32, ease: "easeOut" },
+        },
+      }
+    : {
+        hidden: { opacity: 0, y: 22, scale: 0.98 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { type: "spring", stiffness: 320, damping: 28 },
+        },
+      };
 
   return (
     <motion.section
       id={category.id}
-      initial={reduceMotion ? false : "hidden"}
+      initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      variants={categorySectionVariants}
+      variants={sectionVariants}
       className={`scroll-mt-36 rounded-2xl transition-all ${
         isActiveCategory
           ? "ring-2 ring-primary/50 ring-offset-2 ring-offset-background shadow-[0_0_0_1px_rgba(220,38,38,0.1)]"
@@ -330,7 +344,7 @@ function CategorySection({
         <div className="group relative mb-0 aspect-[3/1] overflow-hidden rounded-t-2xl">
           <motion.div
             className="absolute inset-0"
-            whileHover={reduceMotion ? {} : { scale: 1.04 }}
+            whileHover={lite ? {} : { scale: 1.04 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
@@ -350,7 +364,7 @@ function CategorySection({
             {Icon && (
               <motion.span
                 className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white shadow-[0_0_24px_-4px_rgba(220,38,38,0.5)]"
-                whileHover={reduceMotion ? {} : { scale: 1.05 }}
+                whileHover={lite ? {} : { scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 22 }}
               >
                 <Icon className="h-6 w-6" aria-hidden />

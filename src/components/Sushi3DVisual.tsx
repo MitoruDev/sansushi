@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const SUSHI_3D_SRC = "/salmon%20maki.png";
 
 export function Sushi3DVisual() {
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
   return (
     <div className="relative hidden min-h-[min(380px,55vh)] w-full items-center justify-center overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/8 via-card to-background p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] md:flex md:min-h-[440px] md:p-10">
       <div
@@ -20,7 +21,7 @@ export function Sushi3DVisual() {
       <motion.div
         className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px]"
         initial={
-          reduceMotion ? false : { opacity: 0, x: 140, scale: 0.92 }
+          lite ? false : { opacity: 0, x: 140, scale: 0.92 }
         }
         whileInView={{ opacity: 1, x: 0, scale: 1 }}
         viewport={{ once: true, margin: "0px 0px -60px 0px" }}
@@ -31,9 +32,9 @@ export function Sushi3DVisual() {
       >
         <motion.div
           className="relative aspect-square w-full"
-          animate={reduceMotion ? undefined : { y: [0, -7, 0] }}
+          animate={lite ? undefined : { y: [0, -7, 0] }}
           transition={
-            reduceMotion
+            lite
               ? undefined
               : { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
           }

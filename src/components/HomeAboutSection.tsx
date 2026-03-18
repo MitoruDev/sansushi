@@ -5,10 +5,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SlideInView } from "@/components/motion/SlideInView";
 import { Sushi3DVisual } from "@/components/Sushi3DVisual";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 export function HomeAboutSection() {
-  const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
 
   return (
     <section
@@ -47,7 +48,7 @@ export function HomeAboutSection() {
               </p>
               <motion.div
                 className="mt-6"
-                whileHover={reduceMotion ? {} : { x: 4 }}
+                whileHover={lite ? {} : { x: 4 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 <Link
@@ -61,14 +62,14 @@ export function HomeAboutSection() {
 
               <motion.div
                 className="relative mt-10"
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                initial={lite ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{
                   type: "spring",
                   stiffness: 320,
                   damping: 28,
-                  delay: reduceMotion ? 0 : 0.1,
+                  delay: lite ? 0 : 0.1,
                 }}
               >
                 <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/8 via-transparent to-accent/5 p-[3px] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
