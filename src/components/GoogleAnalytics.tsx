@@ -6,10 +6,23 @@ import { CONSENT_ANALYTICS_EVENT, hasConsentForAnalytics } from "@/lib/cookie-co
 const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-BPN3EGEL41";
 
-function loadGoogleAnalytics(): void {
+function grantAnalyticsConsent(): void {
+  window.gtag?.("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
+/**
+ * gtag.js immer laden (damit z. B. Google Search Console die Property erkennen kann),
+ * Datenerfassung per Consent Mode erst nach „Alle akzeptieren“ (analytics_storage).
+ */
+function initGoogleAnalytics(): void {
   if (typeof window === "undefined" || !GA_MEASUREMENT_ID) return;
-  if (!hasConsentForAnalytics()) return;
   if (document.querySelector(`script[data-sansushi-ga="${GA_MEASUREMENT_ID}"]`)) {
+    if (hasConsentForAnalytics()) grantAnalyticsConsent();
     return;
   }
 
@@ -18,6 +31,23 @@ function loadGoogleAnalytics(): void {
     window.dataLayer!.push(args);
   }
   window.gtag = gtag;
+
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    wait_for_update: 500,
+  });
+
+  if (hasConsentForAnalytics()) {
+    gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+  }
 
   gtag("js", new Date());
   gtag("config", GA_MEASUREMENT_ID);
@@ -29,14 +59,13 @@ function loadGoogleAnalytics(): void {
   document.head.appendChild(script);
 }
 
-/**
- * Lädt GA4 nur, wenn der Nutzer „Alle akzeptieren“ gewählt hat
- * (beim ersten Besuch mit bestehender Zustimmung oder nach Klick im Cookie-Banner).
- */
 export function GoogleAnalytics() {
   useEffect(() => {
-    loadGoogleAnalytics();
-    const onConsent = () => loadGoogleAnalytics();
+    initGoogleAnalytics();
+    const onConsent = () => {
+      initGoogleAnalytics();
+      grantAnalyticsConsent();
+    };
     window.addEventListener(CONSENT_ANALYTICS_EVENT, onConsent);
     return () => window.removeEventListener(CONSENT_ANALYTICS_EVENT, onConsent);
   }, []);

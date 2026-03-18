@@ -43,12 +43,13 @@ export default function DatenschutzPage() {
 
         <h2>Google Analytics (GA4)</h2>
         <p>
-          Wenn du „Alle akzeptieren“ wählst, nutzen wir Google Analytics 4 (Anbieter:
-          Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Mutterunternehmen:
-          Google LLC, USA) zur statistischen Auswertung der Website-Nutzung. Dabei können
-          insbesondere aufgerufene Seiten, Verweildauer und grobe Herkunft (Land/Region)
-          verarbeitet werden. Die Daten können in die USA übermittelt werden. Weitere
-          Informationen findest du in den{" "}
+          Technisch wird auf jeder Seite der Google-Tag (gtag.js) geladen; die
+          eigentliche Auswertung Ihres Besuchs erfolgt erst, wenn Sie „Alle akzeptieren“
+          gewählt haben (Google Consent Mode: Analytics-Speicher zunächst abgelehnt, nach
+          Zustimmung freigegeben). Anbieter: Google Ireland Limited, Gordon House, Barrow
+          Street, Dublin 4, Irland (Mutterunternehmen: Google LLC, USA). Verarbeitet werden
+          u. a. aufgerufene Seiten, Verweildauer und grobe Herkunft; Daten können in die
+          USA übermittelt werden. Mehr in den{" "}
           <a
             href="https://policies.google.com/privacy"
             target="_blank"
@@ -57,8 +58,9 @@ export default function DatenschutzPage() {
           >
             Datenschutzhinweisen von Google
           </a>
-          . Du kannst der Nutzung widersprechen, indem du keine Analytics-Cookies
-          zulässt („Ablehnen“ im Cookie-Hinweis bzw. Cookies für diese Seite löschen).
+          . Ohne Zustimmung („Ablehnen“) nutzen wir keine Analytics-Cookies für die
+          personenbezogene Auswertung; Sie können Ihre Wahl durch Löschen der
+          Website-Daten im Browser zurücksetzen.
         </p>
         <h2>Cookies (technisch / Anmeldung)</h2>
         <p>
