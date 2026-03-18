@@ -40,6 +40,26 @@ export default function DatenschutzPage() {
           Entscheidung jederzeit in den Browsereinstellungen (Cookies löschen)
           zurücksetzen.
         </p>
+
+        <h2>Google Analytics (GA4)</h2>
+        <p>
+          Wenn du „Alle akzeptieren“ wählst, nutzen wir Google Analytics 4 (Anbieter:
+          Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Mutterunternehmen:
+          Google LLC, USA) zur statistischen Auswertung der Website-Nutzung. Dabei können
+          insbesondere aufgerufene Seiten, Verweildauer und grobe Herkunft (Land/Region)
+          verarbeitet werden. Die Daten können in die USA übermittelt werden. Weitere
+          Informationen findest du in den{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:no-underline"
+          >
+            Datenschutzhinweisen von Google
+          </a>
+          . Du kannst der Nutzung widersprechen, indem du keine Analytics-Cookies
+          zulässt („Ablehnen“ im Cookie-Hinweis bzw. Cookies für diese Seite löschen).
+        </p>
         <h2>Cookies (technisch / Anmeldung)</h2>
         <p>
           Wenn du dich anmeldest, werden wir einige Cookies einrichten, um deine
