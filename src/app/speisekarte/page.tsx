@@ -7,7 +7,7 @@ import {
   Fish,
   CircleDot,
   LayoutGrid,
-  Flame,
+  ChefHat,
   Salad,
   Soup,
   UtensilsCrossed,
@@ -25,7 +25,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   "nigiri-sashimi": Fish,
   maki: CircleDot,
   "sushi-sets": LayoutGrid,
-  koreanisch: Flame,
+  koreanisch: ChefHat,
   vorspeisen: Salad,
   suppen: Soup,
   hauptgerichte: UtensilsCrossed,
@@ -103,7 +103,7 @@ export default function SpeisekartePage() {
           </div>
         )}
         <nav
-          className="flex gap-2 overflow-x-auto border-b border-border px-4 py-3 sm:px-0"
+          className="scrollbar-primary flex gap-2 overflow-x-auto border-b border-border px-4 py-3 sm:px-0"
           aria-label="Kategorien"
         >
           <button

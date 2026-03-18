@@ -34,6 +34,23 @@
 
 html {
   scroll-behavior: smooth;
+  /* Globale Scrollbar: dünn, abgerundet, Primary-Rot */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--border);
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--border);
+}
+html::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -135,6 +152,26 @@ button:disabled,
 .focus-ring:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+}
+
+/* Custom horizontal scrollbar – primary red, thin, rounded (Speisekarte Filter) */
+.scrollbar-primary {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--border);
+}
+.scrollbar-primary::-webkit-scrollbar {
+  height: 6px;
+}
+.scrollbar-primary::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 3px;
+}
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+.scrollbar-primary::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
 }
 
 /* Prose-style content for Impressum/Datenschutz (no plugin) */

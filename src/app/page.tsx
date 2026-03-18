@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, Phone, ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/constants";
-import { OpeningHours } from "@/components/OpeningHours";
 import { WaveDivider } from "@/components/WaveDivider";
 import { HeroStagger } from "@/components/motion/HeroStagger";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { StaggerInView, StaggerItem } from "@/components/motion/StaggerInView";
 import { SlideInView } from "@/components/motion/SlideInView";
+import { Sushi3DVisual } from "@/components/Sushi3DVisual";
 
 export default function HomePage() {
   return (
@@ -63,14 +63,12 @@ export default function HomePage() {
                 <Phone className="h-6 w-6" aria-hidden />
               </div>
               <h3 className="font-semibold text-foreground">Telefon</h3>
-              <p className="text-sm text-muted">
-                <a href={`tel:${SITE.phone.main}`} className="focus-ring text-foreground hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded">
+              <p className="text-sm text-muted text-center">
+                <a
+                  href={`tel:${SITE.phone.main}`}
+                  className="focus-ring text-base font-medium text-foreground hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                >
                   {SITE.phone.displayMain}
-                </a>
-              </p>
-              <p className="text-sm text-muted">
-                <a href={`tel:${SITE.phone.mobile}`} className="focus-ring text-foreground hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded">
-                  {SITE.phone.displayMobile}
                 </a>
               </p>
               <a
@@ -79,6 +77,12 @@ export default function HomePage() {
               >
                 Jetzt anrufen <ArrowRight className="h-4 w-4" />
               </a>
+              <Link
+                href="/kontakt"
+                className="focus-ring text-xs text-muted hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+              >
+                Weitere Nummer & Kontakt →
+              </Link>
             </StaggerItem>
           </StaggerInView>
         </div>
@@ -161,27 +165,7 @@ export default function HomePage() {
               </div>
             </SlideInView>
             <SlideInView direction="right">
-            <div className="rounded-2xl border border-primary/30 bg-primary p-6 text-white shadow-lg lg:p-8">
-              <OpeningHours variant="onPrimary" />
-              <div className="mt-6 flex items-center gap-3 rounded-xl border border-white/10 bg-black p-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-primary-on-dark">
-                  <MapPin className="h-5 w-5" aria-hidden />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-primary-on-dark">So finden Sie uns</h3>
-                  <p className="mt-1 text-white/90">{SITE.address.street}</p>
-                  <p className="text-white/90">{SITE.address.city}</p>
-                  <a
-                    href={SITE.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="focus-ring mt-3 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-white/90 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                  >
-                    In Google Maps öffnen
-                  </a>
-                </div>
-              </div>
-            </div>
+              <Sushi3DVisual />
             </SlideInView>
           </div>
         </div>

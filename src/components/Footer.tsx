@@ -13,8 +13,14 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="focus-ring font-display text-lg font-semibold text-white hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
+              className="focus-ring group inline-flex items-center gap-2.5 font-display text-lg font-semibold text-white hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
             >
+              <span
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-medium text-white shadow-sm shadow-primary/20 transition-transform group-hover:scale-105"
+                aria-hidden
+              >
+                寿
+              </span>
               {SITE.name}
             </Link>
             <p className="mt-0.5 text-sm text-white/85">{SITE.tagline}</p>
