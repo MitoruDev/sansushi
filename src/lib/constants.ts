@@ -30,4 +30,6 @@ export const SITE = {
   },
   /** Direkter Link zu San Sushi auf Google Maps. */
   mapsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
+  /** Google (Maps) – dort finden Gäste auch Bewertungen. */
+  googleReviewsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
 } as const;

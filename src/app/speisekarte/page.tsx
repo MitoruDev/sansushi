@@ -15,6 +15,7 @@ import {
   Cookie,
   Wine,
   FileDown,
+  Sprout,
   type LucideIcon,
 } from "lucide-react";
 import type { MenuCategory, MenuItem } from "@/data/menu";
@@ -196,7 +197,19 @@ function DishList({ items }: { items: MenuItem[] }) {
           className="group flex items-start justify-between gap-4 rounded-xl border border-border bg-background/50 px-4 py-3 transition-colors duration-200 hover:border-primary/40 hover:bg-primary/5"
         >
           <div className="min-w-0 flex-1">
-            <h3 className="font-semibold text-foreground">{itemData.name}</h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="font-semibold text-foreground">{itemData.name}</h3>
+              {itemData.tags?.includes("vegetarian") && (
+                <span
+                  className="inline-flex shrink-0 items-center justify-center gap-1 rounded-full border border-emerald-500/45 bg-emerald-500/12 p-1.5 text-emerald-400 sm:px-2.5 sm:py-0.5 sm:text-xs sm:font-semibold sm:tracking-wide"
+                  aria-label="Vegetarisch"
+                  title="Vegetarisch"
+                >
+                  <Sprout className="h-4 w-4 shrink-0 sm:h-3.5 sm:w-3.5" aria-hidden />
+                  <span className="hidden sm:inline">Vegetarisch</span>
+                </span>
+              )}
+            </div>
             {itemData.description && (
               <p className="mt-0.5 text-sm text-muted">{itemData.description}</p>
             )}

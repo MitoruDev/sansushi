@@ -1,9 +1,16 @@
+export type MenuTag = "vegetarian";
+
+export const menuTagLabels: Record<MenuTag, string> = {
+  vegetarian: "Vegetarisch",
+};
+
 export type MenuItem = {
   id: string;
   name: string;
   description?: string;
   price: string;
   image?: string;
+  tags?: MenuTag[];
 };
 
 export type MenuCategory = {
@@ -12,7 +19,7 @@ export type MenuCategory = {
   items: MenuItem[];
 };
 
-export const menuCategories: MenuCategory[] = [
+const menuCategoriesRaw: MenuCategory[] = [
   // —— Sushi & Sashimi ——
   {
     id: "nigiri-sashimi",
@@ -169,3 +176,54 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 ];
+
+function addMenuTags(categories: MenuCategory[]): MenuCategory[] {
+  const vegMaki = new Set(["avocado-roll", "gurken-roll"]);
+  const vegVorspeisen = new Set([
+    "edamame",
+    "wakame",
+    "seaweed",
+    "kimchi",
+    "agedashi-tofu",
+  ]);
+
+  return categories.map((cat) => ({
+    ...cat,
+    items: cat.items.map((item) => {
+      let vegetarian = false;
+      switch (cat.id) {
+        case "maki":
+          vegetarian = vegMaki.has(item.id);
+          break;
+        case "koreanisch":
+          vegetarian =
+            item.id === "bibimbap-veg" || item.id === "bibim-guksu";
+          break;
+        case "vorspeisen":
+          vegetarian = vegVorspeisen.has(item.id);
+          break;
+        case "suppen":
+          vegetarian = item.id === "miso" || item.id === "miso-gross";
+          break;
+        case "hauptgerichte":
+          vegetarian =
+            item.id === "tempura-gemuese" || item.id === "fried-rice";
+          break;
+        case "salate-beilagen":
+          vegetarian = true;
+          break;
+        case "desserts":
+          vegetarian = true;
+          break;
+        default:
+          break;
+      }
+      return {
+        ...item,
+        tags: vegetarian ? (["vegetarian"] as MenuTag[]) : undefined,
+      };
+    }),
+  }));
+}
+
+export const menuCategories = addMenuTags(menuCategoriesRaw);

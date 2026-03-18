@@ -8,6 +8,7 @@ import { FadeInView } from "@/components/motion/FadeInView";
 import { StaggerInView, StaggerItem } from "@/components/motion/StaggerInView";
 import { SlideInView } from "@/components/motion/SlideInView";
 import { Sushi3DVisual } from "@/components/Sushi3DVisual";
+import { HomeFaqSection } from "@/components/HomeFaqSection";
 
 export default function HomePage() {
   return (
@@ -170,6 +171,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomeFaqSection />
     </>
   );
 }
