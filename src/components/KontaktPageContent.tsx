@@ -111,8 +111,8 @@ export function KontaktPageContent() {
           Kontakt
         </motion.h1>
         <motion.p className="mt-3 text-muted" variants={blurUp}>
-          Wir freuen uns auf Sie – im Elb-Center oder am Telefon für Ihre
-          Bestellung.
+          Wir freuen uns auf Sie – im Elb-Center oder telefonisch für Ihre
+          Reservierung.
         </motion.p>
       </motion.header>
 

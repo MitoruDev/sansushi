@@ -43,8 +43,8 @@ export function HomeAboutSection() {
                 Eine andere Welt im Herzen von Hagen
               </h2>
               <p className="mt-4 max-w-lg text-muted leading-relaxed">
-                Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen. Wir
-                freuen uns auf Sie.
+                Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen.
+                Wir freuen uns auf Sie im Elb-Center.
               </p>
               <motion.div
                 className="mt-6"

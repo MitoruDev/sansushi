@@ -321,7 +321,7 @@ export function HomeHero() {
                 className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-7 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm transition-colors hover:border-white/70 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 <Phone className="h-5 w-5" aria-hidden />
-                Anrufen &amp; bestellen
+                Anrufen &amp; reservieren
               </a>
             </motion.div>
           </motion.div>

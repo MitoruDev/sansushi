@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | San Sushi Hagen",
   },
   description:
-    "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder jetzt anrufen.",
+    "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "San Sushi",
     title: "San Sushi – Japanische & Koreanische Küche | Sushi Hagen",
     description:
-      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder jetzt anrufen.",
+      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
     images: [
       {
         url: "/opengraph-image",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "San Sushi – Japanische & Koreanische Küche | Sushi Hagen",
     description:
-      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder jetzt anrufen.",
+      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
     images: ["/opengraph-image"],
   },
   robots: "index, follow",

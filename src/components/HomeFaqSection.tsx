@@ -21,7 +21,7 @@ const faqItems = [
   },
   {
     q: "Wie läuft das mit Allergenen?",
-    a: "Genaue Auskunft zu Zutaten und Allergenen geben wir gern vor Ort oder am Telefon. Sprechen Sie uns einfach an, bevor Sie bestellen.",
+    a: "Genaue Auskunft zu Zutaten und Allergenen geben wir gern vor Ort oder am Telefon – sprechen Sie uns einfach an.",
   },
 ];
 
