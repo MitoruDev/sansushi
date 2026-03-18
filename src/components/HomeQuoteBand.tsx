@@ -83,9 +83,15 @@ export function HomeQuoteBand() {
       aria-label="Zitat"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_0%,rgba(220,38,38,0.1),transparent_55%),radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(245,158,11,0.05),transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_0%,rgba(220,38,38,0.1),transparent_55%),radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(245,158,11,0.06),transparent_50%),radial-gradient(ellipse_45%_40%_at_0%_30%,rgba(109,143,114,0.09),transparent_55%)]"
         aria-hidden
       />
+      <span
+        className="font-jp-dekor pointer-events-none absolute bottom-8 right-6 select-none text-2xl font-light text-white/25 md:right-12 md:text-3xl"
+        aria-hidden
+      >
+        手作り
+      </span>
       <div className="pointer-events-none absolute inset-0 bg-warm-glow" aria-hidden />
 
       {!lite && (

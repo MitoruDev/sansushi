@@ -111,6 +111,8 @@ export default function SpeisekartePage() {
   const spring = lite
     ? { duration: 0.2 }
     : { type: "spring" as const, stiffness: 380, damping: 28 };
+  const filterChipHover = lite ? {} : { y: -1 };
+  const filterChipTap = lite ? {} : { scale: 0.97 };
   const heroStagger: Variants = {
     hidden: {},
     visible: {
@@ -235,7 +237,7 @@ export default function SpeisekartePage() {
           className="scrollbar-primary flex gap-2 overflow-x-auto border-b border-border px-4 py-3 sm:px-0"
           aria-label="Kategorien"
         >
-          <button
+          <motion.button
             type="button"
             onClick={() => {
               if (activeCategory === null) {
@@ -245,26 +247,32 @@ export default function SpeisekartePage() {
               scrollFiltersAfterCommit.current = true;
               setActiveCategory(null);
             }}
-            className={`focus-ring whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+            whileHover={filterChipHover}
+            whileTap={filterChipTap}
+            transition={spring}
+            className={`focus-ring whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-[box-shadow,background-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
               activeCategory === null
                 ? "bg-primary text-white shadow-md shadow-primary/20"
                 : "bg-card text-muted hover:bg-border hover:text-foreground"
             }`}
           >
             Alle
-          </button>
+          </motion.button>
           {menuCategories.map((cat) => {
             const Icon = categoryIcons[cat.id];
             const isActive = activeCategory === cat.id;
             return (
-              <button
+              <motion.button
                 key={cat.id}
                 type="button"
                 onClick={() => {
                   scrollFiltersAfterCommit.current = true;
                   setActiveCategory(isActive ? null : cat.id);
                 }}
-                className={`focus-ring flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                whileHover={filterChipHover}
+                whileTap={filterChipTap}
+                transition={spring}
+                className={`focus-ring flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-[box-shadow,background-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                   isActive
                     ? "bg-primary text-white shadow-md shadow-primary/20"
                     : "bg-card text-muted hover:bg-border hover:text-foreground"
@@ -272,7 +280,7 @@ export default function SpeisekartePage() {
               >
                 {Icon && <Icon className="h-4 w-4" aria-hidden />}
                 {cat.name}
-              </button>
+              </motion.button>
             );
           })}
         </nav>
@@ -331,7 +339,10 @@ function DishList({ items }: { items: MenuItem[] }) {
         <motion.li
           key={itemData.id}
           variants={item}
-          className="group flex items-start justify-between gap-4 rounded-xl border border-border bg-background/50 px-4 py-3 transition-colors duration-200 hover:border-primary/40 hover:bg-primary/5"
+          whileHover={lite ? {} : { y: -2 }}
+          whileTap={lite ? {} : { scale: 0.995 }}
+          transition={{ type: "spring", stiffness: 420, damping: 28 }}
+          className="group flex cursor-default items-start justify-between gap-4 rounded-xl border border-border bg-background/50 px-4 py-3 transition-colors duration-200 hover:border-primary/40 hover:bg-primary/5"
         >
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">

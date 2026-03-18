@@ -2,16 +2,33 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { getConsent, setConsent, type ConsentStatus } from "@/lib/cookie-consent";
+import { RICE_CONFETTI_STORAGE_KEY } from "@/lib/constants";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
+  const lite = useLiteMotion();
+  const tap = lite ? {} : { scale: 0.98 };
+  const primaryHover = lite ? {} : { scale: 1.02, boxShadow: "0 8px 28px -6px rgba(220,38,38,0.45)" };
+  const spring = lite ? { duration: 0.15 } : { type: "spring" as const, stiffness: 480, damping: 26 };
 
   useEffect(() => {
     if (getConsent() === null) setVisible(true);
   }, []);
 
   const handleChoice = (status: ConsentStatus) => {
+    if (status === "all" && typeof window !== "undefined") {
+      try {
+        if (!localStorage.getItem(RICE_CONFETTI_STORAGE_KEY)) {
+          localStorage.setItem(RICE_CONFETTI_STORAGE_KEY, "1");
+          window.dispatchEvent(new Event("sansushi-rice-confetti"));
+        }
+      } catch {
+        /* private mode */
+      }
+    }
     setConsent(status);
     setVisible(false);
   };
@@ -36,20 +53,25 @@ export function CookieBanner() {
         .
       </p>
       <div className="mt-4 flex flex-wrap gap-3">
-        <button
+        <motion.button
           type="button"
           onClick={() => handleChoice("necessary")}
+          whileTap={tap}
+          transition={spring}
           className="focus-ring rounded-lg border border-border bg-transparent px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Ablehnen
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           type="button"
           onClick={() => handleChoice("all")}
-          className="focus-ring rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          whileTap={tap}
+          whileHover={primaryHover}
+          transition={spring}
+          className="focus-ring rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary/25 transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Alle akzeptieren
-        </button>
+        </motion.button>
       </div>
     </div>
   );

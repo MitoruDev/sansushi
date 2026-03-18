@@ -52,15 +52,19 @@ const cards = [
         </p>
         <a
           href={`tel:${SITE.phone.main}`}
-          className="focus-ring mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
+          className="group/telstrip focus-ring mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
         >
-          Jetzt anrufen <ArrowRight className="h-3.5 w-3.5" />
+          Jetzt anrufen{" "}
+          <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 ease-out group-hover/telstrip:translate-x-1" />
         </a>
         <Link
           href="/kontakt"
-          className="focus-ring mt-2 block text-xs text-muted transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
+          className="group/kontlink focus-ring mt-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
         >
-          Weitere Nummer & Kontakt →
+          Weitere Nummer & Kontakt
+          <span className="inline-block transition-transform duration-200 group-hover/kontlink:translate-x-0.5">
+            →
+          </span>
         </Link>
       </>
     ),
@@ -75,6 +79,7 @@ export function HomeInfoStrip() {
       className="relative overflow-hidden border-b border-border bg-card py-12"
       aria-label="Kontakt und Öffnungszeiten"
     >
+      <div className="pointer-events-none absolute inset-0 bg-sushi-fresh" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
           {cards.map((card, i) => {

@@ -8,6 +8,8 @@ import { Menu, X, Phone } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import type { Abwesenheit } from "@/lib/sanity";
 import { LiveOpenStatus } from "@/components/LiveOpenStatus";
+import { CtaCreativeSolid } from "@/components/CtaCreative";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const navLinks = [
   { href: "/", label: "Startseite" },
@@ -23,7 +25,11 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const navSpring = lite
+    ? { duration: 0.15 }
+    : { type: "spring" as const, stiffness: 420, damping: 30 };
 
   useEffect(() => {
     if (mobileOpen) document.body.style.overflow = "hidden";
@@ -55,12 +61,14 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
           href="/"
           className="group flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90"
         >
-          <span
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-white shadow-sm shadow-primary/20 transition-transform group-hover:scale-105"
+          <motion.span
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-white shadow-sm shadow-primary/20"
             aria-hidden
+            whileHover={lite ? {} : { rotate: [0, -7, 5, 0], scale: 1.06 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
           >
             寿
-          </span>
+          </motion.span>
           <span>{SITE.name}</span>
         </Link>
 
@@ -81,7 +89,13 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                       : "text-muted hover:bg-primary/5"
                   }`}
                 >
-                  {label}
+                  <motion.span
+                    className="inline-block"
+                    whileHover={lite || isActive ? {} : { y: -1 }}
+                    transition={navSpring}
+                  >
+                    {label}
+                  </motion.span>
                   {isActive && (
                     <motion.span
                       layoutId="nav-underline"
@@ -99,13 +113,18 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
             })}
           </LayoutGroup>
           <LiveOpenStatus variant="compact" activeAbsences={activeAbsences} />
-          <a
-            href={`tel:${SITE.phone.main}`}
-            className="focus-ring ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-primary/25 transition-all hover:bg-primary-hover hover:shadow-primary/30 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            <Phone className="h-4 w-4" aria-hidden />
-            Anrufen
-          </a>
+          <span className="ml-2 inline-flex">
+            <CtaCreativeSolid
+              href={`tel:${SITE.phone.main}`}
+              className="focus-ring rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-primary/25 transition-colors hover:bg-primary-hover hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <Phone
+                className={`h-4 w-4 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctas:-rotate-[16deg] group-hover/ctas:scale-110"}`}
+                aria-hidden
+              />
+              Anrufen
+            </CtaCreativeSolid>
+          </span>
         </nav>
 
         <button
@@ -147,15 +166,18 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                 </li>
               );
             })}
-            <li className="mt-2 pt-2 border-t border-border">
-              <a
+            <li className="mt-2 border-t border-border pt-2">
+              <CtaCreativeSolid
                 href={`tel:${SITE.phone.main}`}
-                className="focus-ring flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 font-medium text-white shadow-md shadow-primary/20 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 onClick={() => setMobileOpen(false)}
+                className="focus-ring flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 font-medium text-white shadow-md shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <Phone className="h-4 w-4" />
-                Anrufen
-              </a>
+                  <Phone
+                    className={`h-4 w-4 ${lite ? "" : "transition-transform group-hover/ctas:rotate-12"}`}
+                    aria-hidden
+                  />
+                  Anrufen
+                </CtaCreativeSolid>
             </li>
           </ul>
         </nav>

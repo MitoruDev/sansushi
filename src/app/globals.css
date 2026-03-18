@@ -14,6 +14,14 @@
   --border: #262626;
   --card: #171717;
   --footer: #0a0a0a;
+  /* Wasabi / Soja – dezente Frische (Dark Mode) */
+  --wasabi: #6d8f72;
+  --wasabi-glow: rgba(109, 143, 114, 0.14);
+  --wasabi-soft: rgba(109, 143, 114, 0.08);
+  --soy-mist: rgba(22, 18, 16, 0.55);
+  /* Laterne / warmes Licht */
+  --lantern-glow: rgba(251, 191, 36, 0.2);
+  --lantern-core: rgba(252, 211, 77, 0.12);
 }
 
 @theme inline {
@@ -137,6 +145,56 @@ button:disabled,
   .loading-bar-inner {
     animation: none;
     transform: translateX(0);
+  }
+}
+
+/* Japanische Dekor-Schrift (System-Fallbacks) */
+.font-jp-dekor {
+  font-family:
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic UI",
+    "Noto Sans JP",
+    system-ui,
+    sans-serif;
+}
+
+/* Sektion: Wasabi + Soja-Nebel */
+.bg-sushi-fresh {
+  background-image:
+    radial-gradient(ellipse 65% 50% at 8% 25%, var(--wasabi-glow), transparent 52%),
+    radial-gradient(ellipse 55% 45% at 94% 70%, var(--soy-mist), transparent 58%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, var(--wasabi-soft), transparent 70%);
+}
+
+/* Reis-Korn-Konfetti (Cookie „Alle akzeptieren“, einmalig) */
+@keyframes rice-confetti-fall {
+  0% {
+    transform: translateY(-18vh) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(115vh) translateX(var(--rice-drift, 0px)) rotate(720deg);
+    opacity: 0.28;
+  }
+}
+.rice-grain {
+  animation-name: rice-confetti-fall;
+  animation-timing-function: cubic-bezier(0.28, 0.44, 0.49, 0.98);
+  animation-fill-mode: forwards;
+  background: linear-gradient(
+    180deg,
+    #faf8f4 0%,
+    #ebe6dc 38%,
+    #c5bfb4 100%
+  );
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rice-confetti-root {
+    display: none !important;
   }
 }
 

@@ -34,6 +34,9 @@ export const SITE = {
   googleReviewsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
 } as const;
 
+/** localStorage: Reis-Konfetti nur einmal nach erstem „Alle akzeptieren“. */
+export const RICE_CONFETTI_STORAGE_KEY = "sansushi_rice_confetti_once";
+
 /**
  * Dezenter Entwickler-Hinweis im Footer (für Anfragen anderer Restaurants).
  * `show: false` → Zeile wird nicht gerendert.

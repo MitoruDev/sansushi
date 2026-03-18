@@ -9,6 +9,7 @@ import { SkipLink } from "@/components/SkipLink";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { StickyCallButton } from "@/components/StickyCallButton";
 import { CookieBanner } from "@/components/CookieBanner";
+import { RiceConfetti } from "@/components/RiceConfetti";
 import { LenisProvider } from "@/components/LenisProvider";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import type { Abwesenheit } from "@/lib/sanity";
@@ -45,6 +46,7 @@ export function SiteOrStudioLayout({ children, activeAbsences }: SiteOrStudioLay
         <StickyCallButton />
         <BackToTop />
         <CookieBanner />
+        <RiceConfetti />
       </LenisProvider>
     </>
   );

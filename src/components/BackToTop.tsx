@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useLenis } from "@/components/LenisProvider";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 export const SCROLL_THRESHOLD = 400;
 
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
   const reduceMotion = useReducedMotion();
+  const lite = useLiteMotion();
   const lenis = useLenis();
 
   useEffect(() => {
@@ -47,10 +49,15 @@ export function BackToTop() {
           animate={animate}
           exit={exit}
           transition={{ duration: 0.2 }}
-          className="focus-ring fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          whileHover={lite || reduceMotion ? {} : { scale: 1.08 }}
+          whileTap={lite || reduceMotion ? {} : { scale: 0.94 }}
+          className="group/btt focus-ring fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="Nach oben scrollen"
         >
-          <ArrowUp className="h-5 w-5" aria-hidden />
+          <ArrowUp
+            className={`h-5 w-5 ${lite || reduceMotion ? "" : "transition-transform duration-200 ease-out group-hover/btt:-translate-y-1"}`}
+            aria-hidden
+          />
         </motion.button>
       )}
     </AnimatePresence>

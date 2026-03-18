@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { CtaCreativeSolid } from "@/components/CtaCreative";
 import { ArrowRight } from "lucide-react";
 import { SlideInView } from "@/components/motion/SlideInView";
 import { Sushi3DVisual } from "@/components/Sushi3DVisual";
@@ -46,19 +46,18 @@ export function HomeAboutSection() {
                 Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen.
                 Wir freuen uns auf Sie im Elb-Center.
               </p>
-              <motion.div
-                className="mt-6"
-                whileHover={lite ? {} : { x: 4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
-                <Link
+              <div className="mt-6">
+                <CtaCreativeSolid
                   href="/kontakt"
-                  className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="focus-ring rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   Kontakt &amp; Anfahrt{" "}
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </motion.div>
+                  <ArrowRight
+                    className={`h-4 w-4 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctas:translate-x-2 group-hover/ctas:-translate-y-px"}`}
+                    aria-hidden
+                  />
+                </CtaCreativeSolid>
+              </div>
 
               <motion.div
                 className="relative mt-10"

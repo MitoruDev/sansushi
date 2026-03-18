@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
+
+const MotionLink = motion.create(Link);
 
 const PATH_LABELS: Record<string, string> = {
   "/speisekarte": "Speisekarte",
@@ -14,6 +18,7 @@ const PATH_LABELS: Record<string, string> = {
 
 export function Breadcrumbs() {
   const pathname = usePathname();
+  const lite = useLiteMotion();
 
   if (pathname === "/" || pathname === "") return null;
 
@@ -36,6 +41,10 @@ export function Breadcrumbs() {
     })),
   };
 
+  const crumbSpring = lite
+    ? { duration: 0.15 }
+    : { type: "spring" as const, stiffness: 400, damping: 28 };
+
   return (
     <>
       <script
@@ -44,7 +53,7 @@ export function Breadcrumbs() {
       />
       <nav
         aria-label="Breadcrumb"
-        className="border-b border-border bg-background/50 py-3"
+        className="group/crumbs border-b border-border bg-background/50 py-3"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
@@ -57,7 +66,7 @@ export function Breadcrumbs() {
                 >
                   {i > 0 && (
                     <ChevronRight
-                      className="h-4 w-4 shrink-0 text-muted/60"
+                      className={`h-4 w-4 shrink-0 text-muted/60 transition-opacity duration-200 ${lite ? "" : "group-hover/crumbs:opacity-90"}`}
                       aria-hidden
                     />
                   )}
@@ -66,12 +75,15 @@ export function Breadcrumbs() {
                       {item.name}
                     </span>
                   ) : (
-                    <Link
+                    <MotionLink
                       href={item.href}
-                      className="focus-ring hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                      whileHover={lite ? {} : { x: 2 }}
+                      whileTap={lite ? {} : { scale: 0.98 }}
+                      transition={crumbSpring}
+                      className="focus-ring rounded text-muted hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {item.name}
-                    </Link>
+                    </MotionLink>
                   )}
                 </li>
               );

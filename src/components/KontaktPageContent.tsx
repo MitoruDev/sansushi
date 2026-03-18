@@ -6,6 +6,7 @@ import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { MapPin, Phone, ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { OpeningHours } from "@/components/OpeningHours";
+import { CtaCreativeSolid } from "@/components/CtaCreative";
 
 const spring = { type: "spring" as const, stiffness: 360, damping: 28 };
 const springBounce = { type: "spring" as const, stiffness: 320, damping: 24 };
@@ -198,15 +199,18 @@ export function KontaktPageContent() {
                 </p>
               </div>
             </div>
-            <motion.a
-              href={`tel:${SITE.phone.main}`}
-              className="focus-ring mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 font-medium text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              whileHover={lite ? {} : { scale: 1.03, y: -2 }}
-              whileTap={lite ? {} : { scale: 0.98 }}
-              transition={spring}
-            >
-              <Phone className="h-4 w-4" /> Jetzt anrufen
-            </motion.a>
+            <div className="mt-4">
+              <CtaCreativeSolid
+                href={`tel:${SITE.phone.main}`}
+                className="focus-ring rounded-full bg-primary px-5 py-2.5 font-medium text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <Phone
+                  className={`h-4 w-4 shrink-0 ${lite ? "" : "transition-transform group-hover/ctas:-rotate-[10deg]"}`}
+                  aria-hidden
+                />{" "}
+                Jetzt anrufen
+              </CtaCreativeSolid>
+            </div>
           </motion.div>
 
           <motion.div

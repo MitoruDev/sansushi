@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { ChevronDown, Phone, UtensilsCrossed } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { CtaCreativeGlass, CtaCreativeSolid } from "@/components/CtaCreative";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1920&q=80";
@@ -154,9 +154,39 @@ export function HomeHero() {
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_100%,rgba(220,38,38,0.18),transparent_55%),radial-gradient(ellipse_50%_40%_at_80%_20%,rgba(245,158,11,0.08),transparent_50%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_100%,rgba(220,38,38,0.18),transparent_55%),radial-gradient(ellipse_50%_40%_at_80%_20%,rgba(245,158,11,0.08),transparent_50%),radial-gradient(ellipse_55%_35%_at_15%_92%,rgba(109,143,114,0.14),transparent_55%)]"
           aria-hidden
         />
+        {/* Warme Laternen – sichtbare Amber/Gold-Glows oben links & rechts */}
+        <div
+          className="pointer-events-none absolute left-0 top-0 h-[min(18rem,36vw)] w-[min(14rem,30vw)] rounded-[50%] bg-[radial-gradient(ellipse_70%_60%_at_30%_25%,rgba(253,230,138,0.65),rgba(251,191,36,0.35)_45%,rgba(245,158,11,0.12)_65%,transparent_75%)] blur-xl sm:left-[4%]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-[min(16rem,34vw)] w-[min(12rem,26vw)] rounded-[50%] bg-[radial-gradient(ellipse_65%_55%_at_70%_28%,rgba(254,243,199,0.6),rgba(252,211,77,0.32)_42%,rgba(245,158,11,0.1)_62%,transparent_72%)] blur-xl sm:right-[2%]"
+          aria-hidden
+        />
+        {!lite && (
+          <>
+            <motion.div
+              className="pointer-events-none absolute left-[8%] top-[10%] h-32 w-24 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(253,230,138,0.5),rgba(251,191,36,0.2)_50%,transparent_75%)] blur-lg"
+              animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
+              transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+              aria-hidden
+            />
+            <motion.div
+              className="pointer-events-none absolute right-[10%] top-[14%] h-28 w-20 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(254,243,199,0.45),rgba(252,211,77,0.18)_55%,transparent_78%)] blur-lg"
+              animate={{ opacity: [0.65, 0.95, 0.65], scale: [1, 1.06, 1] }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.6,
+              }}
+              aria-hidden
+            />
+          </>
+        )}
         <div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)]"
           aria-hidden
@@ -194,6 +224,21 @@ export function HomeHero() {
           }}
           aria-hidden
         />
+      </div>
+
+      {/* Japanische Dekor-Schrift – lesbar, aber dezent */}
+      <div
+        className="font-jp-dekor pointer-events-none absolute left-2 top-[26%] hidden select-none text-6xl font-light leading-none tracking-tighter text-white/30 drop-shadow-[0_0_20px_rgba(0,0,0,0.5)] sm:left-4 sm:block md:left-8 md:text-8xl"
+        aria-hidden
+      >
+        鮨
+      </div>
+      <div
+        className="font-jp-dekor pointer-events-none absolute right-2 top-[30%] hidden select-none text-4xl font-light text-white/28 drop-shadow-[0_0_16px_rgba(0,0,0,0.5)] sm:right-4 sm:block md:right-10 md:text-6xl"
+        style={{ writingMode: "vertical-rl" }}
+        aria-hidden
+      >
+        新鮮
       </div>
 
       <motion.div
@@ -288,42 +333,28 @@ export function HomeHero() {
           variants={ctaRow}
         >
           <motion.div variants={ctaItem}>
-            <motion.div
-              whileHover={
-                lite
-                  ? {}
-                  : { scale: 1.05, y: -4 }
-              }
-              whileTap={lite ? {} : { scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 480, damping: 22 }}
+            <CtaCreativeSolid
+              href="/speisekarte"
+              className="focus-ring rounded-full bg-primary px-7 py-4 text-sm font-semibold text-white shadow-[0_0_40px_-8px_rgba(220,38,38,0.65),0_8px_24px_-6px_rgba(0,0,0,0.4)] transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
-              <Link
-                href="/speisekarte"
-                className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-white shadow-[0_0_40px_-8px_rgba(220,38,38,0.65),0_8px_24px_-6px_rgba(0,0,0,0.4)] transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                <UtensilsCrossed className="h-5 w-5" aria-hidden />
-                Zur Speisekarte
-              </Link>
-            </motion.div>
+              <UtensilsCrossed
+                className={`h-5 w-5 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctas:rotate-[20deg] group-hover/ctas:scale-110"}`}
+                aria-hidden
+              />
+              Zur Speisekarte
+            </CtaCreativeSolid>
           </motion.div>
           <motion.div variants={ctaItem}>
-            <motion.div
-              whileHover={
-                lite
-                  ? {}
-                  : { scale: 1.04, y: -3 }
-              }
-              whileTap={lite ? {} : { scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 450, damping: 24 }}
+            <CtaCreativeGlass
+              href={`tel:${SITE.phone.main}`}
+              className="focus-ring rounded-full border border-white/40 bg-white/5 px-7 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm transition-colors hover:border-white/70 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
-              <a
-                href={`tel:${SITE.phone.main}`}
-                className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-7 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm transition-colors hover:border-white/70 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                <Phone className="h-5 w-5" aria-hidden />
-                Anrufen &amp; reservieren
-              </a>
-            </motion.div>
+              <Phone
+                className={`h-5 w-5 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctag:-rotate-[12deg] group-hover/ctag:scale-110"}`}
+                aria-hidden
+              />
+              Anrufen &amp; reservieren
+            </CtaCreativeGlass>
           </motion.div>
         </motion.div>
       </motion.div>
