@@ -1,6 +1,5 @@
 import { WaveDivider } from "@/components/WaveDivider";
 import { HomeHero } from "@/components/HomeHero";
-import { HomeSeoContent } from "@/components/HomeSeoContent";
 import { HomeInfoStrip } from "@/components/HomeInfoStrip";
 import { HomeQuoteBand } from "@/components/HomeQuoteBand";
 import { HomeGalleryBand } from "@/components/HomeGalleryBand";
@@ -16,8 +15,6 @@ export default function HomePage() {
       <WaveDivider />
 
       <HomeInfoStrip />
-
-      <HomeSeoContent />
 
       <HomeQuoteBand />
 
