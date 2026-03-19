@@ -34,3 +34,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### SEO & Canonical-URL
+
+Setze in den Vercel-Umgebungsvariablen (Production):
+
+`NEXT_PUBLIC_SITE_URL=https://sansushi.de`
+
+Damit sind Canonical-Link, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD und Breadcrumbs mit der Hauptdomain konsistent. Ohne diese Variable nutzt der Build auf Vercel `VERCEL_URL` (z. B. `*.vercel.app`). Siehe `.env.example`.

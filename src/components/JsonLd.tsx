@@ -1,16 +1,18 @@
 import { SITE } from "@/lib/constants";
-
-const RESTAURANT_ID = `${SITE.url}/#restaurant`;
+import { getSiteUrl } from "@/lib/site-url";
 
 export function RestaurantJsonLd() {
+  const siteUrl = getSiteUrl();
+  const restaurantId = `${siteUrl}/#restaurant`;
+
   const restaurant = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "@id": RESTAURANT_ID,
+    "@id": restaurantId,
     name: SITE.name,
     description: SITE.description,
-    url: SITE.url,
-    image: `${SITE.url}/opengraph-image`,
+    url: siteUrl,
+    image: `${siteUrl}/opengraph-image`,
     telephone: `+49${SITE.phone.main.replace(/^0/, "")}`,
     priceRange: "€€",
     address: {
@@ -34,17 +36,17 @@ export function RestaurantJsonLd() {
       },
     ],
     servesCuisine: ["Japanese", "Korean"],
-    menu: `${SITE.url}/speisekarte`,
+    menu: `${siteUrl}/speisekarte`,
   };
 
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${SITE.url}/#website`,
+    "@id": `${siteUrl}/#website`,
     name: SITE.name,
     description: SITE.description,
-    url: SITE.url,
-    publisher: { "@id": RESTAURANT_ID },
+    url: siteUrl,
+    publisher: { "@id": restaurantId },
     inLanguage: "de-DE",
   };
 

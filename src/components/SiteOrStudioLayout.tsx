@@ -12,7 +12,6 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { RiceConfetti } from "@/components/RiceConfetti";
 import { LenisProvider } from "@/components/LenisProvider";
-import { RestaurantJsonLd } from "@/components/JsonLd";
 import type { Abwesenheit } from "@/lib/sanity";
 
 type SiteOrStudioLayoutProps = {
@@ -36,7 +35,6 @@ export function SiteOrStudioLayout({ children, activeAbsences }: SiteOrStudioLay
     <>
       <SkipLink />
       <LenisProvider>
-        <RestaurantJsonLd />
         <ClosedBanner absences={activeAbsences} />
         <Header activeAbsences={activeAbsences} />
         <main id="main-content" className="flex-1" tabIndex={-1}>

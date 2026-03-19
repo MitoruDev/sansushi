@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import { SiteOrStudioLayout } from "@/components/SiteOrStudioLayout";
+import { RestaurantJsonLd } from "@/components/JsonLd";
 import { getActiveAbsences } from "@/lib/sanity";
+import { META_DESCRIPTION_HOME } from "@/lib/seo-copy";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -18,40 +21,44 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://sansushi.de"),
-  title: {
-    default: "San Sushi – Japanische & Koreanische Küche | Sushi Hagen",
-    template: "%s | San Sushi Hagen",
-  },
-  description:
-    "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "de_DE",
-    siteName: "San Sushi",
-    title: "San Sushi – Japanische & Koreanische Küche | Sushi Hagen",
-    description:
-      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "San Sushi – Japanische & Koreanische Küche in Hagen",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "San Sushi – Japanische & Koreanische Küche | Sushi Hagen",
-    description:
-      "Restaurant San Sushi in Hagen: frisches Sushi, Bibimbap und japanische sowie koreanische Küche. Bergstraße 128-130, Elb-Center. Vor Ort oder zum Mitnehmen. Speisekarte ansehen oder für Reservierungen anrufen.",
-    images: ["/opengraph-image"],
-  },
-  robots: "index, follow",
-};
+export function generateMetadata(): Metadata {
+  const metadataBase = new URL(getSiteUrl());
+  const title = "San Sushi – Japanische & Koreanische Küche | Sushi Hagen";
+  return {
+    metadataBase,
+    title: {
+      default: title,
+      template: "%s | San Sushi Hagen",
+    },
+    description: META_DESCRIPTION_HOME,
+    alternates: { canonical: "/" },
+    icons: {
+      apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
+    },
+    openGraph: {
+      type: "website",
+      locale: "de_DE",
+      siteName: "San Sushi",
+      title,
+      description: META_DESCRIPTION_HOME,
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "San Sushi – Japanische & Koreanische Küche in Hagen",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: META_DESCRIPTION_HOME,
+      images: ["/opengraph-image"],
+    },
+    robots: "index, follow",
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -74,6 +81,7 @@ export default async function RootLayout({
       <body
         className={`${plusJakarta.variable} ${cormorant.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
+        <RestaurantJsonLd />
         <SiteOrStudioLayout activeAbsences={activeAbsences}>
           {children}
         </SiteOrStudioLayout>

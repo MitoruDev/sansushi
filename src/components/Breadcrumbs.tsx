@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { SITE } from "@/lib/constants";
+import { getClientSiteUrl } from "@/lib/site-url-client";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const MotionLink = motion.create(Link);
@@ -37,7 +37,7 @@ export function Breadcrumbs() {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${SITE.url}${item.href}`,
+      item: `${getClientSiteUrl()}${item.href}`,
     })),
   };
 
