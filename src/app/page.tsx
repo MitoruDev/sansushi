@@ -6,6 +6,7 @@ import { HomeQuoteBand } from "@/components/HomeQuoteBand";
 import { HomeGalleryBand } from "@/components/HomeGalleryBand";
 import { HomeAboutSection } from "@/components/HomeAboutSection";
 import { HomeFaqSection } from "@/components/HomeFaqSection";
+import { HomeFaqJsonLd } from "@/components/HomeFaqJsonLd";
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
 
       <HomeAboutSection />
 
+      <HomeFaqJsonLd />
       <HomeFaqSection />
     </>
   );

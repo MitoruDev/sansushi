@@ -7,6 +7,10 @@ import { META_DESCRIPTION_HOME } from "@/lib/seo-copy";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
+/** Google Search Console (HTML-Tag); öffentlich im Quelltext – `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` überschreibt. */
+const GOOGLE_SITE_VERIFICATION_DEFAULT =
+  "5fWIHKPcTsOsyXzHVdE_fb-C0wZtTAULc1qqFPi58Ms";
+
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
@@ -24,6 +28,10 @@ const cormorant = Cormorant_Garamond({
 export function generateMetadata(): Metadata {
   const metadataBase = new URL(getSiteUrl());
   const title = "San Sushi – Japanische & Koreanische Küche | Sushi Hagen";
+  const googleVerification =
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() ||
+    process.env.GOOGLE_SITE_VERIFICATION?.trim() ||
+    GOOGLE_SITE_VERIFICATION_DEFAULT;
   return {
     metadataBase,
     title: {
@@ -32,6 +40,7 @@ export function generateMetadata(): Metadata {
     },
     description: META_DESCRIPTION_HOME,
     alternates: { canonical: "/" },
+    verification: { google: googleVerification },
     icons: {
       apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
     },

@@ -34,6 +34,13 @@ export function RestaurantJsonLd() {
         opens: "12:00",
         closes: "22:00",
       },
+      /** Sonntag ganztägig geschlossen (Google: bei „closed all day“ opens/closes gleich, z. B. 00:00). */
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Sunday",
+        opens: "00:00",
+        closes: "00:00",
+      },
     ],
     servesCuisine: ["Japanese", "Korean"],
     menu: `${siteUrl}/speisekarte`,
