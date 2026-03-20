@@ -13,7 +13,17 @@ export function getConsent(): ConsentStatus | null {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw === "all" || raw === "necessary") return raw;
   } catch {
-    return null;
+    // Private Browsing / blocked storage: als Fallback auf Cookie lesen.
+    try {
+      const match = document.cookie
+        .split("; ")
+        .find((item) => item.startsWith(`${STORAGE_KEY}=`))
+        ?.split("=");
+      const cookieValue = match?.[1];
+      if (cookieValue === "all" || cookieValue === "necessary") return cookieValue;
+    } catch {
+      return null;
+    }
   }
   return null;
 }

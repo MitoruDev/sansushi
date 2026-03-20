@@ -39,7 +39,14 @@ export function generateMetadata(): Metadata {
       template: "%s | San Sushi Hagen",
     },
     description: META_DESCRIPTION_HOME,
-    alternates: { canonical: "/" },
+    alternates: {
+      canonical: "/",
+      languages: {
+        de: "/",
+        "x-default": "/",
+      },
+    },
+    manifest: "/site.webmanifest",
     verification: { google: googleVerification },
     icons: {
       apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
@@ -48,6 +55,7 @@ export function generateMetadata(): Metadata {
       type: "website",
       locale: "de_DE",
       siteName: "San Sushi",
+      url: `${metadataBase.href}/`,
       title,
       description: META_DESCRIPTION_HOME,
       images: [

@@ -1,11 +1,27 @@
 import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Impressum | San Sushi Hagen",
   description:
     "Impressum und rechtliche Angaben zum Betreiber von San Sushi in Hagen: Inhaber, Adresse, Kontakt – alle Pflichtangaben gemäß § 5 TMG.",
-  alternates: { canonical: "/impressum" },
+  alternates: {
+    canonical: "/impressum",
+    languages: {
+      de: "/impressum",
+      "x-default": "/impressum",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "San Sushi",
+    url: `${getSiteUrl()}/impressum`,
+    title: "Impressum | San Sushi Hagen",
+    description:
+      "Impressum und rechtliche Angaben zum Betreiber von San Sushi in Hagen: Inhaber, Adresse, Kontakt – alle Pflichtangaben gemäß § 5 TMG.",
+  },
 };
 
 export default function ImpressumPage() {
