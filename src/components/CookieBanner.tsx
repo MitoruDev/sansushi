@@ -21,7 +21,14 @@ export function CookieBanner() {
   const handleChoice = (status: ConsentStatus) => {
     if (status === "all" && typeof window !== "undefined") {
       try {
-        if (!localStorage.getItem(RICE_CONFETTI_STORAGE_KEY)) {
+        const hasSeen = (() => {
+          try {
+            return Boolean(localStorage.getItem(RICE_CONFETTI_STORAGE_KEY));
+          } catch {
+            return false;
+          }
+        })();
+        if (!hasSeen) {
           localStorage.setItem(RICE_CONFETTI_STORAGE_KEY, "1");
           window.dispatchEvent(new Event("sansushi-rice-confetti"));
         }

@@ -9,8 +9,12 @@ export type ConsentStatus = "all" | "necessary";
 
 export function getConsent(): ConsentStatus | null {
   if (typeof window === "undefined") return null;
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw === "all" || raw === "necessary") return raw;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw === "all" || raw === "necessary") return raw;
+  } catch {
+    return null;
+  }
   return null;
 }
 
@@ -24,9 +28,23 @@ export const CONSENT_ANALYTICS_EVENT = "sansushi-consent-analytics";
 
 export function setConsent(status: ConsentStatus): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, status);
-  // Cookie für evtl. Server/Consent-Mode (1 Jahr)
-  document.cookie = `cookie_consent=${status}; path=/; max-age=31536000; SameSite=Lax`;
+
+  const writeCookie = () => {
+    if (typeof document === "undefined") return;
+    try {
+      document.cookie = `cookie_consent=${status}; path=/; max-age=31536000; SameSite=Lax`;
+    } catch {
+      // Cookie write blocked – proceed without persistence in that storage.
+    }
+  };
+
+  try {
+    localStorage.setItem(STORAGE_KEY, status);
+  } catch {
+    writeCookie();
+  }
+  writeCookie();
+
   if (status === "all") {
     window.dispatchEvent(new CustomEvent(CONSENT_ANALYTICS_EVENT));
   }

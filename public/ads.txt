@@ -1,0 +1,3 @@
+# ads.txt not used (no external ad inventory sellers configured).
+# Add authorized-seller lines here if display ads are added later.
+

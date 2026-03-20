@@ -9,7 +9,7 @@ import { SITE } from "@/lib/constants";
 import { CtaCreativeGlass, CtaCreativeSolid } from "@/components/CtaCreative";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1920&q=80";
+  "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1920&h=1080&q=80";
 
 const [heroWord1, heroWord2] = SITE.name.includes(" ")
   ? SITE.name.split(" ", 2)
