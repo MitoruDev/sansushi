@@ -77,10 +77,11 @@ export function KontaktPageContent() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1800&h=400&q=80"
+          src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1200&h=267&q=70"
           alt="Restaurant San Sushi – Ambiente"
           fill
           className="object-cover"
+          quality={70}
           loading="lazy"
           sizes="(max-width: 1024px) 100vw, 1024px"
         />

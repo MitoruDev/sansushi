@@ -74,10 +74,11 @@ export function HomeAboutSection() {
                 <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/8 via-transparent to-accent/5 p-[3px] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
                   <div className="relative aspect-[16/6] overflow-hidden rounded-[1.35rem] border border-white/5 sm:aspect-[16/5]">
                     <Image
-                      src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1440&h=540&q=80"
+                      src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1100&h=412&q=70"
                       alt="Restaurant-Innenraum"
                       fill
                       loading="lazy"
+                      quality={70}
                       className="object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />

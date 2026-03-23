@@ -37,16 +37,25 @@ const categoryIcons: Record<string, LucideIcon> = {
 };
 
 const categoryImages: Record<string, string> = {
-  "nigiri-sashimi": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&h=400&q=80",
-  maki: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1200&h=400&q=80",
-  "sushi-sets": "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=1200&h=400&q=80",
-  koreanisch: "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=1200&h=400&q=80",
-  vorspeisen: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1200&h=400&q=80",
-  suppen: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=1200&h=400&q=80",
-  hauptgerichte: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1200&h=400&q=80",
-  "salate-beilagen": "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1200&h=400&q=80",
-  desserts: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=1200&h=400&q=80",
-  getraenke: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1200&h=400&q=80",
+  "nigiri-sashimi":
+    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=960&h=320&q=65",
+  maki: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=960&h=320&q=65",
+  "sushi-sets":
+    "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=960&h=320&q=65",
+  koreanisch:
+    "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=960&h=320&q=65",
+  vorspeisen:
+    "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=960&h=320&q=65",
+  suppen:
+    "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=960&h=320&q=65",
+  hauptgerichte:
+    "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=960&h=320&q=65",
+  "salate-beilagen":
+    "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=960&h=320&q=65",
+  desserts:
+    "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=960&h=320&q=65",
+  getraenke:
+    "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=960&h=320&q=65",
 };
 
 export default function SpeisekartePage() {
@@ -150,9 +159,10 @@ export default function SpeisekartePage() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <Image
-            src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=1920&h=840&q=80"
+            src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=1200&h=525&q=70"
             alt="Speisekarte San Sushi – Sushi, Sashimi und asiatische Gerichte"
             fill
+            quality={70}
             className="object-cover"
             sizes="100vw"
             priority
@@ -432,6 +442,7 @@ function CategorySection({
               src={image}
               alt={`Gerichte der Kategorie ${category.name}`}
               fill
+              quality={65}
               loading="lazy"
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 800px"

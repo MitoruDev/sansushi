@@ -19,7 +19,7 @@ export function RestaurantJsonLd() {
     menu: menuUrl,
     hasMenu: menuUrl,
     acceptsReservations: true,
-    openingHours: ["Mo-Sa 12:00-22:00", "So geschlossen"],
+    openingHours: ["Mo-Sa 12:00-22:00", "Su closed"],
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,

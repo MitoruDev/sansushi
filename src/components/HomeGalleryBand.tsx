@@ -6,19 +6,19 @@ import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const shots = [
   {
-    src: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=960&h=720&q=80",
+    src: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=640&h=480&q=65",
     alt: "Japanisches Restaurant Ambiente",
   },
   {
-    src: "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=960&h=720&q=80",
+    src: "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=640&h=480&q=65",
     alt: "Koreanische Küche",
   },
   {
-    src: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=960&h=720&q=80",
+    src: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=640&h=480&q=65",
     alt: "Frische Sushi-Zutaten",
   },
   {
-    src: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=960&h=720&q=80",
+    src: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=640&h=480&q=65",
     alt: "Ramen",
   },
 ] as const;
@@ -108,6 +108,7 @@ export function HomeGalleryBand() {
                     alt={alt}
                     fill
                     loading="lazy"
+                  quality={65}
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
