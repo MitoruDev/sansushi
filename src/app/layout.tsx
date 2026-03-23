@@ -4,7 +4,7 @@ import { SiteOrStudioLayout } from "@/components/SiteOrStudioLayout";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import { getActiveAbsences } from "@/lib/sanity";
 import { META_DESCRIPTION_HOME } from "@/lib/seo-copy";
-import { META_KEYWORDS } from "@/lib/constants";
+import { META_KEYWORDS, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -42,6 +42,8 @@ export function generateMetadata(): Metadata {
     },
     description: META_DESCRIPTION_HOME,
     keywords: META_KEYWORDS,
+    authors: [{ name: SITE.owner.name }],
+    creator: SITE.owner.name,
     alternates: {
       canonical: "/",
       languages: {

@@ -9,6 +9,7 @@ const cards = [
   {
     jp: "住所",
     en: "Adresse",
+    question: "Wo finden Sie uns?",
     icon: MapPin,
     body: (
       <>
@@ -29,6 +30,7 @@ const cards = [
   {
     jp: "営業時間",
     en: "Öffnungszeiten",
+    question: "Wann haben wir geöffnet?",
     icon: Clock,
     body: (
       <>
@@ -40,6 +42,7 @@ const cards = [
   {
     jp: "お電話",
     en: "Telefon",
+    question: "Wie erreichen Sie uns?",
     icon: Phone,
     body: (
       <>
@@ -127,8 +130,11 @@ export function HomeInfoStrip() {
                       {card.jp}
                     </p>
                     <h2 className="font-display text-lg font-semibold text-foreground">
-                      {card.en}
+                  {card.en}
                     </h2>
+                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-primary-on-dark/70">
+                  {card.question}
+                </p>
                   </div>
                 </div>
                 <div className="relative z-[1] flex flex-1 flex-col">{card.body}</div>

@@ -149,7 +149,7 @@ export function KontaktPageContent() {
                 <MapPin className="h-6 w-6" aria-hidden />
               </motion.div>
               <div>
-                <h2 className="font-semibold text-foreground">Adresse</h2>
+                <h2 className="font-semibold text-foreground">Wie finde ich San Sushi?</h2>
                 <p className="mt-0.5 text-sm text-muted">{SITE.address.street}</p>
                 <p className="text-sm text-muted">{SITE.address.city}</p>
               </div>
@@ -180,7 +180,7 @@ export function KontaktPageContent() {
                 <Phone className="h-6 w-6" aria-hidden />
               </motion.div>
               <div>
-                <h2 className="font-semibold text-foreground">Telefon</h2>
+                <h2 className="font-semibold text-foreground">Wie erreiche ich das Restaurant?</h2>
                 <p className="mt-0.5 text-sm text-muted">
                   <a
                     href={`tel:${SITE.phone.main}`}

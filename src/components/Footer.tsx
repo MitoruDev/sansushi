@@ -38,6 +38,16 @@ export function Footer() {
               {SITE.name}
             </Link>
             <p className="mt-0.5 text-sm text-white/85">{SITE.tagline}</p>
+            <p className="mt-2 text-xs text-white/70">
+              Inhaberin: <span className="text-white/95">{SITE.owner.name}</span>
+            </p>
+            <Link
+              href="/#about"
+              className="group/ftr-about focus-ring mt-3 inline-flex items-center gap-1 text-xs text-primary-on-dark transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
+            >
+              Über das Restaurant
+              <span className="inline-block transition-transform duration-200 group-hover/ftr-about:translate-x-1">→</span>
+            </Link>
           </div>
           </StaggerItem>
           <StaggerItem>

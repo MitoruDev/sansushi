@@ -25,7 +25,7 @@ export function OpeningHours({ variant = "default", embedded = false }: OpeningH
             <Clock className="h-6 w-6" aria-hidden />
           </div>
           <div className="min-w-0">
-            <h3 className="text-lg font-semibold text-primary-on-dark">Öffnungszeiten</h3>
+          <h3 className="text-lg font-semibold text-primary-on-dark">Wann hat San Sushi geöffnet?</h3>
             <p className="mt-0.5 text-white/90">{SITE.openingHours.weekdays}</p>
             <p className="text-white/90">{SITE.openingHours.sunday}</p>
           </div>
@@ -44,7 +44,7 @@ export function OpeningHours({ variant = "default", embedded = false }: OpeningH
         <Clock className="h-6 w-6" aria-hidden />
       </motion.div>
       <div className="min-w-0">
-        <h3 className="text-base font-semibold text-foreground">Öffnungszeiten</h3>
+      <h3 className="text-base font-semibold text-foreground">Wann ist San Sushi geöffnet?</h3>
         <p className="mt-0.5 text-sm text-muted">{SITE.openingHours.weekdays}</p>
         <p className="text-sm text-muted">{SITE.openingHours.sunday}</p>
       </div>

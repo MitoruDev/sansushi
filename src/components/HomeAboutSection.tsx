@@ -13,6 +13,7 @@ export function HomeAboutSection() {
 
   return (
     <section
+      id="about"
       className="relative overflow-hidden py-16 md:py-24"
       aria-labelledby="about-heading"
     >
@@ -40,7 +41,7 @@ export function HomeAboutSection() {
                 id="about-heading"
                 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl"
               >
-                Sushi-Qualität aus Japan und Korea im Herzen von Hagen
+                Was zeichnet unsere Küche in Hagen aus?
               </h2>
               <p className="mt-4 max-w-lg text-muted leading-relaxed">
                 Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen.

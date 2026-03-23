@@ -7,7 +7,7 @@ import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { SITE } from "@/lib/constants";
 import { homeFaqItems as faqItems } from "@/data/faq";
 
-const h2Words = ["Fragen", "zu", "San", "Sushi", "in", "Hagen"];
+const faqSectionTitle = "Fragen zu San Sushi in Hagen";
 
 export function HomeFaqSection() {
   const [openId, setOpenId] = useState<number | null>(null);
@@ -204,15 +204,9 @@ export function HomeFaqSection() {
               },
             }}
           >
-            {h2Words.map((word) => (
-              <motion.span
-                key={word}
-                  className="mr-[0.2em] inline-block last:mr-0 faq-preserve-3d"
-                variants={wordStagger}
-              >
-                {word}
-              </motion.span>
-            ))}
+            <motion.span className="mr-[0.2em] inline-block faq-preserve-3d" variants={wordStagger}>
+              {faqSectionTitle}
+            </motion.span>
           </motion.h2>
 
           <motion.a
@@ -339,9 +333,11 @@ export function HomeFaqSection() {
                     >
                       {num}
                     </motion.span>
-                    <span className="min-w-0 flex-1 pt-1 text-sm font-medium leading-snug text-foreground md:text-base">
+                    <motion.h3
+                      className="min-w-0 flex-1 pt-1 text-sm font-medium leading-snug text-foreground md:text-base"
+                    >
                       {item.q}
-                    </span>
+                    </motion.h3>
                     <motion.span
                       className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-background/50 text-primary-on-dark ${
                         isOpen ? "faq-chevron-open" : ""

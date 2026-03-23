@@ -11,7 +11,17 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/studio"],
       },
       {
-        userAgent: ["GPTBot", "ClaudeBot", "PerplexityBot"],
+        userAgent: "GPTBot",
+        allow: "/",
+        disallow: ["/studio"],
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+        disallow: ["/studio"],
+      },
+      {
+        userAgent: "PerplexityBot",
         allow: "/",
         disallow: ["/studio"],
       },
