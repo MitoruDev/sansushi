@@ -65,6 +65,7 @@ const cards = [
         </a>
         <Link
           href="/kontakt"
+          prefetch={false}
           className="group/kontlink focus-ring mt-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
           title="Kontaktseite mit Telefonnummern und Anschrift"
         >

@@ -58,6 +58,7 @@ export function HomeAboutSection() {
               <div className="mt-6">
                 <CtaCreativeSolid
                   href="/kontakt"
+                  prefetch={false}
                   title="Kontakt- und Anfahrtsinformationen"
                   className="focus-ring rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
@@ -82,15 +83,15 @@ export function HomeAboutSection() {
                 }}
               >
                 <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/8 via-transparent to-accent/5 p-[3px] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
-                  <div className="relative aspect-[16/6] overflow-hidden rounded-[1.35rem] border border-white/5 sm:aspect-[16/5]">
+                  <div className="relative aspect-[900/337] overflow-hidden rounded-[1.35rem] border border-white/5">
                     <Image
                       src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&h=337&q=55"
                       alt="Restaurant-Innenraum"
                       fill
                       loading="lazy"
                       quality={55}
-                      className="object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                      sizes="(max-width: 1024px) 100vw, 560px"
                     />
                     <div
                       className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-transparent"

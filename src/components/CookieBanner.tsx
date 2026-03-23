@@ -98,6 +98,7 @@ export function CookieBanner() {
         Mehr in unserer{" "}
         <Link
           href="/datenschutz"
+          prefetch={false}
           title="Zur Datenschutzerklärung für Cookie-Hinweise"
           className="text-primary underline hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
         >

@@ -164,7 +164,7 @@ export default function SpeisekartePage() {
             fill
             quality={70}
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 1024px) 100vw, 1024px"
             priority
           />
         </motion.div>
@@ -446,7 +446,7 @@ function CategorySection({
               quality={65}
               loading="lazy"
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 800px"
+              sizes="(max-width: 768px) 100vw, 1024px"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />

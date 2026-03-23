@@ -86,6 +86,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
         <Link
           href="/"
           title="Zur Startseite"
+          prefetch={false}
           className="group flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90"
         >
           <motion.span
@@ -110,6 +111,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                 <Link
                   key={href}
                   href={href}
+                  prefetch={false}
                   title={`Zur Seite: ${label}`}
                   className={`focus-ring relative rounded-lg px-4 py-2.5 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                     isActive
@@ -184,6 +186,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                 <li key={href}>
                   <Link
                     href={href}
+                    prefetch={false}
                     title={`Zur Seite: ${label}`}
                     ref={href === "/" ? firstMobileNavItemRef : null}
                     onClick={closeMobileMenu}

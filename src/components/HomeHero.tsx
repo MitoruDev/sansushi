@@ -87,9 +87,6 @@ export function HomeHero() {
     >
       {/* Bild + statische Überlagerung */}
       <div className="absolute inset-0">
-        <div
-          className="absolute inset-0"
-        >
           <Image
             src={HERO_IMAGE}
             alt="San Sushi Restaurant – Sushi und japanische Küche in Hagen"
@@ -102,7 +99,6 @@ export function HomeHero() {
             sizes="100vw"
             quality={45}
           />
-        </div>
 
         {/* Overlays */}
         <div
@@ -204,6 +200,7 @@ export function HomeHero() {
           <motion.div variants={ctaItem}>
             <Link
               href="/speisekarte"
+              prefetch={false}
               title="Zur Speisekarte"
               className="group focus-ring flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-white shadow-[0_0_26px_-12px_rgba(220,38,38,0.55)] transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >

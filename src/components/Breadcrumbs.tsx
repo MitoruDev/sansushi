@@ -77,6 +77,7 @@ export function Breadcrumbs() {
                   ) : (
                     <MotionLink
                       href={item.href}
+                  prefetch={false}
                       whileHover={lite ? {} : { x: 2 }}
                       whileTap={lite ? {} : { scale: 0.98 }}
                       transition={crumbSpring}

@@ -28,6 +28,9 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
   async headers() {
     return [
       {

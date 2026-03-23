@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -24,6 +24,7 @@ function sendPageView(pathname: string) {
   if (typeof window === "undefined" || typeof window.gtag !== "function") {
     return;
   }
+
   window.gtag("event", "page_view", {
     page_path: pathname,
     page_location: window.location.href,
@@ -33,23 +34,34 @@ function sendPageView(pathname: string) {
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isClientReady, setIsClientReady] = useState(false);
+  const [isEnabled, setIsEnabled] = useState<boolean>(() => hasConsentForAnalytics());
   const [isConfigured, setIsConfigured] = useState(false);
   const lastPath = useRef<string | null>(null);
+  const isEnabledRef = useRef(false);
 
   useEffect(() => {
+    setIsClientReady(true);
     const updateConsentState = () => setIsEnabled(hasConsentForAnalytics());
     updateConsentState();
+    isEnabledRef.current = hasConsentForAnalytics();
 
     window.addEventListener(CONSENT_ANALYTICS_EVENT, updateConsentState);
     return () => window.removeEventListener(CONSENT_ANALYTICS_EVENT, updateConsentState);
   }, []);
 
   useEffect(() => {
+    isEnabledRef.current = isEnabled;
+  }, [isEnabled]);
+
+  useEffect(() => {
+    if (!isEnabled) {
+      if (isConfigured) setIsConfigured(false);
+      lastPath.current = null;
+      return;
+    }
+
     if (!isConfigured || typeof window === "undefined" || typeof window.gtag !== "function") {
-      if (!isEnabled) {
-        lastPath.current = null;
-      }
       return;
     }
 
@@ -59,11 +71,6 @@ export function GoogleAnalytics() {
       ad_user_data: "denied",
       ad_personalization: "denied",
     });
-
-    if (!isEnabled) {
-      lastPath.current = null;
-      return;
-    }
   }, [isEnabled, isConfigured]);
 
   useEffect(() => {
@@ -80,11 +87,15 @@ export function GoogleAnalytics() {
     lastPath.current = currentPath;
   }, [isEnabled, isConfigured, pathname]);
 
+  if (!isClientReady || !isEnabled) {
+    return null;
+  }
+
   return (
     <>
       <Script
         id="google-analytics-bootstrap"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -104,7 +115,7 @@ export function GoogleAnalytics() {
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
         strategy="afterInteractive"
         onLoad={() => {
-          if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+          if (!isEnabledRef.current || typeof window === "undefined" || typeof window.gtag !== "function") return;
 
           window.gtag("consent", "update", {
             analytics_storage: "granted",

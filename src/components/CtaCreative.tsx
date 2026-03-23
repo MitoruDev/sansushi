@@ -18,12 +18,14 @@ export function CtaCreativeSolid({
   children,
   onClick,
   title,
+  prefetch = false,
 }: {
   href: string;
   className: string;
   children: ReactNode;
   onClick?: () => void;
   title?: string;
+  prefetch?: boolean;
 }) {
   const lite = useLiteMotion();
   const isExternal = href.startsWith("tel:") || href.startsWith("http") || href.startsWith("mailto:");
@@ -71,6 +73,7 @@ export function CtaCreativeSolid({
   return (
     <MotionLink
       href={href}
+      prefetch={prefetch}
       className={shell}
       title={title}
       whileHover={hover}

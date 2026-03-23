@@ -108,9 +108,9 @@ export function HomeGalleryBand() {
                     alt={alt}
                     fill
                     loading="lazy"
-                  quality={65}
+                    quality={65}
                     className="object-cover"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="(max-width: 768px) 50vw, 286px"
                   />
                 </motion.div>
 

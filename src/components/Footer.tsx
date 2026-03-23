@@ -27,6 +27,7 @@ export function Footer() {
           <div>
             <Link
               href="/"
+              prefetch={false}
               className="focus-ring group inline-flex items-center gap-2.5 font-display text-lg font-semibold text-white hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
             >
               <span
@@ -43,6 +44,7 @@ export function Footer() {
             </p>
             <Link
               href="/#about"
+              prefetch={false}
               className="group/ftr-about focus-ring mt-3 inline-flex items-center gap-1 text-xs text-primary-on-dark transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
             >
               Über das Restaurant
@@ -138,6 +140,7 @@ export function Footer() {
           <span className="flex flex-wrap items-center justify-center gap-6 md:justify-end">
             <Link
               href="/impressum"
+              prefetch={false}
               className="group/ftr focus-ring flex items-center gap-1.5 transition-colors hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             >
               <FileText
@@ -148,6 +151,7 @@ export function Footer() {
             </Link>
             <Link
               href="/datenschutz"
+              prefetch={false}
               className="group/ftr2 focus-ring flex items-center gap-1.5 transition-colors hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
             >
               <FileText

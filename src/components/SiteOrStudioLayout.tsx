@@ -1,17 +1,34 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ClosedBanner } from "@/components/ClosedBanner";
-import { BackToTop } from "@/components/BackToTop";
-import { SkipLink } from "@/components/SkipLink";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { StickyCallButton } from "@/components/StickyCallButton";
-import { CookieBanner } from "@/components/CookieBanner";
-import { RiceConfetti } from "@/components/RiceConfetti";
 import { LenisProvider } from "@/components/LenisProvider";
 import type { Abwesenheit } from "@/lib/sanity";
+
+const BackToTop = dynamic(() => import("@/components/BackToTop").then((mod) => mod.BackToTop), {
+  loading: () => null,
+  ssr: false,
+});
+const StickyCallButton = dynamic(() => import("@/components/StickyCallButton").then((mod) => mod.StickyCallButton), {
+  loading: () => null,
+  ssr: false,
+});
+const CookieBanner = dynamic(() => import("@/components/CookieBanner").then((mod) => mod.CookieBanner), {
+  loading: () => null,
+  ssr: false,
+});
+const RiceConfetti = dynamic(() => import("@/components/RiceConfetti").then((mod) => mod.RiceConfetti), {
+  loading: () => null,
+  ssr: false,
+});
+const SkipLink = dynamic(() => import("@/components/SkipLink").then((mod) => mod.SkipLink), {
+  loading: () => null,
+  ssr: false,
+});
 
 type SiteOrStudioLayoutProps = {
   children: React.ReactNode;

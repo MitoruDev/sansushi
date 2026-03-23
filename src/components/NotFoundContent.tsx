@@ -67,6 +67,7 @@ export function NotFoundContent() {
       <motion.div variants={fadeUp} className="mt-8">
         <CtaCreativeSolid
           href="/"
+          prefetch={false}
           className="focus-ring rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-hover hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <Home
@@ -79,6 +80,7 @@ export function NotFoundContent() {
       <motion.div variants={fadeUp} className="mt-4">
         <Link
           href="/speisekarte"
+          prefetch={false}
           className="focus-ring inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
         >
           <UtensilsCrossed className="h-4 w-4" aria-hidden />
