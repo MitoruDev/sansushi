@@ -2,11 +2,15 @@
 export const homeFaqItems = [
   {
     q: "Gibt es Parkplätze am Elb-Center?",
-    a: "Ja. Am Elb-Center gibt es direkt einen Parkplatz den Kunden nutzen können. Unser Restaurant liegt in der Bergstraße 128–130 – von dort sind Sie direkt bei uns.",
+    a: "Ja. Am Elb-Center ist direkt ein Parkplatz nutzbar. Unser Restaurant liegt in der Bergstraße 128–130 – von dort sind Sie direkt bei uns.",
   },
   {
     q: "Kann ich reservieren?",
     a: "Ja. Rufen Sie uns gerne an – besonders abends und am Wochenende empfehlen wir eine kurze Reservierung. Kurzfristig sind oft auch noch Plätze frei.",
+  },
+  {
+    q: "Wann hat das Restaurant geöffnet?",
+    a: "Montag bis Samstag von 12:00 bis 22:00 Uhr, sonntags sind wir geschlossen.",
   },
   {
     q: "Gibt es vegetarische Gerichte?",

@@ -2,7 +2,7 @@ export const SITE = {
   name: "San Sushi",
   tagline: "Japanische & Koreanische Küche in Hagen",
   description:
-    "Restaurant San Sushi in Hagen – frisches Sushi, Bibimbap und japanische sowie koreanische Spezialitäten. Vor Ort oder zum Mitnehmen.",
+    "Restaurant San Sushi in Hagen (Elb-Center, Bergstraße 128–130): frisches Sushi, Bibimbap und japanische sowie koreanische Spezialitäten. Mo–Sa 12:00–22:00 Uhr, Sonntag Ruhetag.",
   url: "https://sansushi.de",
   address: {
     street: "Bergstraße 128-130 (Elb-Center)",

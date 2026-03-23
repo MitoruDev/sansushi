@@ -28,6 +28,7 @@ const cormorant = Cormorant_Garamond({
 
 export function generateMetadata(): Metadata {
   const metadataBase = new URL(getSiteUrl());
+  const canonicalUrl = metadataBase.toString().replace(/\/$/, "");
   const title = "San Sushi – Japanische & Koreanische Küche | Sushi Hagen";
   const googleVerification =
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() ||
@@ -57,7 +58,7 @@ export function generateMetadata(): Metadata {
       type: "website",
       locale: "de_DE",
       siteName: "San Sushi",
-      url: `${metadataBase.href}/`,
+      url: canonicalUrl,
       title,
       description: META_DESCRIPTION_HOME,
       images: [

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "Impressum San Sushi",
     "San Sushi Hagen Impressum",
     "Rechtliche Angaben Restaurant",
-  },
+  ],
 };
 
 export default function ImpressumPage() {

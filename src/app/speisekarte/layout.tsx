@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Japanische Küche",
     "Koreanische Gerichte",
     "Takeaway Hagen",
-  },
+  ],
 };
 
 export default function SpeisekarteLayout({

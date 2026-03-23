@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "Anfahrt Hagen",
     "Telefonnummer San Sushi",
     "Bergstraße 128-130",
-  },
+  ],
 };
 
 export default function KontaktPage() {

@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "San Sushi Datenschutz",
     "Cookies Zustimmung",
     "Google Analytics",
-  },
+  ],
 };
 
 export default function DatenschutzPage() {

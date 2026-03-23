@@ -4,6 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 export function RestaurantJsonLd() {
   const siteUrl = getSiteUrl();
   const restaurantId = `${siteUrl}/#restaurant`;
+  const menuUrl = `${siteUrl}/speisekarte`;
 
   const restaurant = {
     "@context": "https://schema.org",
@@ -15,6 +16,10 @@ export function RestaurantJsonLd() {
     image: `${siteUrl}/opengraph-image`,
     telephone: `+49${SITE.phone.main.replace(/^0/, "")}`,
     priceRange: "€€",
+    menu: menuUrl,
+    hasMenu: menuUrl,
+    acceptsReservations: true,
+    openingHours: ["Mo-Sa 12:00-22:00", "So geschlossen"],
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,
@@ -43,7 +48,6 @@ export function RestaurantJsonLd() {
       },
     ],
     servesCuisine: ["Japanese", "Korean"],
-    menu: `${siteUrl}/speisekarte`,
     sameAs: [SITE.socialProfiles.facebook, SITE.socialProfiles.instagram, SITE.googleReviewsUrl],
     hasMap: SITE.mapsUrl,
     contactPoint: {
@@ -52,7 +56,6 @@ export function RestaurantJsonLd() {
       telephone: `+49${SITE.phone.main.replace(/^0/, "")}`,
       areaServed: "DE",
       availableLanguage: ["de"],
-      contactOption: "TollFree",
     },
   };
 
