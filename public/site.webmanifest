@@ -6,6 +6,13 @@
   "background_color": "#0c0c0c",
   "theme_color": "#0c0c0c",
   "orientation": "portrait-primary",
-  "lang": "de"
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
 }
 

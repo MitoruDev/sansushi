@@ -52,6 +52,7 @@ export function generateMetadata(): Metadata {
     manifest: "/site.webmanifest",
     verification: { google: googleVerification },
     icons: {
+      icon: [{ url: "/icon", type: "image/png", sizes: "96x96" }],
       apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
     },
     openGraph: {

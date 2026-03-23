@@ -1,10 +1,9 @@
 import { ImageResponse } from "next/og";
 
-export const size = { width: 180, height: 180 };
+export const size = { width: 96, height: 96 };
 export const contentType = "image/png";
 
-/** Apple Touch Icon (180×180) – verlinkt automatisch über Metadata-API. */
-export default function AppleIcon() {
+export default function Icon() {
   return new ImageResponse(
     (
       <div
@@ -15,10 +14,10 @@ export default function AppleIcon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#dc2626",
-          borderRadius: 36,
+          borderRadius: 20,
         }}
       >
-        <span style={{ fontSize: 96, color: "#ffffff", fontFamily: "system-ui", fontWeight: 700 }}>
+        <span style={{ fontSize: 56, color: "#ffffff", fontFamily: "system-ui", fontWeight: 700 }}>
           寿
         </span>
       </div>
