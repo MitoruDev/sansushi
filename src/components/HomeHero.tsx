@@ -1,14 +1,14 @@
-"use client";
+ "use client";
 
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
-import { useLiteMotion } from "@/hooks/useLiteMotion";
+import Link from "next/link";
 import { Phone, UtensilsCrossed } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 import { SITE } from "@/lib/constants";
-import { CtaCreativeGlass, CtaCreativeSolid } from "@/components/CtaCreative";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1024&h=576&q=60";
+  "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=768&h=432&q=45";
 
 const [heroWord1, heroWord2] = SITE.name.includes(" ")
   ? SITE.name.split(" ", 2)
@@ -17,19 +17,12 @@ const [heroWord1, heroWord2] = SITE.name.includes(" ")
 export function HomeHero() {
   const lite = useLiteMotion();
 
-  const springSnappy = lite
-    ? { duration: 0.2 }
-    : { type: "spring" as const, stiffness: 380, damping: 28 };
-  const springBounce = lite
-    ? { duration: 0.2 }
-    : { type: "spring" as const, stiffness: 320, damping: 22 };
-
-  const root: Variants = {
+  const content: Variants = {
     hidden: {},
     visible: {
       transition: {
         staggerChildren: lite ? 0 : 0.06,
-        delayChildren: lite ? 0 : 0.1,
+        delayChildren: lite ? 0 : 0.04,
       },
     },
   };
@@ -39,37 +32,31 @@ export function HomeHero() {
     visible: {
       scaleX: 1,
       opacity: 1,
-      transition: lite
-        ? { duration: 0.2 }
-        : { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+      transition: lite ? { duration: 0.25 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
-  const blurUp: Variants = {
+  const fadeUp: Variants = {
     hidden: {
       opacity: 0,
-      y: 28,
-      filter: lite ? "none" : "blur(12px)",
+      y: 20,
+      filter: lite ? "none" : "blur(8px)",
     },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: springSnappy,
+      transition: lite ? { duration: 0.25 } : { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
-  const wordHero: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 36,
-      rotateX: lite ? 0 : -28,
-    },
+  const titleWord: Variants = {
+    hidden: { opacity: 0, y: 24, rotateX: lite ? 0 : -20 },
     visible: {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: springBounce,
+      transition: lite ? { duration: 0.25 } : { type: "spring", stiffness: 320, damping: 28 },
     },
   };
 
@@ -77,15 +64,20 @@ export function HomeHero() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: lite ? 0 : 0.1,
-        delayChildren: lite ? 0 : 0.05,
+        staggerChildren: lite ? 0 : 0.08,
+        delayChildren: lite ? 0 : 0.02,
       },
     },
   };
 
   const ctaItem: Variants = {
-    hidden: { opacity: 0, y: 20, scale: 0.94 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: springSnappy },
+    hidden: { opacity: 0, y: 12, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: lite ? { duration: 0.25 } : { type: "spring", stiffness: 330, damping: 28 },
+    },
   };
 
   return (
@@ -104,9 +96,11 @@ export function HomeHero() {
             fill
             className="object-cover object-center"
             priority
+            loading="eager"
+            decoding="sync"
             fetchPriority="high"
             sizes="100vw"
-            quality={60}
+            quality={45}
           />
         </div>
 
@@ -129,7 +123,7 @@ export function HomeHero() {
         className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-4 py-24 text-center text-white md:-translate-y-8 md:py-28"
         initial="hidden"
         animate="visible"
-        variants={root}
+        variants={content}
       >
         <motion.div
           className="transform-origin-center relative mb-2 w-full max-w-md px-4"
@@ -142,7 +136,7 @@ export function HomeHero() {
 
         <motion.p
           className="mt-6 font-display text-xs uppercase tracking-[0.42em] text-white/75 sm:text-sm"
-          variants={blurUp}
+          variants={fadeUp}
         >
           Sushi, Bibimbap &amp; japanische Küche in Hagen
         </motion.p>
@@ -153,15 +147,15 @@ export function HomeHero() {
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: lite ? 0 : 0.07,
-                delayChildren: lite ? 0 : 0.02,
+                staggerChildren: lite ? 0 : 0.05,
+                delayChildren: lite ? 0 : 0.01,
               },
             },
           }}
         >
           <motion.span
             className="inline-block [transform-style:preserve-3d]"
-            variants={wordHero}
+            variants={titleWord}
           >
             {heroWord1}
             {heroWord2 ? " " : ""}
@@ -169,7 +163,7 @@ export function HomeHero() {
           {heroWord2 ? (
             <motion.span
               className="inline-block bg-gradient-to-br from-white via-amber-50 to-white/90 bg-clip-text text-transparent [transform-style:preserve-3d]"
-              variants={wordHero}
+              variants={titleWord}
             >
               {heroWord2}
             </motion.span>
@@ -178,25 +172,29 @@ export function HomeHero() {
 
         <motion.p
           className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/88 sm:text-lg"
-          variants={blurUp}
+          variants={fadeUp}
         >
           Frisch. Präzise. Direkt aus Hagen: Sushi, Sashimi, Ramen und koreanische Klassiker – für Sie
           im Restaurant oder zum Mitnehmen.
         </motion.p>
         <motion.div
           className="mt-4 flex flex-wrap justify-center gap-2 text-xs uppercase tracking-[0.16em] text-white/75"
-          variants={blurUp}
+          variants={fadeUp}
         >
           <span className="rounded-full border border-white/25 px-3 py-1">Elb-Center, Hagen</span>
           <span className="rounded-full border border-white/25 px-3 py-1">Mo–Sa 12:00–22:00</span>
           <span className="rounded-full border border-white/25 px-3 py-1">Annahme vor Ort + Mitnehmen</span>
         </motion.div>
-        <motion.div className="mt-3 text-white/55" variants={blurUp} aria-hidden>
-          <motion.span
+        <motion.div
+          className="mt-3 text-white/55"
+          variants={fadeUp}
+          aria-hidden
+        >
+          <span
             className="inline-block font-display text-3xl tracking-wide sm:text-4xl"
           >
             寿司
-          </motion.span>
+          </span>
         </motion.div>
 
         <motion.div
@@ -204,28 +202,30 @@ export function HomeHero() {
           variants={ctaRow}
         >
           <motion.div variants={ctaItem}>
-            <CtaCreativeSolid
+            <Link
               href="/speisekarte"
-              className="focus-ring rounded-full bg-primary px-7 py-4 text-sm font-semibold text-white shadow-[0_0_26px_-12px_rgba(220,38,38,0.55)] transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              title="Zur Speisekarte"
+              className="group focus-ring flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-white shadow-[0_0_26px_-12px_rgba(220,38,38,0.55)] transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <UtensilsCrossed
-                className={`h-5 w-5 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctas:rotate-[20deg] group-hover/ctas:scale-110"}`}
+                className="h-5 w-5 shrink-0 transition-transform duration-300 ease-out group-hover:rotate-[20deg] group-hover:scale-110"
                 aria-hidden
               />
               Zur Speisekarte
-            </CtaCreativeSolid>
+            </Link>
           </motion.div>
           <motion.div variants={ctaItem}>
-            <CtaCreativeGlass
+            <a
               href={`tel:${SITE.phone.main}`}
-              className="focus-ring rounded-full border border-white/40 bg-white/5 px-7 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors hover:border-white/70 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              title="Anrufen & reservieren"
+              className="group focus-ring flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-7 py-4 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors hover:border-white/70 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <Phone
-                className={`h-5 w-5 shrink-0 ${lite ? "" : "transition-transform duration-300 ease-out group-hover/ctag:-rotate-[12deg] group-hover/ctag:scale-110"}`}
+                className="h-5 w-5 shrink-0 transition-transform duration-300 ease-out group-hover:-rotate-[12deg] group-hover:scale-110"
                 aria-hidden
               />
               Anrufen &amp; reservieren
-            </CtaCreativeGlass>
+            </a>
           </motion.div>
         </motion.div>
       </motion.div>
