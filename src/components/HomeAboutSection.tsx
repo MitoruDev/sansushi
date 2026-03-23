@@ -33,7 +33,7 @@ export function HomeAboutSection() {
                 </span>
                 <div className="h-px w-12 shrink-0 bg-gradient-to-r from-primary to-transparent md:w-20" />
                 <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-muted">
-                  Über uns
+                  DAS RESTAURANT
                 </span>
               </div>
               <h2
@@ -45,6 +45,10 @@ export function HomeAboutSection() {
               <p className="mt-4 max-w-lg text-muted leading-relaxed">
                 Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen.
                 Wir freuen uns auf Sie im Elb-Center.
+              </p>
+              <p className="mt-4 max-w-lg text-sm text-muted leading-relaxed">
+                San Sushi ist ein modernes Restaurant für japanische und koreanische Küche im
+                Elb-Center.
               </p>
               <div className="mt-6">
                 <CtaCreativeSolid
@@ -103,3 +107,4 @@ export function HomeAboutSection() {
     </section>
   );
 }
+

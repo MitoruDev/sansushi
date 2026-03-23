@@ -140,12 +140,12 @@ export function HomeHero() {
           <div className="relative mx-auto h-[2px] w-full rounded-full bg-gradient-to-r from-transparent via-white/70 to-transparent shadow-[0_0_24px_rgba(255,255,255,0.25)]" />
         </motion.div>
 
-        <motion.h2
+        <motion.p
           className="mt-6 font-display text-xs uppercase tracking-[0.42em] text-white/75 sm:text-sm"
           variants={blurUp}
         >
           Sushi, Bibimbap &amp; japanische Küche in Hagen
-        </motion.h2>
+        </motion.p>
 
         <motion.h1
           className="mt-5 font-display text-[clamp(2.5rem,8vw,4.5rem)] font-semibold leading-[1.05] tracking-tight drop-shadow-[0_4px_32px_rgba(0,0,0,0.45)]"
@@ -180,9 +180,17 @@ export function HomeHero() {
           className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/88 sm:text-lg"
           variants={blurUp}
         >
-          Frisch. Von Hand. Für Sie. Jede Rolle mit Hingabe zubereitet – ob Sushi
-          oder Bibimbap, bei uns erleben Sie echte japanische und koreanische Küche.
+          Frisch. Präzise. Direkt aus Hagen: Sushi, Sashimi, Ramen und koreanische Klassiker – für Sie
+          im Restaurant oder zum Mitnehmen.
         </motion.p>
+        <motion.div
+          className="mt-4 flex flex-wrap justify-center gap-2 text-xs uppercase tracking-[0.16em] text-white/75"
+          variants={blurUp}
+        >
+          <span className="rounded-full border border-white/25 px-3 py-1">Elb-Center, Hagen</span>
+          <span className="rounded-full border border-white/25 px-3 py-1">Mo–Sa 12:00–22:00</span>
+          <span className="rounded-full border border-white/25 px-3 py-1">Annahme vor Ort + Mitnehmen</span>
+        </motion.div>
         <motion.div className="mt-3 text-white/55" variants={blurUp} aria-hidden>
           <motion.span
             className="inline-block font-display text-3xl tracking-wide sm:text-4xl"

@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+Disallow: /studio
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /studio
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /studio
+
+Preferred citation:
+- URL: page URL
+- Title: Seitentitel
+- Date: Datum des Abrufs
+
+Citation format:
+San Sushi – {Seiten-Titel}. https://sansushi.de/{path}
+Bei Preview-Crawling kann alternativ die Domain https://sansushi.vercel.app verwendet werden.

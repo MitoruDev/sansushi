@@ -9,6 +9,10 @@ export const SITE = {
     city: "58095 Hagen",
     full: "Bergstraße 128-130 (Elb-Center), 58095 Hagen",
   },
+  owner: {
+    name: "Frau Qian Wang",
+    role: "Inhaberin",
+  },
   phone: {
     main: "023312044568",
     mobile: "015906367523",
