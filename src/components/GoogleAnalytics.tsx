@@ -6,6 +6,7 @@ import { CONSENT_ANALYTICS_EVENT, hasConsentForAnalytics } from "@/lib/cookie-co
 
 const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-BPN3EGEL41";
+const GA_SCRIPT_ID = "sansushi-ga-script";
 
 const deniedConsent = {
   analytics_storage: "denied",
@@ -28,15 +29,47 @@ function setAnalyticsConsent(state: "granted" | "denied"): void {
   window.gtag?.("consent", "update", state === "granted" ? grantedConsent : deniedConsent);
 }
 
-function sendPageViewMeasurement() {
+function ensureBaseAnalyticsBootstrapped(): void {
+  if (typeof window === "undefined" || !GA_MEASUREMENT_ID) return;
+
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+  if (!window.gtag) {
+    function gtag(...args: unknown[]) {
+      window.dataLayer!.push(args);
+    }
+    window.gtag = gtag;
+  }
+
+  if (gaInitialized) return;
+  gaInitialized = true;
+
+  window.gtag("consent", "default", deniedConsent);
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
+
+  const existingTag = document.querySelector(`#${GA_SCRIPT_ID}`);
+  if (existingTag) return;
+  const script = document.createElement("script");
+  script.id = GA_SCRIPT_ID;
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+}
+
+function sendPageViewMeasurement(pathname: string) {
   if (typeof window === "undefined" || !window.gtag) return;
-  const pageLocation = window.location.href;
+  if (!hasConsentForAnalytics()) return;
+
+  const pageLocation = `${window.location.origin}${pathname}`;
   if (lastTrackedPage === pageLocation) return;
 
   lastTrackedPage = pageLocation;
   window.gtag("event", "page_view", {
     page_title: document.title,
     page_location: pageLocation,
+    page_path: pathname,
     send_to: GA_MEASUREMENT_ID,
   });
 }
@@ -46,42 +79,13 @@ function sendPageViewMeasurement() {
  */
 function initGoogleAnalytics(): void {
   if (typeof window === "undefined" || !GA_MEASUREMENT_ID) return;
+  ensureBaseAnalyticsBootstrapped();
   const hasConsent = hasConsentForAnalytics();
-
-  const gaScriptHost = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_HOST ?? "https://www.googletagmanager.com";
-  if (!window.gtag) {
-    window.dataLayer = window.dataLayer ?? [];
-    function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    }
-    window.gtag = gtag;
-  }
-  if (!gaInitialized) {
-    window.gtag("consent", "default", deniedConsent);
-    window.gtag("js", new Date());
-    window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
-    gaInitialized = true;
-  }
-
-  const hasExistingTag = Boolean(
-    document.querySelector(`script[data-sansushi-ga="${GA_MEASUREMENT_ID}"]`),
-  );
-  if (!hasExistingTag) {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `${gaScriptHost}/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    script.setAttribute("data-sansushi-ga", GA_MEASUREMENT_ID);
-    document.head.appendChild(script);
-  }
-
   setAnalyticsConsent(hasConsent ? "granted" : "denied");
-  if (hasConsent) {
-    sendPageViewMeasurement();
-  }
 }
 
-function trackIfAllowed() {
-  sendPageViewMeasurement();
+function trackIfAllowed(pathname: string) {
+  sendPageViewMeasurement(pathname);
 }
 
 export function GoogleAnalytics() {
@@ -90,13 +94,14 @@ export function GoogleAnalytics() {
     initGoogleAnalytics();
     const onConsent = () => {
       initGoogleAnalytics();
+      sendPageViewMeasurement(pathname);
     };
     window.addEventListener(CONSENT_ANALYTICS_EVENT, onConsent);
     return () => window.removeEventListener(CONSENT_ANALYTICS_EVENT, onConsent);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
-    trackIfAllowed();
+    trackIfAllowed(pathname);
   }, [pathname]);
 
   return null;
