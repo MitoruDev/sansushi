@@ -71,7 +71,7 @@ export function KontaktPageContent() {
 
       {/* Hero image */}
       <motion.div
-        className="relative mb-10 aspect-[21/4] overflow-hidden rounded-xl border border-border sm:aspect-[21/5]"
+        className="relative mb-10 aspect-[1200/267] overflow-hidden rounded-xl border border-border sm:aspect-[1200/267]"
         initial={lite ? false : { scale: 1.04 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}

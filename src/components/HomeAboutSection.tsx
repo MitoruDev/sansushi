@@ -7,6 +7,7 @@ import { SlideInView } from "@/components/motion/SlideInView";
 import { Sushi3DVisual } from "@/components/Sushi3DVisual";
 import { motion } from "framer-motion";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
+import { SITE } from "@/lib/constants";
 
 export function HomeAboutSection() {
   const lite = useLiteMotion();
@@ -50,6 +51,9 @@ export function HomeAboutSection() {
               <p className="mt-4 max-w-lg text-sm text-muted leading-relaxed">
                 San Sushi ist ein modernes Restaurant für japanische und koreanische Küche im
                 Elb-Center.
+              </p>
+              <p className="mt-4 max-w-lg text-sm text-muted leading-relaxed">
+                {SITE.owner.biography}
               </p>
               <div className="mt-6">
                 <CtaCreativeSolid

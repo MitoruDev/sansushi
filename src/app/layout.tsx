@@ -42,7 +42,7 @@ export function generateMetadata(): Metadata {
     },
     description: META_DESCRIPTION_HOME,
     keywords: META_KEYWORDS,
-    authors: [{ name: SITE.owner.name }],
+    authors: [{ name: SITE.owner.name, url: `${getSiteUrl()}/#owner` }],
     creator: SITE.owner.name,
     alternates: {
       canonical: "/",

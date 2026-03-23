@@ -149,7 +149,7 @@ export default function SpeisekartePage() {
 
       {/* Hero mit Bild + Text */}
       <section
-        className="relative -mx-4 mb-10 aspect-[21/9] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl"
+        className="relative -mx-4 mb-10 aspect-[1200/525] overflow-hidden rounded-none sm:mx-0 sm:rounded-2xl"
         aria-label="Speisekarte – Kopfbereich"
       >
         <motion.div

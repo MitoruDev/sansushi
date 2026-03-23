@@ -12,7 +12,16 @@ export const SITE = {
   owner: {
     name: "Frau Qian Wang",
     role: "Inhaberin",
+    image: "/owner-avatar.svg",
+    description: "Inhaberin von San Sushi in Hagen und verantwortliche Ansprechpartnerin für Küche, Betrieb und Gästeservice.",
+    disambiguatingDescription:
+      "Verantwortlich für das Restaurant San Sushi im Elb-Center Hagen mit Schwerpunkt auf japanisch-koreanischer Küche.",
+    biography:
+      "Frau Qian Wang führt das Restaurant San Sushi im Elb-Center in Hagen und steht für handwerklich frisch zubereitete Sushi- und koreanische Gerichte.",
   },
+  // Datum der letzten inhaltlichen Überarbeitung (für strukturierte Daten / Aktualitäts-Signale).
+  // Bitte bei inhaltlichen Updates der Seite aktualisieren.
+  contentLastUpdated: "2026-03-23",
   phone: {
     main: "023312044568",
     mobile: "015906367523",

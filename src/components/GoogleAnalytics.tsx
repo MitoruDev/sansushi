@@ -16,15 +16,20 @@ function grantAnalyticsConsent(): void {
 }
 
 /**
- * gtag.js immer laden (damit z. B. Google Search Console die Property erkennen kann),
- * Datenerfassung per Consent Mode erst nach „Alle akzeptieren“ (analytics_storage).
+ * Datenerfassung erfolgt erst nach „Alle akzeptieren“ (analytics_storage).
  */
 function initGoogleAnalytics(): void {
   if (typeof window === "undefined" || !GA_MEASUREMENT_ID) return;
-  if (document.querySelector(`script[data-sansushi-ga="${GA_MEASUREMENT_ID}"]`)) {
+  const hasConsent = hasConsentForAnalytics();
+  const hasExistingTag = Boolean(
+    document.querySelector(`script[data-sansushi-ga="${GA_MEASUREMENT_ID}"]`),
+  );
+  if (hasExistingTag) {
     if (hasConsentForAnalytics()) grantAnalyticsConsent();
     return;
   }
+
+  if (!hasConsent) return;
 
   window.dataLayer = window.dataLayer ?? [];
   function gtag(...args: unknown[]) {
@@ -40,14 +45,12 @@ function initGoogleAnalytics(): void {
     wait_for_update: 500,
   });
 
-  if (hasConsentForAnalytics()) {
-    gtag("consent", "update", {
-      analytics_storage: "granted",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    });
-  }
+  gtag("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
 
   gtag("js", new Date());
   gtag("config", GA_MEASUREMENT_ID);

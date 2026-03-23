@@ -65,6 +65,8 @@ export function RestaurantJsonLd() {
     },
   };
 
+  const contentUpdatedAt = new Date().toISOString();
+
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -165,7 +167,27 @@ export function RestaurantJsonLd() {
     "@id": ownerId,
     name: SITE.owner.name,
     jobTitle: SITE.owner.role,
+    description: SITE.owner.description,
+    disambiguatingDescription: SITE.owner.disambiguatingDescription,
+    biography: SITE.owner.biography,
+    image: `${siteUrl}${SITE.owner.image}`,
+    photo: `${siteUrl}${SITE.owner.image}`,
     worksFor: { "@id": organizationId },
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Restaurantinhaberin",
+      occupationLocation: {
+        "@type": "City",
+        name: "Hagen",
+      },
+    },
+    knowsAbout: [
+      "Sushi",
+      "japanische Küche",
+      "koreanische Küche",
+      "restaurant service",
+    ],
+    sameAs: [SITE.socialProfiles.instagram, SITE.socialProfiles.facebook],
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,
@@ -184,6 +206,50 @@ export function RestaurantJsonLd() {
     url: siteUrl,
     publisher: { "@id": organizationId },
     inLanguage: "de-DE",
+  };
+
+  const contentUpdateArticle = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${siteUrl}/#content-update`,
+    headline: "San Sushi – aktuelle Restaurantinformationen",
+    description:
+      "Aktuelle Öffnungszeiten, Speisekarte-Hinweise, Adresse und Kontaktinformationen von San Sushi in Hagen.",
+    datePublished: SITE.contentLastUpdated,
+    dateModified: contentUpdatedAt,
+    dateCreated: SITE.contentLastUpdated,
+    temporalCoverage: contentUpdatedAt,
+    url: `${siteUrl}/`,
+    articleSection: "Lokales Restaurant",
+    isAccessibleForFree: true,
+    wordCount: 120,
+    inLanguage: "de-DE",
+    author: {
+      "@type": "Person",
+      "@id": ownerId,
+      name: SITE.owner.name,
+      jobTitle: SITE.owner.role,
+      description: SITE.owner.description,
+      disambiguatingDescription: SITE.owner.disambiguatingDescription,
+      biography: SITE.owner.biography,
+      image: `${siteUrl}${SITE.owner.image}`,
+      photo: `${siteUrl}${SITE.owner.image}`,
+      worksFor: { "@id": organizationId },
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Restaurantinhaberin",
+      },
+      knowsAbout: ["Sushi", "japanische Küche", "koreanische Küche", "Gastgeberqualität"],
+    },
+    publisher: {
+      "@id": organizationId,
+    },
+    about: {
+      "@id": restaurantId,
+    },
+    mainEntityOfPage: {
+      "@id": `${siteUrl}/`,
+    },
   };
 
   const breadcrumb = {
@@ -225,6 +291,10 @@ export function RestaurantJsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contentUpdateArticle) }}
       />
       <script
         type="application/ld+json"

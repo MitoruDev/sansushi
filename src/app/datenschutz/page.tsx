@@ -82,10 +82,13 @@ export default function DatenschutzPage() {
 
         <h2>Google Analytics (GA4)</h2>
         <p>
-          Technisch wird auf jeder Seite der Google-Tag (gtag.js) geladen; die
-          eigentliche Auswertung Ihres Besuchs erfolgt erst, wenn Sie „Alle akzeptieren“
-          gewählt haben (Google Consent Mode: Analytics-Speicher zunächst abgelehnt, nach
-          Zustimmung freigegeben). Anbieter: Google Ireland Limited, Gordon House, Barrow
+          Der Google-Tag (gtag.js) wird erst nach Ihrer Einwilligung geladen; die
+          Auswertung erfolgt dann nur, wenn Sie „Alle akzeptieren“
+          gewählt haben. Vorher bleibt Analytics-Speicherung deaktiviert (Google Consent
+          Mode: analytics_storage denied). Die Einstellungen können Sie im Consent-Banner ändern.
+          Wenn Sie „Alle akzeptieren“ wählen, startet die Datenerhebung; bei „Ablehnen“ werden
+          keine personenbezogenen Analytics-Daten genutzt.
+          Anbieter: Google Ireland Limited, Gordon House, Barrow
           Street, Dublin 4, Irland (Mutterunternehmen: Google LLC, USA). Verarbeitet werden
           u. a. aufgerufene Seiten, Verweildauer und grobe Herkunft; Daten können in die
           USA übermittelt werden. Mehr in den{" "}

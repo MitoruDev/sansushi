@@ -4,6 +4,7 @@
  */
 
 const STORAGE_KEY = "cookie-consent";
+const COOKIE_KEY = "cookie-consent";
 
 export type ConsentStatus = "all" | "necessary";
 
@@ -42,7 +43,7 @@ export function setConsent(status: ConsentStatus): void {
   const writeCookie = () => {
     if (typeof document === "undefined") return;
     try {
-      document.cookie = `cookie_consent=${status}; path=/; max-age=31536000; SameSite=Lax`;
+      document.cookie = `${COOKIE_KEY}=${status}; path=/; max-age=31536000; SameSite=Lax`;
     } catch {
       // Cookie write blocked – proceed without persistence in that storage.
     }

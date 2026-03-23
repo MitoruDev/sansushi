@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="ownerAvatarTitle">
+  <title id="ownerAvatarTitle">Autoren-Portraet</title>
+  <rect width="240" height="240" rx="120" fill="#1f1f1f"/>
+  <circle cx="120" cy="94" r="42" fill="#f3e9d2"/>
+  <path
+    d="M38 205c10-48 52-84 82-84h0c30 0 72 36 82 84 2 9-4 13-12 13H50c-8 0-14-4-12-13z"
+    fill="#f3e9d2"
+  />
+  <circle cx="120" cy="92" r="6" fill="#1f1f1f" opacity="0.25"/>
+</svg>
