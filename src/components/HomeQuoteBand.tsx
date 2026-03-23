@@ -139,7 +139,7 @@ export function HomeQuoteBand() {
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
         <motion.div
-          className="relative mx-auto w-full max-w-2xl"
+          className="relative mx-auto w-full max-w-2xl transform-origin-center"
           initial={lite ? false : { opacity: 0, scaleX: 0.3 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true, margin: "-20px" }}
@@ -149,7 +149,6 @@ export function HomeQuoteBand() {
             damping: 28,
             duration: lite ? 0.15 : undefined,
           }}
-          className="transform-origin-center"
           aria-hidden
         >
           <div className="relative py-1">

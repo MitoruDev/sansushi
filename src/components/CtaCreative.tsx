@@ -17,11 +17,13 @@ export function CtaCreativeSolid({
   className,
   children,
   onClick,
+  title,
 }: {
   href: string;
   className: string;
   children: ReactNode;
   onClick?: () => void;
+  title?: string;
 }) {
   const lite = useLiteMotion();
   const isExternal = href.startsWith("tel:") || href.startsWith("http") || href.startsWith("mailto:");
@@ -55,6 +57,7 @@ export function CtaCreativeSolid({
       <motion.a
         href={href}
         className={shell}
+        title={title}
         whileHover={hover}
         whileTap={tap}
         transition={spring}
@@ -69,6 +72,7 @@ export function CtaCreativeSolid({
     <MotionLink
       href={href}
       className={shell}
+      title={title}
       whileHover={hover}
       whileTap={tap}
       transition={spring}
