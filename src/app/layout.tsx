@@ -6,6 +6,7 @@ import { getActiveAbsences } from "@/lib/sanity";
 import { META_DESCRIPTION_HOME } from "@/lib/seo-copy";
 import { META_KEYWORDS, SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 /** Google Search Console (HTML-Tag); öffentlich im Quelltext – `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` überschreibt. */
@@ -104,6 +105,7 @@ export default async function RootLayout({
       <body
         className={`${plusJakarta.variable} ${cormorant.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
+        <GoogleAnalytics />
         <RestaurantJsonLd />
         <SiteOrStudioLayout activeAbsences={activeAbsences}>
           {children}
