@@ -4,6 +4,7 @@ import { SiteOrStudioLayout } from "@/components/SiteOrStudioLayout";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import { getActiveAbsences } from "@/lib/sanity";
 import { META_DESCRIPTION_HOME } from "@/lib/seo-copy";
+import { META_KEYWORDS } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export function generateMetadata(): Metadata {
       template: "%s | San Sushi Hagen",
     },
     description: META_DESCRIPTION_HOME,
+    keywords: META_KEYWORDS,
     alternates: {
       canonical: "/",
       languages: {

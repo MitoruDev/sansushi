@@ -1,15 +1,28 @@
 import Link from "next/link";
-import { MapPin, Clock, Phone, FileText } from "lucide-react";
+import { Facebook, Instagram, MapPin, Clock, Phone, FileText } from "lucide-react";
 import { SITE, DEV_CREDIT } from "@/lib/constants";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { StaggerInView, StaggerItem } from "@/components/motion/StaggerInView";
 import { FooterSushiMicro } from "@/components/FooterSushiMicro";
 
 export function Footer() {
+  const socialLinks = [
+    {
+      label: "Facebook",
+      href: SITE.socialProfiles.facebook,
+      Icon: Facebook,
+    },
+    {
+      label: "Instagram",
+      href: SITE.socialProfiles.instagram,
+      Icon: Instagram,
+    },
+  ];
+
   return (
     <footer className="border-t-2 border-primary/30 bg-footer text-white">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <StaggerInView className="grid gap-8 sm:grid-cols-3" staggerDelay={0.08}>
+        <StaggerInView className="grid gap-8 sm:grid-cols-4" staggerDelay={0.08}>
           <StaggerItem>
           <div>
             <Link
@@ -68,6 +81,29 @@ export function Footer() {
             </p>
             <p className="mt-2 text-sm text-white/95">{SITE.openingHours.weekdays}</p>
             <p className="text-sm text-white/95">{SITE.openingHours.sunday}</p>
+          </div>
+          </StaggerItem>
+          <StaggerItem>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary-on-dark">
+              Social
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-4 text-sm">
+              {socialLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 transition-colors hover:border-primary-on-dark hover:text-primary-on-dark"
+                    aria-label={link.label}
+                  >
+                    <link.Icon className="h-4 w-4" aria-hidden />
+                    <span className="sr-only">{link.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           </StaggerItem>
         </StaggerInView>

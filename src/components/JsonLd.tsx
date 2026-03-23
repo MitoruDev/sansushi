@@ -44,6 +44,16 @@ export function RestaurantJsonLd() {
     ],
     servesCuisine: ["Japanese", "Korean"],
     menu: `${siteUrl}/speisekarte`,
+    sameAs: [SITE.socialProfiles.facebook, SITE.socialProfiles.instagram, SITE.googleReviewsUrl],
+    hasMap: SITE.mapsUrl,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Kundenservice",
+      telephone: `+49${SITE.phone.main.replace(/^0/, "")}`,
+      areaServed: "DE",
+      availableLanguage: ["de"],
+      contactOption: "TollFree",
+    },
   };
 
   const website = {

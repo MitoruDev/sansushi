@@ -32,7 +32,24 @@ export const SITE = {
   mapsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
   /** Google (Maps) – dort finden Gäste auch Bewertungen. */
   googleReviewsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
+  /** Offizielle Social-Profile zur externen Verlinkung / sameAs im JSON-LD. */
+  socialProfiles: {
+    facebook: "https://www.facebook.com/sansushihagen/",
+    instagram: "https://www.instagram.com/explore/locations/8044538/sansushi/",
+  },
 } as const;
+
+export const META_KEYWORDS = [
+  "San Sushi",
+  "Sushi Hagen",
+  "Koreanische Küche Hagen",
+  "Japanische Küche Hagen",
+  "Bibimbap Hagen",
+  "Sushi Restaurant",
+  "Imbiss Hagen",
+  "Abendessen Hagen",
+  "Reservieren Hagen"
+];
 
 /** localStorage: Reis-Konfetti nur einmal nach erstem „Alle akzeptieren“. */
 export const RICE_CONFETTI_STORAGE_KEY = "sansushi_rice_confetti_once";
