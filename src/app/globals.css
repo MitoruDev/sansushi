@@ -289,6 +289,39 @@ button:disabled,
 }
 .prose-custom li { margin-top: 0.25rem; }
 
+/* Non-inline style helpers (auditable reduction) */
+.legal-page-pattern {
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 22px 22px;
+}
+.quote-band-pattern {
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.faq-pattern-divider {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    currentColor 2px,
+    currentColor 3px
+  );
+  background-size: 48px 100%;
+}
+.transform-origin-center {
+  transform-origin: 50% 50%;
+}
+.transform-origin-left {
+  transform-origin: 0% 50%;
+}
+.faq-preserve-3d {
+  transform-style: preserve-3d;
+}
+.faq-chevron-open {
+  background-color: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.35);
+}
+
 /* Print: nur Inhalt, keine Navigation/Footer/Buttons */
 @media print {
   .skip-link,

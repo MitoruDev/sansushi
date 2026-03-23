@@ -44,11 +44,14 @@ export const META_KEYWORDS = [
   "Sushi Hagen",
   "Koreanische Küche Hagen",
   "Japanische Küche Hagen",
+  "Sushi Restaurant Hagen",
+  "Sushi im Elb-Center",
   "Bibimbap Hagen",
   "Sushi Restaurant",
-  "Imbiss Hagen",
+  "Restaurant Bergstraße 128",
   "Abendessen Hagen",
-  "Reservieren Hagen"
+  "Reservieren in Hagen",
+  "Frisches Sushi in Hagen",
 ];
 
 /** localStorage: Reis-Konfetti nur einmal nach erstem „Alle akzeptieren“. */

@@ -206,6 +206,7 @@ export default function SpeisekartePage() {
           <motion.div className="mt-3" variants={heroItem}>
             <motion.a
               href="/speisekarte.pdf"
+              title="Speisekarte als PDF herunterladen"
               target="_blank"
               rel="noopener noreferrer"
               className="focus-ring inline-flex items-center gap-2 rounded-lg bg-white/20 px-4 py-2.5 text-sm font-medium text-white shadow-[0_0_20px_-4px_rgba(255,255,255,0.15)] transition-colors hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"

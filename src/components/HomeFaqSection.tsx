@@ -7,7 +7,7 @@ import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { SITE } from "@/lib/constants";
 import { homeFaqItems as faqItems } from "@/data/faq";
 
-const h2Words = ["Fragen", "&", "Antworten"];
+const h2Words = ["Fragen", "zu", "San", "Sushi", "in", "Hagen"];
 
 export function HomeFaqSection() {
   const [openId, setOpenId] = useState<number | null>(null);
@@ -141,12 +141,7 @@ export function HomeFaqSection() {
         </>
       )}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, transparent, transparent 2px, currentColor 2px, currentColor 3px)",
-          backgroundSize: "48px 100%",
-        }}
+        className="faq-pattern-divider pointer-events-none absolute inset-0 opacity-[0.04]"
         aria-hidden
       />
       <div
@@ -212,9 +207,8 @@ export function HomeFaqSection() {
             {h2Words.map((word) => (
               <motion.span
                 key={word}
-                className="mr-[0.2em] inline-block last:mr-0"
+                  className="mr-[0.2em] inline-block last:mr-0 faq-preserve-3d"
                 variants={wordStagger}
-                style={{ transformStyle: "preserve-3d" }}
               >
                 {word}
               </motion.span>
@@ -225,6 +219,7 @@ export function HomeFaqSection() {
             href={SITE.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            title="Google Bewertungen in einem neuen Fenster öffnen"
             className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full border-2 border-primary/50 bg-primary/10 px-6 py-3 text-sm font-semibold text-primary-on-dark shadow-[0_0_24px_-4px_rgba(220,38,38,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
             variants={ctaReveal}
             whileHover={
@@ -348,18 +343,12 @@ export function HomeFaqSection() {
                       {item.q}
                     </span>
                     <motion.span
-                      className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-background/50 text-primary-on-dark"
+                      className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-background/50 text-primary-on-dark ${
+                        isOpen ? "faq-chevron-open" : ""
+                      }`}
                       aria-hidden
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={spring}
-                      style={{
-                        backgroundColor: isOpen
-                          ? "rgba(220, 38, 38, 0.1)"
-                          : undefined,
-                        borderColor: isOpen
-                          ? "rgba(220, 38, 38, 0.35)"
-                          : undefined,
-                      }}
                     >
                       <svg
                         className="h-4 w-4"

@@ -45,6 +45,7 @@ export function BackToTop() {
         <motion.button
           type="button"
           onClick={scrollToTop}
+          title="Nach oben scrollen"
           initial={initial}
           animate={animate}
           exit={exit}

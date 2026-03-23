@@ -133,12 +133,7 @@ export function HomeQuoteBand() {
       )}
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.055]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-          backgroundSize: "24px 24px",
-        }}
+        className="quote-band-pattern pointer-events-none absolute inset-0 opacity-[0.055]"
         aria-hidden
       />
 
@@ -154,7 +149,7 @@ export function HomeQuoteBand() {
             damping: 28,
             duration: lite ? 0.15 : undefined,
           }}
-          style={{ originX: 0.5 }}
+          className="transform-origin-center"
           aria-hidden
         >
           <div className="relative py-1">
@@ -241,11 +236,10 @@ export function HomeQuoteBand() {
           aria-hidden
         >
           <motion.div
-            className="h-px w-20 origin-center rounded-full bg-gradient-to-r from-transparent via-accent/70 to-transparent shadow-[0_0_12px_rgba(245,158,11,0.25)]"
+            className="transform-origin-center h-px w-20 rounded-full bg-gradient-to-r from-transparent via-accent/70 to-transparent shadow-[0_0_12px_rgba(245,158,11,0.25)]"
             variants={bottomLine}
-            style={{ originX: 0.5 }}
           />
-          <motion.div className="relative" variants={bottomLine} style={{ originX: 0.5 }}>
+          <motion.div className="transform-origin-center relative" variants={bottomLine}>
             <div className="absolute inset-0 scale-150 rounded-full bg-primary/20 blur-md" />
             <div className="relative h-1 w-28 rounded-full bg-gradient-to-r from-primary/40 via-primary-on-dark to-primary/40 shadow-[0_0_20px_rgba(220,38,38,0.35)]" />
           </motion.div>

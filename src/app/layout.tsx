@@ -29,7 +29,7 @@ const cormorant = Cormorant_Garamond({
 export function generateMetadata(): Metadata {
   const metadataBase = new URL(getSiteUrl());
   const canonicalUrl = metadataBase.toString().replace(/\/$/, "");
-  const title = "San Sushi – Japanische & Koreanische Küche | Sushi Hagen";
+  const title = "San Sushi – Sushi & koreanische Küche in Hagen | Elb-Center";
   const googleVerification =
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() ||
     process.env.GOOGLE_SITE_VERIFICATION?.trim() ||

@@ -178,7 +178,10 @@ export function LiveOpenStatus({
       title={state.nextChange}
     >
       {state.isOpen ? (
-        <span className="inline-flex shrink-0 origin-left text-[10px]" aria-hidden style={{ fontSize: "10px" }}>
+        <span
+          className="inline-flex shrink-0 origin-left text-[10px]"
+          aria-hidden
+        >
           <PulseDot color="#10b981" />
         </span>
       ) : (

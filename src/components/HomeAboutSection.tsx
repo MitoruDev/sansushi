@@ -40,7 +40,7 @@ export function HomeAboutSection() {
                 id="about-heading"
                 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl"
               >
-                Eine andere Welt im Herzen von Hagen
+                Sushi-Qualität aus Japan und Korea im Herzen von Hagen
               </h2>
               <p className="mt-4 max-w-lg text-muted leading-relaxed">
                 Frische Zutaten, ehrliche Küche – vor Ort oder zum Mitnehmen.
@@ -49,6 +49,7 @@ export function HomeAboutSection() {
               <div className="mt-6">
                 <CtaCreativeSolid
                   href="/kontakt"
+                  title="Kontakt- und Anfahrtsinformationen"
                   className="focus-ring rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition-colors hover:bg-primary-hover hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   Kontakt &amp; Anfahrt{" "}

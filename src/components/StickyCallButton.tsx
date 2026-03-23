@@ -38,6 +38,7 @@ export function StickyCallButton() {
       {visible && (
         <motion.a
           href={`tel:${SITE.phone.main}`}
+          title="Jetzt anrufen"
           initial={initial}
           animate={animate}
           exit={exit}

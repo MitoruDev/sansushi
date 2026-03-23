@@ -101,9 +101,8 @@ export function KontaktPageContent() {
         variants={heroSequence}
       >
         <motion.div
-          className="mb-4 h-px w-20 max-w-full rounded-full bg-gradient-to-r from-primary to-primary/30"
+          className="transform-origin-left mb-4 h-px w-20 max-w-full rounded-full bg-gradient-to-r from-primary to-primary/30"
           variants={blurUp}
-          style={{ originX: 0 }}
           aria-hidden
         />
         <motion.h1

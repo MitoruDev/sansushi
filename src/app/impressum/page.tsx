@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
 import { getSiteUrl } from "@/lib/site-url";
 
-const pageTitle = "Impressum | San Sushi Hagen";
+const pageTitle = "Impressum";
 const pageDescription =
   "Impressum und rechtliche Angaben zum Betreiber von San Sushi in Hagen: Inhaber, Adresse, Kontakt – alle Pflichtangaben gemäß § 5 TMG.";
+const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     siteName: "San Sushi",
     url: `${getSiteUrl()}/impressum`,
-    title: pageTitle,
+    title: pageTitleWithBrand,
     description: pageDescription,
     images: [
       {
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: pageTitle,
+    title: pageTitleWithBrand,
     description: pageDescription,
     images: ["/opengraph-image"],
   },
@@ -71,6 +72,7 @@ export default function ImpressumPage() {
             href="https://ec.europa.eu/consumers/odr"
             target="_blank"
             rel="noopener noreferrer"
+            title="EU Online Dispute Resolution Plattform in neuem Tab öffnen"
             className="focus-ring text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
           >
             https://ec.europa.eu/consumers/odr

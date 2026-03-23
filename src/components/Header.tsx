@@ -27,6 +27,8 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
   const reduceMotion = useReducedMotion();
   const lite = useLiteMotion();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
+  const firstMobileNavItemRef = useRef<HTMLAnchorElement>(null);
   const navSpring = lite
     ? { duration: 0.15 }
     : { type: "spring" as const, stiffness: 420, damping: 30 };
@@ -39,7 +41,26 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
 
   useEffect(() => {
     if (!mobileOpen) return;
+    firstMobileNavItemRef.current?.focus();
     const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Tab" && mobileMenuRef.current) {
+        const focusable = Array.from(
+          mobileMenuRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [href]',
+          ),
+        ).filter((el) => el.offsetParent !== null);
+        if (!focusable.length) return;
+        const currentIndex = focusable.indexOf(document.activeElement as HTMLElement);
+        if (e.shiftKey) {
+          if (currentIndex <= 0) {
+            e.preventDefault();
+            focusable[focusable.length - 1]?.focus();
+          }
+        } else if (currentIndex >= focusable.length - 1) {
+          e.preventDefault();
+          focusable[0]?.focus();
+        }
+      }
       if (e.key === "Escape") {
         setMobileOpen(false);
         menuButtonRef.current?.focus();
@@ -48,6 +69,11 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileOpen]);
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    menuButtonRef.current?.focus();
+  };
 
   return (
     <motion.header
@@ -59,6 +85,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
         <Link
           href="/"
+          title="Zur Startseite"
           className="group flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90"
         >
           <motion.span
@@ -83,6 +110,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                 <Link
                   key={href}
                   href={href}
+                  title={`Zur Seite: ${label}`}
                   className={`focus-ring relative rounded-lg px-4 py-2.5 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                     isActive
                       ? "text-foreground"
@@ -116,6 +144,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
           <span className="ml-2 inline-flex">
             <CtaCreativeSolid
               href={`tel:${SITE.phone.main}`}
+              title="Jetzt anrufen"
               className="focus-ring rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-primary/25 transition-colors hover:bg-primary-hover hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <Phone
@@ -141,6 +170,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
 
       {mobileOpen && (
         <nav
+          ref={mobileMenuRef}
           className="border-t border-primary/20 bg-card px-4 py-4 md:hidden"
           aria-label="Mobile Navigation"
         >
@@ -154,7 +184,9 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
                 <li key={href}>
                   <Link
                     href={href}
-                    onClick={() => setMobileOpen(false)}
+                    title={`Zur Seite: ${label}`}
+                    ref={href === "/" ? firstMobileNavItemRef : null}
+                    onClick={closeMobileMenu}
                     className={`focus-ring flex min-h-[44px] items-center rounded-lg px-3 py-3 text-sm font-medium transition-colors active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                       isActive
                         ? "bg-primary/10 text-primary-on-dark"
@@ -169,7 +201,8 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
             <li className="mt-2 border-t border-border pt-2">
               <CtaCreativeSolid
                 href={`tel:${SITE.phone.main}`}
-                onClick={() => setMobileOpen(false)}
+                title="Jetzt anrufen"
+                onClick={closeMobileMenu}
                 className="focus-ring flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 font-medium text-white shadow-md shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                   <Phone

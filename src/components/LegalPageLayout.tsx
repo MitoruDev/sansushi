@@ -64,12 +64,7 @@ export function LegalPageLayout({
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-          backgroundSize: "22px 22px",
-        }}
+        className="legal-page-pattern pointer-events-none absolute inset-0 -z-10 opacity-[0.04]"
         aria-hidden
       />
 

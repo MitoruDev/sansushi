@@ -53,6 +53,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="group/maps focus-ring mt-1 inline-flex items-center gap-1 text-sm font-medium text-primary-on-dark hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+              title="San Sushi auf Google Maps aufrufen"
             >
               Anfahrt
               <span className="inline-block transition-transform duration-200 ease-out group-hover/maps:translate-x-1">
@@ -62,11 +63,19 @@ export function Footer() {
             <p className="mt-3 flex items-center gap-2 text-sm text-white/95">
               <Phone className="h-4 w-4 shrink-0 text-primary-on-dark" aria-hidden />
               <span>
-                <a href={`tel:${SITE.phone.main}`} className="focus-ring text-white hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded">
+                <a
+                  href={`tel:${SITE.phone.main}`}
+                  className="focus-ring text-white hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                  title="Hauptnummer von San Sushi anrufen"
+                >
                   {SITE.phone.displayMain}
                 </a>
                 {" · "}
-                <a href={`tel:${SITE.phone.mobile}`} className="focus-ring text-white hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded">
+                <a
+                  href={`tel:${SITE.phone.mobile}`}
+                  className="focus-ring text-white hover:text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                  title="Handynummer von San Sushi anrufen"
+                >
                   {SITE.phone.displayMobile}
                 </a>
               </span>
@@ -96,6 +105,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 transition-colors hover:border-primary-on-dark hover:text-primary-on-dark"
+                    title={`${link.label} aufrufen`}
                     aria-label={link.label}
                   >
                     <link.Icon className="h-4 w-4" aria-hidden />

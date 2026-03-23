@@ -19,6 +19,7 @@ const cards = [
           target="_blank"
           rel="noopener noreferrer"
           className="focus-ring mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-on-dark transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+          title="Standort auf Google Maps anzeigen"
         >
           Anfahrt planen <ArrowRight className="h-3.5 w-3.5" />
         </a>
@@ -46,6 +47,7 @@ const cards = [
           <a
             href={`tel:${SITE.phone.main}`}
             className="focus-ring text-lg font-semibold text-foreground transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
+            title="Hauptnummer anrufen"
           >
             {SITE.phone.displayMain}
           </a>
@@ -53,6 +55,7 @@ const cards = [
         <a
           href={`tel:${SITE.phone.main}`}
           className="group/telstrip focus-ring mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-on-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
+          title="Jetzt direkt anrufen"
         >
           Jetzt anrufen{" "}
           <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 ease-out group-hover/telstrip:translate-x-1" />
@@ -60,6 +63,7 @@ const cards = [
         <Link
           href="/kontakt"
           className="group/kontlink focus-ring mt-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card rounded"
+          title="Kontaktseite mit Telefonnummern und Anschrift"
         >
           Weitere Nummer & Kontakt
           <span className="inline-block transition-transform duration-200 group-hover/kontlink:translate-x-0.5">
@@ -122,9 +126,9 @@ export function HomeInfoStrip() {
                     <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-primary-on-dark/75">
                       {card.jp}
                     </p>
-                    <h3 className="font-display text-lg font-semibold text-foreground">
+                    <h2 className="font-display text-lg font-semibold text-foreground">
                       {card.en}
-                    </h3>
+                    </h2>
                   </div>
                 </div>
                 <div className="relative z-[1] flex flex-1 flex-col">{card.body}</div>
