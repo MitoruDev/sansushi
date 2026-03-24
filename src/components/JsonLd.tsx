@@ -176,10 +176,6 @@ export function RestaurantJsonLd() {
     name: "Sushi & koreanische Spezialitäten",
     description:
       "Frische Speisen aus Japan und Korea aus dem Hause San Sushi, direkt aus der Küche im Elb-Center.",
-    brand: {
-      "@type": "Brand",
-      name: SITE.name,
-    },
     category: "Speisen & Getränke",
     image: `${siteUrl}/opengraph-image`,
     offers: {
