@@ -30,6 +30,7 @@ const cormorant = Cormorant_Garamond({
 export function generateMetadata(): Metadata {
   const metadataBase = new URL(getSiteUrl());
   const canonicalUrl = metadataBase.toString().replace(/\/$/, "");
+  const socialImageUrl = `${metadataBase.origin}/opengraph-image`;
   const title = "San Sushi – Sushi & koreanische Küche in Hagen | Elb-Center";
   const googleVerification =
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() ||
@@ -67,7 +68,7 @@ export function generateMetadata(): Metadata {
       description: META_DESCRIPTION_HOME,
       images: [
         {
-          url: "/opengraph-image",
+          url: socialImageUrl,
           width: 1200,
           height: 630,
           alt: "San Sushi – Japanische & Koreanische Küche in Hagen",
@@ -78,7 +79,14 @@ export function generateMetadata(): Metadata {
       card: "summary_large_image",
       title,
       description: META_DESCRIPTION_HOME,
-      images: ["/opengraph-image"],
+      images: [
+        {
+          url: socialImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "San Sushi – Japanische & Koreanische Küche in Hagen",
+        },
+      ],
     },
     robots: "index, follow",
   };

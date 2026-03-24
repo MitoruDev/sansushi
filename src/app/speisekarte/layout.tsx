@@ -5,6 +5,7 @@ const pageTitle = "Speisekarte – Sushi, Sashimi & Koreanisch";
 const pageDescription =
   "Speisekarte San Sushi Hagen: Sushi, Sashimi, Bibimbap, koreanische und japanische Gerichte. Frische Zutaten, vor Ort oder zum Mitnehmen. Jetzt ansehen oder als PDF herunterladen.";
 const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
+const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     description: pageDescription,
     images: [
       {
-        url: "/opengraph-image",
+        url: socialImageUrl,
         width: 1200,
         height: 630,
         alt: "San Sushi Speisekarte – Sushi, Sashimi und koreanische Küche",
@@ -36,7 +37,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitleWithBrand,
     description: pageDescription,
-    images: ["/opengraph-image"],
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "San Sushi Speisekarte – Sushi, Sashimi und koreanische Küche",
+      },
+    ],
   },
   keywords: [
     "San Sushi Speisekarte",

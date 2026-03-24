@@ -6,6 +6,7 @@ const pageTitle = "Datenschutz";
 const pageDescription =
   "Datenschutzerklärung von San Sushi in Hagen: Wie Daten erhoben, welche Cookies genutzt werden und welche Datenschutzrechte Ihnen zustehen.";
 const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
+const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     description: pageDescription,
     images: [
       {
-        url: "/opengraph-image",
+        url: socialImageUrl,
         width: 1200,
         height: 630,
         alt: "Datenschutzerklärung San Sushi Hagen",
@@ -37,7 +38,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitleWithBrand,
     description: pageDescription,
-    images: ["/opengraph-image"],
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Datenschutzerklärung San Sushi Hagen",
+      },
+    ],
   },
   keywords: [
     "Datenschutz San Sushi",

@@ -5,6 +5,7 @@ import { getSiteUrl } from "@/lib/site-url";
 const pageTitle = "Kontakt & Anfahrt – San Sushi Restaurant Hagen";
 const pageDescription =
   "Kontakt und Anfahrt zu San Sushi in Hagen: Bergstraße 128–130 im Elb-Center, Öffnungszeiten, Telefon und Reservierungshinweise.";
+const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     description: pageDescription,
     images: [
       {
-        url: "/opengraph-image",
+        url: socialImageUrl,
         width: 1200,
         height: 630,
         alt: "San Sushi – Kontakt und Anfahrt in Hagen",
@@ -36,7 +37,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitle,
     description: pageDescription,
-    images: ["/opengraph-image"],
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "San Sushi – Kontakt und Anfahrt in Hagen",
+      },
+    ],
   },
   keywords: [
     "San Sushi Kontakt",
