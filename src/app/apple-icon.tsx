@@ -18,7 +18,14 @@ export default function AppleIcon() {
           borderRadius: 36,
         }}
       >
-        <span style={{ fontSize: 96, color: "#ffffff", fontFamily: "system-ui", fontWeight: 700 }}>
+        <span
+          style={{
+            fontSize: 96,
+            color: "#ffffff",
+            fontFamily: "Cormorant Garamond, Georgia, serif",
+            fontWeight: 700,
+          }}
+        >
           寿
         </span>
       </div>

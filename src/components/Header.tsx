@@ -90,7 +90,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
           className="group flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90"
         >
           <motion.span
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-white shadow-sm shadow-primary/20"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-display font-medium text-white shadow-sm shadow-primary/20"
             aria-hidden
             whileHover={lite ? {} : { rotate: [0, -7, 5, 0], scale: 1.06 }}
             transition={{ duration: 0.45, ease: "easeOut" }}

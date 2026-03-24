@@ -17,7 +17,14 @@ export default function Icon() {
           borderRadius: 20,
         }}
       >
-        <span style={{ fontSize: 56, color: "#ffffff", fontFamily: "system-ui", fontWeight: 700 }}>
+        <span
+          style={{
+            fontSize: 56,
+            color: "#ffffff",
+            fontFamily: "Cormorant Garamond, Georgia, serif",
+            fontWeight: 700,
+          }}
+        >
           寿
         </span>
       </div>

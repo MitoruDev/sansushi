@@ -44,7 +44,7 @@ export function NotFoundContent() {
     >
       <motion.span
         variants={fadeUp}
-        className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/15 text-4xl text-primary-on-dark ring-1 ring-primary/20"
+        className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/15 font-display text-4xl text-primary-on-dark ring-1 ring-primary/20"
         aria-hidden
       >
         寿
