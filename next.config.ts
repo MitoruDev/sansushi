@@ -31,6 +31,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/index.php",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

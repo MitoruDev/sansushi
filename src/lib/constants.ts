@@ -41,8 +41,8 @@ export const SITE = {
     lat: 51.3594,
     lng: 7.4632,
   },
-  /** Direkter Link zu San Sushi auf Google Maps. */
-  mapsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
+  /** Direkter Link zu Google Maps-Standort (keine Shortlink-Redirects). */
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=San%20Sushi%20Bergstrasse%20128-130%2C%2058095%20Hagen",
   /** Google (Maps) – dort finden Gäste auch Bewertungen. */
   googleReviewsUrl: "https://maps.app.goo.gl/gVKuy8JQMMNQYiLp6",
   /** Offizielle Social-Profile zur externen Verlinkung / sameAs im JSON-LD. */
