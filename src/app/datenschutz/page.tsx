@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const pageTitle = "Datenschutz";
 const pageDescription =
-  "Datenschutzerklärung von San Sushi in Hagen: Wie wir Ihre Daten erheben, verwenden und schützen. Cookies, eingebettete Inhalte und Ihre Rechte.";
+  "Datenschutzerklärung von San Sushi in Hagen: Wie Daten erhoben, welche Cookies genutzt werden und welche Datenschutzrechte Ihnen zustehen.";
 const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
 
 export const metadata: Metadata = {

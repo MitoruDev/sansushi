@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const pageTitle = "Impressum";
 const pageDescription =
-  "Impressum und rechtliche Angaben zum Betreiber von San Sushi in Hagen: Inhaber, Adresse, Kontakt – alle Pflichtangaben gemäß § 5 TMG.";
+  "Impressum von San Sushi in Hagen mit Inhaberinformationen, Adresse, Kontakt und den Pflichtangaben nach §5 TMG.";
 const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
 
 export const metadata: Metadata = {
