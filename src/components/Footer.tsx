@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, MapPin, Clock, Phone, FileText } from "lucide-react";
 import { SITE, DEV_CREDIT } from "@/lib/constants";
 import { FadeInView } from "@/components/motion/FadeInView";
@@ -31,10 +32,10 @@ export function Footer() {
               className="focus-ring group inline-flex items-center gap-2.5 font-display text-lg font-semibold text-white hover:text-primary-on-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-footer rounded"
             >
               <span
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-display font-medium text-white shadow-sm shadow-primary/20 transition-transform group-hover:scale-105"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-transform group-hover:scale-105"
                 aria-hidden
               >
-                寿
+                <Image src="/favicon.svg" alt="" width={28} height={28} className="h-6 w-6 object-contain" />
               </span>
               {SITE.name}
             </Link>

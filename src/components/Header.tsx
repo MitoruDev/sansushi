@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -90,12 +91,19 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
           className="group flex items-center gap-2.5 font-display text-2xl font-semibold tracking-tight text-foreground transition-opacity hover:opacity-90"
         >
           <motion.span
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-display font-medium text-white shadow-sm shadow-primary/20"
+            className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-primary/10"
             aria-hidden
             whileHover={lite ? {} : { rotate: [0, -7, 5, 0], scale: 1.06 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            寿
+            <Image
+              src="/favicon.svg"
+              alt=""
+              width={28}
+              height={28}
+              className="h-6 w-6 object-contain"
+              priority
+            />
           </motion.span>
           <span>{SITE.name}</span>
         </Link>
