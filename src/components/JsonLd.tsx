@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
+import { menuCategories } from "@/data/menu";
 
 export function RestaurantJsonLd() {
   const siteUrl = getSiteUrl();
@@ -10,6 +11,38 @@ export function RestaurantJsonLd() {
   const organizationId = `${siteUrl}/#organization`;
   const ownerId = `${siteUrl}/#owner`;
   const breadcrumbId = `${siteUrl}/#breadcrumb`;
+
+  const parsePrice = (value: string) => {
+    const normalized = value.replace(/\./g, "").replace(",", ".").replace(/[^0-9.]/g, "");
+    const numeric = Number.parseFloat(normalized);
+    return Number.isNaN(numeric) ? undefined : numeric;
+  };
+
+  const menuPrices = menuCategories.flatMap((cat) =>
+    cat.items.map((item) => parsePrice(item.price)),
+  );
+  const validMenuPrices = menuPrices.filter((price) => typeof price === "number") as number[];
+  const minMenuPrice = validMenuPrices.length
+    ? Math.min(...validMenuPrices).toFixed(2)
+    : "0.00";
+  const maxMenuPrice = validMenuPrices.length
+    ? Math.max(...validMenuPrices).toFixed(2)
+    : "0.00";
+
+  const defaultOffer = {
+    "@type": "Offer",
+    url: menuUrl,
+    availability: "https://schema.org/InStock",
+    seller: { "@id": organizationId },
+    price: minMenuPrice,
+    priceCurrency: "EUR",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "EUR",
+      minPrice: minMenuPrice,
+      maxPrice: maxMenuPrice,
+    },
+  };
 
   const restaurant = {
     "@context": "https://schema.org",
@@ -92,7 +125,7 @@ export function RestaurantJsonLd() {
     },
     founder: { "@id": ownerId },
     makesOffer: {
-      "@type": "Offer",
+      ...defaultOffer,
       name: "Sushi & koreanische Küche in Hagen",
       category: "Restaurant",
       areaServed: "DE",
@@ -131,10 +164,7 @@ export function RestaurantJsonLd() {
       },
     ],
     offers: {
-      "@type": "Offer",
-      url: menuUrl,
-      availability: "https://schema.org/InStock",
-      seller: { "@id": organizationId },
+      ...defaultOffer,
     },
     url: siteUrl,
   };
@@ -153,10 +183,7 @@ export function RestaurantJsonLd() {
     category: "Speisen & Getränke",
     image: `${siteUrl}/opengraph-image`,
     offers: {
-      "@type": "Offer",
-      url: menuUrl,
-      availability: "https://schema.org/InStock",
-      seller: { "@id": organizationId },
+      ...defaultOffer,
     },
     url: menuUrl,
   };
