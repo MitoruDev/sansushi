@@ -35,7 +35,7 @@ export function Footer() {
                 className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-transform group-hover:scale-105"
                 aria-hidden
               >
-                <Image src="/favicon.svg" alt="" width={28} height={28} className="h-6 w-6 object-contain" />
+                <Image src="/favicon.svg" alt="San Sushi Logo" width={28} height={28} className="h-6 w-6 object-contain" />
               </span>
               {SITE.name}
             </Link>

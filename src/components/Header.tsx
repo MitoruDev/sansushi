@@ -98,7 +98,7 @@ export function Header({ activeAbsences = [] }: HeaderProps) {
           >
             <Image
               src="/favicon.svg"
-              alt=""
+              alt="San Sushi Logo"
               width={28}
               height={28}
               className="h-6 w-6 object-contain"

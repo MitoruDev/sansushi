@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
 import { getSiteUrl } from "@/lib/site-url";
 
-const pageTitle = "Datenschutz";
+const pageTitle = "Datenschutz San Sushi Hagen – Cookies, Datenschutz, DSGVO";
 const pageDescription =
-  "Datenschutzerklärung von San Sushi in Hagen: Wie Daten erhoben, welche Cookies genutzt werden und welche Datenschutzrechte Ihnen zustehen.";
-const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
+  "Datenschutzerklärung von San Sushi in Hagen: wie Daten erhoben werden, welche Cookies wir verwenden und welche Datenschutzrechte Ihnen laut DSGVO zustehen.";
+const pageTitleWithBrand = pageTitle;
 const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {

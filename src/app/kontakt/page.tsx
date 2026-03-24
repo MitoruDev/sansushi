@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { KontaktPageContent } from "@/components/KontaktPageContent";
 import { getSiteUrl } from "@/lib/site-url";
 
-const pageTitle = "Kontakt & Anfahrt – San Sushi Restaurant Hagen";
+const pageTitle = "Kontakt & San Sushi Hagen – Adresse, Telefon, Öffnungszeiten";
 const pageDescription =
-  "Kontakt und Anfahrt zu San Sushi in Hagen: Bergstraße 128–130 im Elb-Center, Öffnungszeiten, Telefon und Reservierungshinweise.";
+  "Kontakt und Anfahrt zu San Sushi in Hagen: Bergstraße 128–130 im Elb-Center, mit Öffnungszeiten, Telefonnummer, Reservierung und Parkmöglichkeiten im Blick.";
 const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {

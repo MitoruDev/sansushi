@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { getSiteUrl } from "@/lib/site-url";
 
-const pageTitle = "Speisekarte – Sushi, Sashimi & Koreanisch";
+const pageTitle = "San Sushi Hagen Speisekarte – Sushi, Sashimi, Bibimbap";
 const pageDescription =
-  "Speisekarte San Sushi Hagen: Sushi, Sashimi, Bibimbap, koreanische und japanische Gerichte. Frische Zutaten, vor Ort oder zum Mitnehmen. Jetzt ansehen oder als PDF herunterladen.";
-const pageTitleWithBrand = `${pageTitle} | San Sushi Hagen`;
+  "Speisekarte San Sushi Hagen: Sushi, Sashimi, Bibimbap, koreanische und japanische Gerichte mit frischen Zutaten. Online ansehen oder als PDF herunterladen.";
+const pageTitleWithBrand = pageTitle;
 const socialImageUrl = `${getSiteUrl()}/opengraph-image`;
 
 export const metadata: Metadata = {
