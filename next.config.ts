@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const SECURITY_HEADERS = [
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   {
     key: "Content-Security-Policy",
     value: [
@@ -11,12 +10,12 @@ const SECURITY_HEADERS = [
       "frame-ancestors 'self'",
       "object-src 'none'",
       "form-action 'self'",
-      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://fonts.gstatic.com https://maps.googleapis.com",
+      "connect-src 'self' https://*.sanity.io https://sanity.io https://*.sanity-cdn.com https://sanity-cdn.com https://*.api.sanity.io https://*.cdn.sanity.io https://registry.npmjs.org https://api.npmjs.org https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://fonts.gstatic.com https://maps.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https:",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
-      "frame-src 'self' https://www.google.com https://www.google.de",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.sanity-cdn.com",
+      "frame-src 'self' https://www.google.com https://www.google.de https://*.sanity-cdn.com",
       "manifest-src 'self'",
       "upgrade-insecure-requests",
     ].join("; "),
