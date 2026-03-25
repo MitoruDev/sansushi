@@ -1,14 +1,8 @@
 # llms.txt für KI-Crawler
 
-https://sansushi.de/
 https://sansushi.vercel.app/
-https://sansushi.de/speisekarte
 https://sansushi.vercel.app/speisekarte
-https://sansushi.de/kontakt
 https://sansushi.vercel.app/kontakt
-https://sansushi.de/impressum
 https://sansushi.vercel.app/impressum
-https://sansushi.de/datenschutz
 https://sansushi.vercel.app/datenschutz
-https://sansushi.de/speisekarte.pdf
 https://sansushi.vercel.app/speisekarte.pdf

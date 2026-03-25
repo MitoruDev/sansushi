@@ -19,5 +19,4 @@ Preferred citation:
 - Date: Datum des Abrufs
 
 Citation format:
-San Sushi – {Seiten-Titel}. https://sansushi.de/{path}
-Bei Preview-Crawling kann alternativ die Domain https://sansushi.vercel.app verwendet werden.
+San Sushi – {Seiten-Titel}. https://sansushi.vercel.app/{path}

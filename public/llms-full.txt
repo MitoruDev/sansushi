@@ -3,26 +3,26 @@
 San Sushi – Sitemap
 
 Startseite
-- URL: https://sansushi.de/ (canonical) und https://sansushi.vercel.app/
+- URL: https://sansushi.vercel.app/
 - Thema: Sushi- und koreanisch-japanisches Restaurant in Hagen, Küche, Kontakt und Einstieg.
 
 Speisekarte
-- URL: https://sansushi.de/speisekarte und https://sansushi.vercel.app/speisekarte
+- URL: https://sansushi.vercel.app/speisekarte
 - Thema: Übersicht der Gerichte, Preise, Filter nach Kategorien, PDF-Download.
 
 Kontakt
-- URL: https://sansushi.de/kontakt und https://sansushi.vercel.app/kontakt
+- URL: https://sansushi.vercel.app/kontakt
 - Thema: Adresse, Telefonnummern, Anfahrt, Öffnungszeiten.
 
 Impressum
-- URL: https://sansushi.de/impressum und https://sansushi.vercel.app/impressum
+- URL: https://sansushi.vercel.app/impressum
 - Thema: Rechtliche Angaben (gemäß § 5 TMG).
 
 Datenschutz
-- URL: https://sansushi.de/datenschutz und https://sansushi.vercel.app/datenschutz
+- URL: https://sansushi.vercel.app/datenschutz
 - Thema: Datenschutz-Hinweise für Website und Cookies.
 
 Weitere Daten
-- Speisekarte als PDF: https://sansushi.de/speisekarte.pdf und https://sansushi.vercel.app/speisekarte.pdf
+- Speisekarte als PDF: https://sansushi.vercel.app/speisekarte.pdf
 - Betreiberangabe auf der Seite „Impressum“: Frau Qian Wang
 - Öffnungszeiten: Montag bis Samstag, 12:00–22:00 Uhr, Sonntag Ruhetag.
